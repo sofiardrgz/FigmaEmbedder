@@ -9,7 +9,7 @@ export default function SafariBrowserFrame({ children, url = "app.lakenleecreati
   return (
     <div className="w-[1000px] h-full mx-auto" data-testid="safari-frame">
       {/* Browser Window */}
-      <div className="bg-gray-700 rounded-lg overflow-hidden shadow-lg border border-gray-600 h-full flex flex-col">
+      <div className="rounded-lg overflow-hidden h-full flex flex-col">
         {/* Safari Top Bar */}
         <div className="bg-gray-600 border-b border-gray-500 px-4 py-3" data-testid="safari-toolbar">
           <div className="flex items-center justify-between">
