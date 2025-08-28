@@ -9,7 +9,7 @@ import {
   Settings,
   BarChart3
 } from "lucide-react";
-import { Link, useLocation } from "wouter";
+import { useLocation } from "wouter";
 
 const navigationItems = [
   { icon: Home, label: "Dashboard", href: "/", testId: "nav-home" },
@@ -39,19 +39,18 @@ export default function Sidebar() {
             const Icon = item.icon;
             const isActive = location === item.href;
             return (
-              <Link
+              <div
                 key={item.label}
-                href={item.href}
-                className={`sidebar-item px-3 py-2 rounded-md flex items-center space-x-3 transition-colors ${
+                className={`sidebar-item px-3 py-2 rounded-md flex items-center space-x-3 ${
                   isActive
                     ? "active bg-gray-700 text-gray-300"
-                    : "text-gray-400 hover:text-gray-300 hover:bg-gray-700"
+                    : "text-gray-400"
                 }`}
                 data-testid={item.testId}
               >
                 <Icon className="w-4 h-4" />
                 <span className="text-sm font-medium">{item.label}</span>
-              </Link>
+              </div>
             );
           })}
         </nav>
