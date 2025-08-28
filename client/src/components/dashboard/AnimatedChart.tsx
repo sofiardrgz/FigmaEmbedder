@@ -35,37 +35,37 @@ export default function AnimatedChart({ data, delay = 0 }: AnimatedChartProps) {
     return () => clearTimeout(timer);
   }, [data, delay]);
 
-  // Generate secondary dataset for comparison line
-  const secondaryData = data.map((point, index) => ({
+  // Generate chart data with both primary and secondary values
+  const chartData = animatedData.map((point, index) => ({
     ...point,
-    value: Math.floor(point.value * 0.7 + Math.random() * 20),
+    primaryValue: point.value,
+    secondaryValue: Math.floor(point.value * 0.7 + Math.random() * 20),
   }));
 
   return (
     <div className="w-full h-full" data-testid="animated-chart">
       <ResponsiveContainer width="100%" height="100%">
-        <LineChart data={animatedData} margin={{ top: 5, right: 5, left: 5, bottom: 5 }}>
+        <LineChart data={chartData} margin={{ top: 5, right: 5, left: 5, bottom: 5 }}>
           <YAxis hide />
           <Line
             type="monotone"
-            dataKey="value"
+            dataKey="primaryValue"
             stroke="hsl(var(--chart-1))"
             strokeWidth={2}
             dot={false}
             activeDot={{ r: 4, fill: "hsl(var(--chart-1))" }}
-            animationDuration={2000}
+            animationDuration={1500}
             animationBegin={0}
             data-testid="primary-line"
           />
           <Line
             type="monotone"
-            dataKey="value"
-            data={secondaryData.slice(0, animatedData.length)}
+            dataKey="secondaryValue"
             stroke="hsl(var(--muted-foreground))"
             strokeWidth={1}
             strokeDasharray="5 5"
             dot={false}
-            animationDuration={2000}
+            animationDuration={1500}
             animationBegin={200}
             data-testid="secondary-line"
           />
