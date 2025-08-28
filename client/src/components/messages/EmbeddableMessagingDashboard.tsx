@@ -121,9 +121,7 @@ export default function EmbeddableMessagingDashboard({
     return () => clearInterval(interval);
   }, []);
 
-  const handleMarkAsRead = () => {
-    setNewMessageCount(0);
-  };
+
 
   const { elementRef, style } = useScrollFade();
 
@@ -138,7 +136,7 @@ export default function EmbeddableMessagingDashboard({
         <header className="flex h-16 shrink-0 items-center gap-2 border-b px-6">
           <div className="flex items-center gap-2">
             <h1 className="text-lg font-semibold">Messages</h1>
-            <NewMessageIndicator count={newMessageCount} onClick={handleMarkAsRead} />
+            <NewMessageIndicator count={newMessageCount} />
           </div>
         </header>
 
@@ -194,7 +192,7 @@ export default function EmbeddableMessagingDashboard({
               <header className="flex h-16 shrink-0 items-center gap-2 border-b px-6">
                 <div className="flex items-center gap-2">
                   <h1 className="text-lg font-semibold">Messages</h1>
-                  <NewMessageIndicator count={newMessageCount} onClick={handleMarkAsRead} />
+                  <NewMessageIndicator count={newMessageCount} />
                 </div>
               </header>
 

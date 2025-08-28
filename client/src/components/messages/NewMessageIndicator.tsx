@@ -3,10 +3,9 @@ import { Button } from "@/components/ui/button";
 
 interface NewMessageIndicatorProps {
   count: number;
-  onClick: () => void;
 }
 
-export function NewMessageIndicator({ count, onClick }: NewMessageIndicatorProps) {
+export function NewMessageIndicator({ count }: NewMessageIndicatorProps) {
   if (count === 0) return null;
 
   return (
@@ -18,12 +17,8 @@ export function NewMessageIndicator({ count, onClick }: NewMessageIndicatorProps
         transition={{ type: "spring", stiffness: 300, damping: 20 }}
         data-testid="new-message-indicator"
       >
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={onClick}
-          className="relative bg-gradient-to-r from-primary/10 to-primary/5 border-primary/30 hover:from-primary/20 hover:to-primary/10 transition-all duration-300"
-        >
+        <div className="relative bg-gradient-to-r from-primary/10 to-primary/5 border border-primary/30 rounded-md px-3 py-1 text-sm font-medium">
+        
           <motion.div
             animate={{ scale: [1, 1.1, 1] }}
             transition={{ repeat: Infinity, duration: 2 }}
@@ -34,7 +29,7 @@ export function NewMessageIndicator({ count, onClick }: NewMessageIndicatorProps
             </span>
           </motion.div>
           
-          <span className="text-sm font-medium">New Messages</span>
+          <span className="relative z-10">New Messages</span>
           
           {/* Subtle glow effect */}
           <motion.div
@@ -42,7 +37,7 @@ export function NewMessageIndicator({ count, onClick }: NewMessageIndicatorProps
             transition={{ repeat: Infinity, duration: 2 }}
             className="absolute inset-0 rounded-md bg-gradient-to-r from-primary/20 to-primary/10 blur-sm -z-10"
           />
-        </Button>
+        </div>
       </motion.div>
     </AnimatePresence>
   );

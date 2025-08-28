@@ -106,10 +106,7 @@ export default function EmbeddableDashboard({
               Overview
             </h1>
             <div 
-              className="flex items-center space-x-2 bg-muted px-3 py-2 rounded-lg cursor-pointer hover:bg-muted/80 transition-colors"
-              onClick={() => {
-                // TODO: Implement period selector
-              }}
+              className="flex items-center space-x-2 bg-muted px-3 py-2 rounded-lg"
               data-testid="period-selector"
             >
               <span className="text-sm text-muted-foreground" data-testid="selected-period">
