@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { LineChart, Line, ResponsiveContainer, YAxis, XAxis, Legend } from "recharts";
+import { AreaChart, Area, ResponsiveContainer, YAxis, XAxis } from "recharts";
 import type { ChartDataPoint } from "@/types/dashboard";
 
 interface AnimatedChartProps {
@@ -8,23 +8,24 @@ interface AnimatedChartProps {
 }
 
 export default function AnimatedChart({ data, delay = 0 }: AnimatedChartProps) {
-  const [animatedData, setAnimatedData] = useState<ChartDataPoint[]>([]);
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    // Start with empty data
-    setAnimatedData([]);
-
-    // Animate data points one by one with delay
     const timer = setTimeout(() => {
-      let index = 0;
+      setProgress(0);
+      const animationDuration = 2000;
+      const steps = 60;
+      const stepDuration = animationDuration / steps;
+      
+      let currentStep = 0;
       const interval = setInterval(() => {
-        if (index <= data.length) {
-          setAnimatedData(data.slice(0, index));
-          index++;
-        } else {
+        currentStep++;
+        setProgress(currentStep / steps);
+        
+        if (currentStep >= steps) {
           clearInterval(interval);
         }
-      }, 50);
+      }, stepDuration);
 
       return () => clearInterval(interval);
     }, delay);
@@ -32,77 +33,51 @@ export default function AnimatedChart({ data, delay = 0 }: AnimatedChartProps) {
     return () => clearTimeout(timer);
   }, [data, delay]);
 
-  // Generate chart data with both lines - ensure we have valid data
-  const chartData = animatedData.length > 0 ? animatedData.map((point, index) => ({
-    date: point.date,
-    currentPeriod: point.value,
-    previousPeriod: Math.floor(point.value * 0.75 + Math.sin(index * 0.3) * 50),
-  })) : [];
-
-  // Don't render if no data
-  if (chartData.length === 0) {
-    return (
-      <div className="w-full h-full flex items-center justify-center" data-testid="chart-loading">
-        <div className="text-muted-foreground text-sm">Loading chart...</div>
-      </div>
-    );
-  }
+  // Create smooth data for the area chart
+  const chartData = data.map((point, index) => ({
+    name: point.date,
+    value: point.value,
+    smoothValue: point.value * 0.9 + Math.sin(index * 0.1) * (point.value * 0.1),
+  }));
 
   return (
-    <div className="w-full h-full" data-testid="animated-chart">
-      <ResponsiveContainer width="100%" height="100%">
-        <LineChart data={chartData} margin={{ top: 5, right: 30, left: 40, bottom: 80 }}>
-          <XAxis 
-            dataKey="date" 
-            axisLine={false}
-            tickLine={false}
-            tick={{ fontSize: 12, fill: '#6b7280' }}
-            interval="preserveStartEnd"
-          />
-          <YAxis 
-            axisLine={false}
-            tickLine={false}
-            tick={{ fontSize: 12, fill: '#6b7280' }}
-            domain={[0, 'dataMax + 500']}
-            tickFormatter={(value) => value.toLocaleString()}
-          />
-          <Legend 
-            verticalAlign="bottom" 
-            height={40}
-            iconType="line"
-            wrapperStyle={{ 
-              paddingTop: '20px',
-              fontSize: '12px',
-              color: '#6b7280'
-            }}
-          />
-          <Line
-            type="monotone"
-            dataKey="currentPeriod"
-            stroke="#10b981"
-            strokeWidth={3}
-            dot={false}
-            name="Mar 1 - Mar 31, 2024"
-            activeDot={{ r: 5, fill: "#10b981", strokeWidth: 0 }}
-            animationDuration={2000}
-            connectNulls={false}
-            data-testid="current-period-line"
-          />
-          <Line
-            type="monotone"
-            dataKey="previousPeriod"
-            stroke="#6b7280"
-            strokeWidth={2}
-            strokeDasharray="5 5"
-            dot={false}
-            name="Feb 1 - Feb 31, 2024"
-            animationDuration={2000}
-            animationBegin={500}
-            connectNulls={false}
-            data-testid="previous-period-line"
-          />
-        </LineChart>
-      </ResponsiveContainer>
+    <div className="w-full h-full relative" data-testid="animated-chart">
+      <div className="absolute inset-0">
+        <ResponsiveContainer width="100%" height="100%">
+          <AreaChart data={chartData} margin={{ top: 20, right: 10, left: 10, bottom: 20 }}>
+            <defs>
+              <linearGradient id="colorGradient" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="5%" stopColor="#10b981" stopOpacity={0.3}/>
+                <stop offset="95%" stopColor="#10b981" stopOpacity={0.05}/>
+              </linearGradient>
+            </defs>
+            <XAxis 
+              dataKey="name" 
+              hide
+            />
+            <YAxis 
+              hide
+              domain={['dataMin - 100', 'dataMax + 100']}
+            />
+            <Area
+              type="monotone"
+              dataKey="value"
+              stroke="#10b981"
+              strokeWidth={3}
+              fill="url(#colorGradient)"
+              animationDuration={2000}
+              strokeDasharray={`${progress * 100}% 100%`}
+              data-testid="area-chart"
+            />
+          </AreaChart>
+        </ResponsiveContainer>
+      </div>
+      
+      {/* Trend indicator */}
+      <div className="absolute top-2 right-2 flex items-center space-x-1">
+        <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+        <span className="text-xs text-green-500 font-medium">+12%</span>
+      </div>
     </div>
   );
 }
