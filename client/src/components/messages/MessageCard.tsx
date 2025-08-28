@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { forwardRef } from "react";
 import { Card } from "@/components/ui/card";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
@@ -17,9 +18,10 @@ interface MessageCardProps {
   index: number;
 }
 
-export function MessageCard({ message, index }: MessageCardProps) {
+const MessageCard = forwardRef<HTMLDivElement, MessageCardProps>(({ message, index }, ref) => {
   return (
     <motion.div
+      ref={ref}
       layout
       initial={{ opacity: 0, x: message.isNew ? -50 : 0, scale: message.isNew ? 0.95 : 1 }}
       animate={{ 
@@ -86,4 +88,8 @@ export function MessageCard({ message, index }: MessageCardProps) {
       </Card>
     </motion.div>
   );
-}
+});
+
+MessageCard.displayName = "MessageCard";
+
+export { MessageCard };

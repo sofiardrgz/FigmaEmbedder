@@ -35,8 +35,8 @@ const initialMessages: Message[] = [
   },
   {
     id: "3",
-    sender: "You",
-    avatar: "YU",
+    sender: "Sara R",
+    avatar: "SR",
     message: "Thanks Mike! I'll have the final version ready by tomorrow.",
     timestamp: "3 min ago",
     type: "sent"
