@@ -24,7 +24,7 @@ export default function RecentSignupsTable({ signups }: RecentSignupsTableProps)
   return (
     <div className="bg-card rounded-lg border border-border opacity-0 animate-[slideInUp_0.8s_ease-out_1.2s_forwards]" data-testid="recent-signups-container">
       <div className="px-6 py-4 border-b border-border" data-testid="table-header">
-        <h2 className="text-lg font-semibold text-foreground" data-testid="table-title">
+        <h2 className="font-normal text-[16px] text-[#b3b3b3]" data-testid="table-title">
           Most recent signups
         </h2>
       </div>
