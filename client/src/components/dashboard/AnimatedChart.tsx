@@ -9,12 +9,10 @@ interface AnimatedChartProps {
 
 export default function AnimatedChart({ data, delay = 0 }: AnimatedChartProps) {
   const [animatedData, setAnimatedData] = useState<ChartDataPoint[]>([]);
-  const [isAnimating, setIsAnimating] = useState(true);
 
   useEffect(() => {
     // Start with empty data
     setAnimatedData([]);
-    setIsAnimating(true);
 
     // Animate data points one by one with delay
     const timer = setTimeout(() => {
@@ -25,9 +23,8 @@ export default function AnimatedChart({ data, delay = 0 }: AnimatedChartProps) {
           index++;
         } else {
           clearInterval(interval);
-          setIsAnimating(false);
         }
-      }, 30); // Faster animation
+      }, 50);
 
       return () => clearInterval(interval);
     }, delay);
@@ -35,17 +32,26 @@ export default function AnimatedChart({ data, delay = 0 }: AnimatedChartProps) {
     return () => clearTimeout(timer);
   }, [data, delay]);
 
-  // Generate chart data with both lines
-  const chartData = animatedData.map((point, index) => ({
-    ...point,
+  // Generate chart data with both lines - ensure we have valid data
+  const chartData = animatedData.length > 0 ? animatedData.map((point, index) => ({
+    date: point.date,
     currentPeriod: point.value,
-    previousPeriod: Math.floor(point.value * 0.8 + Math.sin(index * 0.2) * 100),
-  }));
+    previousPeriod: Math.floor(point.value * 0.75 + Math.sin(index * 0.3) * 50),
+  })) : [];
+
+  // Don't render if no data
+  if (chartData.length === 0) {
+    return (
+      <div className="w-full h-full flex items-center justify-center" data-testid="chart-loading">
+        <div className="text-muted-foreground text-sm">Loading chart...</div>
+      </div>
+    );
+  }
 
   return (
     <div className="w-full h-full" data-testid="animated-chart">
       <ResponsiveContainer width="100%" height="100%">
-        <LineChart data={chartData} margin={{ top: 5, right: 30, left: 20, bottom: 60 }}>
+        <LineChart data={chartData} margin={{ top: 5, right: 30, left: 40, bottom: 80 }}>
           <XAxis 
             dataKey="date" 
             axisLine={false}
@@ -57,12 +63,12 @@ export default function AnimatedChart({ data, delay = 0 }: AnimatedChartProps) {
             axisLine={false}
             tickLine={false}
             tick={{ fontSize: 12, fill: '#6b7280' }}
-            domain={[0, 'dataMax + 1000']}
+            domain={[0, 'dataMax + 500']}
             tickFormatter={(value) => value.toLocaleString()}
           />
           <Legend 
             verticalAlign="bottom" 
-            height={36}
+            height={40}
             iconType="line"
             wrapperStyle={{ 
               paddingTop: '20px',
@@ -74,12 +80,11 @@ export default function AnimatedChart({ data, delay = 0 }: AnimatedChartProps) {
             type="monotone"
             dataKey="currentPeriod"
             stroke="#10b981"
-            strokeWidth={2}
+            strokeWidth={3}
             dot={false}
             name="Mar 1 - Mar 31, 2024"
-            activeDot={{ r: 4, fill: "#10b981", strokeWidth: 0 }}
-            animationDuration={1500}
-            animationBegin={0}
+            activeDot={{ r: 5, fill: "#10b981", strokeWidth: 0 }}
+            animationDuration={2000}
             connectNulls={false}
             data-testid="current-period-line"
           />
@@ -91,8 +96,8 @@ export default function AnimatedChart({ data, delay = 0 }: AnimatedChartProps) {
             strokeDasharray="5 5"
             dot={false}
             name="Feb 1 - Feb 31, 2024"
-            animationDuration={1500}
-            animationBegin={300}
+            animationDuration={2000}
+            animationBegin={500}
             connectNulls={false}
             data-testid="previous-period-line"
           />
