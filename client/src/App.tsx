@@ -5,12 +5,14 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
 import Dashboard from "@/pages/dashboard";
+import Messages from "@/pages/messages";
 import EmbeddableDashboard from "@/components/dashboard/EmbeddableDashboard";
 
 function Router() {
   return (
     <Switch>
       <Route path="/" component={Dashboard} />
+      <Route path="/messages" component={Messages} />
       <Route path="/embed" component={() => <EmbeddableDashboard showSafariFrame={true} />} />
       <Route path="/embed/no-frame" component={() => <EmbeddableDashboard showSafariFrame={false} />} />
       <Route path="/embed/no-sidebar" component={() => <EmbeddableDashboard showSafariFrame={true} showSidebar={false} />} />
