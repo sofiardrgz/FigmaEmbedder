@@ -1,11 +1,19 @@
 import { useState } from "react";
-import Sidebar from "@/components/dashboard/Sidebar";
-import KPICard from "@/components/dashboard/KPICard";
-import RecentSignupsTable from "@/components/dashboard/RecentSignupsTable";
+import KPICard from "./KPICard";
+import RecentSignupsTable from "./RecentSignupsTable";
+import Sidebar from "./Sidebar";
+import SafariBrowserFrame from "./SafariBrowserFrame";
 import { ChevronDown, Home } from "lucide-react";
 import type { DashboardData } from "@/types/dashboard";
 
-const mockDashboardData: DashboardData = {
+interface EmbeddableDashboardProps {
+  data?: DashboardData;
+  showSafariFrame?: boolean;
+  showSidebar?: boolean;
+  className?: string;
+}
+
+const defaultData: DashboardData = {
   kpis: {
     newLeads: 12000,
     followUps: 600,
@@ -69,12 +77,17 @@ const mockDashboardData: DashboardData = {
   ],
 };
 
-export default function Dashboard() {
+export default function EmbeddableDashboard({ 
+  data = defaultData, 
+  showSafariFrame = true, 
+  showSidebar = true,
+  className = ""
+}: EmbeddableDashboardProps) {
   const [selectedPeriod, setSelectedPeriod] = useState("Last 30 Days");
 
-  return (
-    <div className="flex min-h-screen bg-background text-foreground" data-testid="dashboard-container">
-      <Sidebar />
+  const DashboardContent = () => (
+    <div className={`flex min-h-screen bg-background text-foreground ${className}`} data-testid="embeddable-dashboard">
+      {showSidebar && <Sidebar />}
       
       <div className="flex-1 overflow-auto">
         {/* Top Bar */}
@@ -110,37 +123,41 @@ export default function Dashboard() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8" data-testid="kpi-grid">
             <KPICard
               title="New Leads"
-              value={mockDashboardData.kpis.newLeads}
+              value={data.kpis.newLeads}
               icon="user-plus"
-              chartData={mockDashboardData.chartData.newLeads}
+              chartData={data.chartData.newLeads}
               delay={200}
-              data-testid="kpi-card-new-leads"
             />
             <KPICard
               title="Follow-ups"
-              value={mockDashboardData.kpis.followUps}
+              value={data.kpis.followUps}
               icon="phone"
-              chartData={mockDashboardData.chartData.followUps}
+              chartData={data.chartData.followUps}
               delay={400}
-              data-testid="kpi-card-follow-ups"
             />
             <KPICard
               title="Answered Calls"
-              value={mockDashboardData.kpis.answeredCalls}
+              value={data.kpis.answeredCalls}
               icon="phone-call"
-              chartData={mockDashboardData.chartData.answeredCalls}
+              chartData={data.chartData.answeredCalls}
               delay={600}
-              data-testid="kpi-card-answered-calls"
             />
           </div>
 
           {/* Recent Signups Table */}
-          <RecentSignupsTable 
-            signups={mockDashboardData.recentSignups}
-            data-testid="recent-signups-table"
-          />
+          <RecentSignupsTable signups={data.recentSignups} />
         </div>
       </div>
     </div>
   );
+
+  if (showSafariFrame) {
+    return (
+      <SafariBrowserFrame>
+        <DashboardContent />
+      </SafariBrowserFrame>
+    );
+  }
+
+  return <DashboardContent />;
 }

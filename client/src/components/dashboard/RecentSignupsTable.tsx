@@ -22,7 +22,7 @@ const statusConfig = {
 
 export default function RecentSignupsTable({ signups }: RecentSignupsTableProps) {
   return (
-    <div className="bg-card rounded-lg border border-border fade-in" data-testid="recent-signups-container">
+    <div className="bg-card rounded-lg border border-border opacity-0 animate-[slideInUp_0.8s_ease-out_1.2s_forwards]" data-testid="recent-signups-container">
       <div className="px-6 py-4 border-b border-border" data-testid="table-header">
         <h2 className="text-lg font-semibold text-foreground" data-testid="table-title">
           Most recent signups
@@ -30,7 +30,7 @@ export default function RecentSignupsTable({ signups }: RecentSignupsTableProps)
       </div>
       <div className="overflow-x-auto" data-testid="table-wrapper">
         <table className="w-full" data-testid="signups-table">
-          <thead className="bg-muted/50">
+          <thead className="bg-muted">
             <tr>
               <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider" data-testid="header-date">
                 Date
@@ -51,14 +51,15 @@ export default function RecentSignupsTable({ signups }: RecentSignupsTableProps)
             </tr>
           </thead>
           <tbody className="divide-y divide-border" data-testid="table-body">
-            {signups.map((signup) => {
+            {signups.map((signup, index) => {
               const DeviceIcon = signup.device === "mobile" ? Smartphone : Monitor;
               const statusInfo = statusConfig[signup.status];
 
               return (
                 <tr
                   key={signup.id}
-                  className="table-row cursor-pointer"
+                  className="table-row cursor-pointer opacity-0 animate-[slideInUp_0.6s_ease-out_forwards]"
+                  style={{ animationDelay: `${1.6 + index * 0.1}s` }}
                   data-testid={`signup-row-${signup.id}`}
                 >
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-foreground" data-testid={`date-${signup.id}`}>

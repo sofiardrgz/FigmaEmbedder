@@ -26,11 +26,8 @@ export default function Sidebar() {
     <div className="w-64 bg-sidebar border-r border-sidebar-border flex-shrink-0" data-testid="sidebar">
       <div className="p-6">
         <div className="flex items-center space-x-2 mb-8" data-testid="sidebar-header">
-          <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center" data-testid="logo-container">
-            <BarChart3 className="text-primary-foreground w-4 h-4" data-testid="logo-icon" />
-          </div>
           <span className="font-semibold text-lg text-sidebar-foreground" data-testid="logo-text">
-            Motion Central
+            Mission Control
           </span>
         </div>
         

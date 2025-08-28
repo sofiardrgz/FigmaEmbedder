@@ -4,9 +4,10 @@ import type { ChartDataPoint } from "@/types/dashboard";
 
 interface AnimatedChartProps {
   data: ChartDataPoint[];
+  delay?: number;
 }
 
-export default function AnimatedChart({ data }: AnimatedChartProps) {
+export default function AnimatedChart({ data, delay = 0 }: AnimatedChartProps) {
   const [animatedData, setAnimatedData] = useState<ChartDataPoint[]>([]);
   const [isAnimating, setIsAnimating] = useState(true);
 
@@ -15,7 +16,7 @@ export default function AnimatedChart({ data }: AnimatedChartProps) {
     setAnimatedData([]);
     setIsAnimating(true);
 
-    // Animate data points one by one
+    // Animate data points one by one with delay
     const timer = setTimeout(() => {
       let index = 0;
       const interval = setInterval(() => {
@@ -26,13 +27,13 @@ export default function AnimatedChart({ data }: AnimatedChartProps) {
           clearInterval(interval);
           setIsAnimating(false);
         }
-      }, 50);
+      }, 30); // Faster animation
 
       return () => clearInterval(interval);
-    }, 200);
+    }, delay);
 
     return () => clearTimeout(timer);
-  }, [data]);
+  }, [data, delay]);
 
   // Generate secondary dataset for comparison line
   const secondaryData = data.map((point, index) => ({

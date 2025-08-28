@@ -1,5 +1,6 @@
 import { UserPlus, Phone, PhoneCall } from "lucide-react";
 import AnimatedChart from "./AnimatedChart";
+import { useCounterAnimation } from "@/hooks/use-counter-animation";
 import type { ChartDataPoint } from "@/types/dashboard";
 
 interface KPICardProps {
@@ -7,6 +8,7 @@ interface KPICardProps {
   value: number;
   icon: "user-plus" | "phone" | "phone-call";
   chartData: ChartDataPoint[];
+  delay?: number;
 }
 
 const iconMap = {
@@ -15,11 +17,16 @@ const iconMap = {
   "phone-call": PhoneCall,
 };
 
-export default function KPICard({ title, value, icon, chartData }: KPICardProps) {
+export default function KPICard({ title, value, icon, chartData, delay = 0 }: KPICardProps) {
   const Icon = iconMap[icon];
+  const animatedValue = useCounterAnimation(value, 2000, delay);
 
   return (
-    <div className="kpi-card bg-card rounded-lg border border-border p-6" data-testid={`kpi-card-${title.toLowerCase().replace(/\s+/g, '-')}`}>
+    <div 
+      className="kpi-card bg-card rounded-lg border border-border p-6 opacity-0 animate-[slideInUp_0.8s_ease-out_forwards]" 
+      style={{ animationDelay: `${delay}ms` }}
+      data-testid={`kpi-card-${title.toLowerCase().replace(/\s+/g, '-')}`}
+    >
       <div className="flex items-center justify-between mb-4" data-testid="kpi-header">
         <div className="flex items-center space-x-2">
           <div className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center" data-testid="kpi-icon-container">
@@ -29,10 +36,10 @@ export default function KPICard({ title, value, icon, chartData }: KPICardProps)
         </div>
       </div>
       <div className="text-3xl font-bold text-foreground mb-4" data-testid="kpi-value">
-        {value.toLocaleString()}
+        {animatedValue.toLocaleString()}
       </div>
       <div className="h-[180px] w-full" data-testid="kpi-chart-container">
-        <AnimatedChart data={chartData} />
+        <AnimatedChart data={chartData} delay={delay + 500} />
       </div>
     </div>
   );
