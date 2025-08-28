@@ -88,7 +88,7 @@ export default function Dashboard() {
         <div className="p-6" data-testid="dashboard-content">
           {/* Overview Header */}
           <div className="flex items-center justify-between mb-6" data-testid="overview-header">
-            <h1 className="text-[17px] text-[#919191] font-normal" data-testid="overview-title">
+            <h1 className="text-[17px] font-normal text-[#999999]" data-testid="overview-title">
               Overview
             </h1>
             <div 
