@@ -7,7 +7,7 @@ interface SafariBrowserFrameProps {
 
 export default function SafariBrowserFrame({ children, url = "app.lakenleecreative.com" }: SafariBrowserFrameProps) {
   return (
-    <div className="bg-gray-800 p-4 rounded-lg shadow-2xl w-[800px] h-full mx-auto" data-testid="safari-frame">
+    <div className="w-[1000px] h-full mx-auto" data-testid="safari-frame">
       {/* Browser Window */}
       <div className="bg-gray-700 rounded-lg overflow-hidden shadow-lg border border-gray-600 h-full flex flex-col">
         {/* Safari Top Bar */}
