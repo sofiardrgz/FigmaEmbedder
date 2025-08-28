@@ -7,9 +7,9 @@ interface SafariBrowserFrameProps {
 
 export default function SafariBrowserFrame({ children, url = "app.lakenleecreative.com" }: SafariBrowserFrameProps) {
   return (
-    <div className="bg-gray-800 p-4 rounded-lg shadow-2xl max-w-7xl mx-auto" data-testid="safari-frame">
+    <div className="bg-gray-800 p-4 rounded-lg shadow-2xl w-[800px] h-full mx-auto" data-testid="safari-frame">
       {/* Browser Window */}
-      <div className="bg-gray-700 rounded-lg overflow-hidden shadow-lg border border-gray-600">
+      <div className="bg-gray-700 rounded-lg overflow-hidden shadow-lg border border-gray-600 h-full flex flex-col">
         {/* Safari Top Bar */}
         <div className="bg-gray-600 border-b border-gray-500 px-4 py-3" data-testid="safari-toolbar">
           <div className="flex items-center justify-between">
@@ -54,7 +54,7 @@ export default function SafariBrowserFrame({ children, url = "app.lakenleecreati
         </div>
 
         {/* Page Content */}
-        <div className="bg-background" data-testid="page-content">
+        <div className="bg-background flex-1 overflow-hidden" data-testid="page-content">
           {children}
         </div>
       </div>
