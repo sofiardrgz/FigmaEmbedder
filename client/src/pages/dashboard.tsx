@@ -75,7 +75,6 @@ export default function Dashboard() {
   return (
     <div className="flex min-h-screen bg-background text-foreground" data-testid="dashboard-container">
       <Sidebar />
-      
       <div className="flex-1 overflow-auto">
         {/* Top Bar */}
         <div className="bg-background border-b border-border px-6 py-4" data-testid="topbar">
@@ -89,7 +88,7 @@ export default function Dashboard() {
         <div className="p-6" data-testid="dashboard-content">
           {/* Overview Header */}
           <div className="flex items-center justify-between mb-6" data-testid="overview-header">
-            <h1 className="text-2xl font-semibold text-foreground" data-testid="overview-title">
+            <h1 className="text-[17px] text-[#919191] font-normal" data-testid="overview-title">
               Overview
             </h1>
             <div 
