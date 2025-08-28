@@ -1,6 +1,6 @@
 [build]
   # Build command for the frontend
-  command = "npm run build:frontend"
+  command = "vite build"
   
   # Directory to publish
   publish = "dist/public"
