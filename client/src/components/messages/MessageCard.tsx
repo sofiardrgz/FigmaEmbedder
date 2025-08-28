@@ -38,13 +38,7 @@ export function MessageCard({ message, index }: MessageCardProps) {
       whileHover={{ scale: 1.02 }}
       data-testid={`message-card-${message.id}`}
     >
-      <Card className={`p-4 border-2 transition-all duration-300 ${
-        message.isNew 
-          ? 'border-primary/50 bg-primary/5 shadow-lg shadow-primary/20' 
-          : 'border-border hover:border-primary/30'
-      } ${
-        message.type === 'sent' ? 'ml-8 bg-primary/10' : ''
-      }`}>
+      <Card className="rounded-lg text-card-foreground shadow-sm p-4 border-2 transition-all duration-300 border-border hover:border-primary/30 bg-primary/10 ml-[0px] mr-[0px]">
         <div className="flex items-start gap-3">
           <Avatar className="h-10 w-10 shrink-0">
             <AvatarFallback className={`text-sm font-semibold ${
