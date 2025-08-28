@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { LineChart, Line, ResponsiveContainer, YAxis, XAxis } from "recharts";
+import { LineChart, Line, ResponsiveContainer, YAxis, XAxis, ReferenceLine } from "recharts";
 import type { ChartDataPoint } from "@/types/dashboard";
 
 interface AnimatedChartProps {
@@ -35,12 +35,16 @@ export default function AnimatedChart({ data, delay = 0 }: AnimatedChartProps) {
     return () => clearTimeout(timer);
   }, [data, delay]);
 
-  // Generate chart data with both primary and secondary values
-  const chartData = animatedData.map((point, index) => ({
+  // Generate chart data with primary values and calculate average for reference line
+  const chartData = animatedData.map((point) => ({
     ...point,
     primaryValue: point.value,
-    secondaryValue: Math.floor(point.value * 0.7 + Math.random() * 20),
   }));
+
+  // Calculate average value for straight reference line
+  const averageValue = chartData.length > 0 
+    ? chartData.reduce((sum, point) => sum + point.primaryValue, 0) / chartData.length 
+    : 0;
 
   return (
     <div className="w-full h-full" data-testid="animated-chart">
@@ -67,18 +71,15 @@ export default function AnimatedChart({ data, delay = 0 }: AnimatedChartProps) {
             connectNulls={false}
             data-testid="primary-line"
           />
-          <Line
-            type="monotone"
-            dataKey="secondaryValue"
-            stroke="#6b7280"
-            strokeWidth={2}
-            strokeDasharray="5 5"
-            dot={false}
-            animationDuration={1500}
-            animationBegin={300}
-            connectNulls={false}
-            data-testid="secondary-line"
-          />
+          {averageValue > 0 && (
+            <ReferenceLine 
+              y={averageValue * 0.7} 
+              stroke="#6b7280" 
+              strokeWidth={2}
+              strokeDasharray="5 5"
+              data-testid="reference-line"
+            />
+          )}
         </LineChart>
       </ResponsiveContainer>
     </div>
