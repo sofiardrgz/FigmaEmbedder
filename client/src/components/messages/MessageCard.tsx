@@ -25,8 +25,7 @@ export function MessageCard({ message, index }: MessageCardProps) {
       animate={{ 
         opacity: 1, 
         x: 0, 
-        scale: 1,
-        borderColor: message.isNew ? "hsl(142.1, 76.2%, 36.3%)" : "transparent"
+        scale: 1
       }}
       exit={{ opacity: 0, x: -50 }}
       transition={{ 

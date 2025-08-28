@@ -1,0 +1,185 @@
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { MessageCard } from "@/components/messages/MessageCard";
+import { MessageList } from "@/components/messages/MessageList";
+import { NewMessageIndicator } from "@/components/messages/NewMessageIndicator";
+import SafariBrowserFrame from "@/components/dashboard/SafariBrowserFrame";
+
+interface Message {
+  id: string;
+  sender: string;
+  avatar: string;
+  message: string;
+  timestamp: string;
+  isNew?: boolean;
+  type: 'received' | 'sent';
+}
+
+const initialMessages: Message[] = [
+  {
+    id: "1",
+    sender: "Sarah Chen",
+    avatar: "SC",
+    message: "Hey! The new dashboard design looks amazing. When can we schedule the review meeting?",
+    timestamp: "2 min ago",
+    type: "received"
+  },
+  {
+    id: "2", 
+    sender: "Mike Rodriguez",
+    avatar: "MR",
+    message: "Great work on the sales report. The metrics are looking really strong this quarter.",
+    timestamp: "5 min ago",
+    type: "received"
+  },
+  {
+    id: "3",
+    sender: "You",
+    avatar: "YU",
+    message: "Thanks Mike! I'll have the final version ready by tomorrow.",
+    timestamp: "3 min ago",
+    type: "sent"
+  },
+  {
+    id: "4",
+    sender: "Emily Watson",
+    avatar: "EW", 
+    message: "Can you send me the latest project timeline? Need to update the client.",
+    timestamp: "8 min ago",
+    type: "received"
+  },
+  {
+    id: "5",
+    sender: "Alex Thompson",
+    avatar: "AT",
+    message: "The integration is complete. Ready for testing!",
+    timestamp: "12 min ago", 
+    type: "received"
+  }
+];
+
+const newMessageTemplates = [
+  {
+    sender: "David Park",
+    avatar: "DP",
+    message: "Just finished the API integration. Everything is working perfectly!",
+    type: "received" as const
+  },
+  {
+    sender: "Lisa Zhang",
+    avatar: "LZ", 
+    message: "The client loved the demo! They want to move forward with the project.",
+    type: "received" as const
+  },
+  {
+    sender: "Ryan Miller",
+    avatar: "RM",
+    message: "Hey, can we schedule a quick call to discuss the database optimization?",
+    type: "received" as const
+  }
+];
+
+interface EmbeddableMessagingDashboardProps {
+  showSafariFrame?: boolean;
+  showSidebar?: boolean;
+}
+
+export default function EmbeddableMessagingDashboard({ 
+  showSafariFrame = true, 
+  showSidebar = true 
+}: EmbeddableMessagingDashboardProps) {
+  const [messages, setMessages] = useState<Message[]>(initialMessages);
+  const [newMessageCount, setNewMessageCount] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      // Randomly add new messages every 8-15 seconds
+      if (Math.random() > 0.6) {
+        const template = newMessageTemplates[Math.floor(Math.random() * newMessageTemplates.length)];
+        const newMessage: Message = {
+          ...template,
+          id: Date.now().toString(),
+          timestamp: "now",
+          isNew: true
+        };
+
+        setMessages(prev => [newMessage, ...prev]);
+        setNewMessageCount(prev => prev + 1);
+
+        // Remove "new" status after 5 seconds
+        setTimeout(() => {
+          setMessages(prev => 
+            prev.map(msg => 
+              msg.id === newMessage.id ? { ...msg, isNew: false } : msg
+            )
+          );
+        }, 5000);
+      }
+    }, 10000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const handleMarkAsRead = () => {
+    setNewMessageCount(0);
+  };
+
+  const DashboardContent = () => (
+    <div className="flex h-screen bg-background">
+      <div className="flex-1 flex flex-col">
+        {/* Header */}
+        <header className="flex h-16 shrink-0 items-center gap-2 border-b px-6">
+          <div className="flex items-center gap-2">
+            <h1 className="text-lg font-semibold">Messages</h1>
+            <NewMessageIndicator count={newMessageCount} onClick={handleMarkAsRead} />
+          </div>
+        </header>
+
+        {/* Main Content */}
+        <div className="flex-1 flex overflow-hidden">
+          {/* Message List */}
+          <div className="w-80 border-r bg-card/50">
+            <MessageList messages={messages} />
+          </div>
+
+          {/* Message Details */}
+          <div className="flex-1 flex flex-col">
+            <div className="flex-1 p-6">
+              <div className="max-w-4xl">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <h2 className="text-2xl font-bold mb-6">Recent Messages</h2>
+                  
+                  <div className="grid gap-4">
+                    <AnimatePresence mode="popLayout">
+                      {messages.slice(0, 6).map((message, index) => (
+                        <MessageCard 
+                          key={message.id} 
+                          message={message} 
+                          index={index}
+                        />
+                      ))}
+                    </AnimatePresence>
+                  </div>
+                </motion.div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
+  if (showSafariFrame) {
+    return (
+      <SafariBrowserFrame url="messages.app.missioncontrol.com">
+        <DashboardContent />
+      </SafariBrowserFrame>
+    );
+  }
+
+  return <DashboardContent />;
+}

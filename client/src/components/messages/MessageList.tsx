@@ -19,7 +19,12 @@ export function MessageList({ messages }: MessageListProps) {
   return (
     <div className="flex flex-col h-full">
       <div className="p-4 border-b">
-        <h3 className="font-semibold text-lg">All Messages</h3>
+        <div className="flex items-center justify-between">
+          <h3 className="font-semibold text-lg">All Messages</h3>
+          {messages.filter(m => m.isNew).length > 0 && (
+            <div className="w-3 h-3 bg-gradient-to-r from-primary to-primary/80 rounded-full"></div>
+          )}
+        </div>
         <p className="text-sm text-muted-foreground">
           {messages.filter(m => m.isNew).length} new messages
         </p>

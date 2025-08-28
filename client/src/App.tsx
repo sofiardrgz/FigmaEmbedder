@@ -7,6 +7,7 @@ import NotFound from "@/pages/not-found";
 import Dashboard from "@/pages/dashboard";
 import Messages from "@/pages/messages";
 import EmbeddableDashboard from "@/components/dashboard/EmbeddableDashboard";
+import EmbeddableMessagingDashboard from "@/components/messages/EmbeddableMessagingDashboard";
 
 function Router() {
   return (
@@ -16,6 +17,9 @@ function Router() {
       <Route path="/embed" component={() => <EmbeddableDashboard showSafariFrame={true} />} />
       <Route path="/embed/no-frame" component={() => <EmbeddableDashboard showSafariFrame={false} />} />
       <Route path="/embed/no-sidebar" component={() => <EmbeddableDashboard showSafariFrame={true} showSidebar={false} />} />
+      <Route path="/embed/messages" component={() => <EmbeddableMessagingDashboard showSafariFrame={true} />} />
+      <Route path="/embed/messages/no-frame" component={() => <EmbeddableMessagingDashboard showSafariFrame={false} />} />
+      <Route path="/embed/messages/no-sidebar" component={() => <EmbeddableMessagingDashboard showSafariFrame={true} showSidebar={false} />} />
       <Route component={NotFound} />
     </Switch>
   );

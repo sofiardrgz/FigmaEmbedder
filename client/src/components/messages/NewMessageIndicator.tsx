@@ -27,9 +27,9 @@ export function NewMessageIndicator({ count, onClick }: NewMessageIndicatorProps
           <motion.div
             animate={{ scale: [1, 1.1, 1] }}
             transition={{ repeat: Infinity, duration: 2 }}
-            className="absolute -top-1 -right-1 w-5 h-5 bg-gradient-to-r from-primary to-primary/80 rounded-full flex items-center justify-center"
+            className="absolute -top-1 -right-1 w-5 h-5 bg-primary rounded-full flex items-center justify-center"
           >
-            <span className="text-xs font-bold text-primary-foreground">
+            <span className="text-xs font-bold text-white">
               {count > 99 ? '99+' : count}
             </span>
           </motion.div>
