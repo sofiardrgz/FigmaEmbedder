@@ -35,7 +35,7 @@ export default function KPICard({ title, value, icon, chartData, delay = 0 }: KP
           <span className="text-sm text-muted-foreground" data-testid="kpi-title">{title}</span>
         </div>
       </div>
-      <div className="text-3xl font-bold text-foreground mb-4" data-testid="kpi-value">
+      <div className="mb-4 text-[21px] font-medium text-[#757778]" data-testid="kpi-value">
         {animatedValue.toLocaleString()}
       </div>
       <div className="h-[180px] w-full" data-testid="kpi-chart-container">
