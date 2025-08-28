@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { LineChart, Line, ResponsiveContainer, YAxis, XAxis, ReferenceLine } from "recharts";
+import { LineChart, Line, ResponsiveContainer, YAxis, XAxis, Legend } from "recharts";
 import type { ChartDataPoint } from "@/types/dashboard";
 
 interface AnimatedChartProps {
@@ -35,51 +35,67 @@ export default function AnimatedChart({ data, delay = 0 }: AnimatedChartProps) {
     return () => clearTimeout(timer);
   }, [data, delay]);
 
-  // Generate chart data with primary values and calculate average for reference line
-  const chartData = animatedData.map((point) => ({
+  // Generate chart data with both lines
+  const chartData = animatedData.map((point, index) => ({
     ...point,
-    primaryValue: point.value,
+    currentPeriod: point.value,
+    previousPeriod: Math.floor(point.value * 0.8 + Math.sin(index * 0.2) * 100),
   }));
-
-  // Calculate average value for straight reference line
-  const averageValue = chartData.length > 0 
-    ? chartData.reduce((sum, point) => sum + point.primaryValue, 0) / chartData.length 
-    : 0;
 
   return (
     <div className="w-full h-full" data-testid="animated-chart">
       <ResponsiveContainer width="100%" height="100%">
-        <LineChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+        <LineChart data={chartData} margin={{ top: 5, right: 30, left: 20, bottom: 60 }}>
           <XAxis 
             dataKey="date" 
-            hide 
-            domain={['dataMin', 'dataMax']}
+            axisLine={false}
+            tickLine={false}
+            tick={{ fontSize: 12, fill: '#6b7280' }}
+            interval="preserveStartEnd"
           />
           <YAxis 
-            hide 
-            domain={['dataMin - 50', 'dataMax + 50']}
+            axisLine={false}
+            tickLine={false}
+            tick={{ fontSize: 12, fill: '#6b7280' }}
+            domain={[0, 'dataMax + 1000']}
+            tickFormatter={(value) => value.toLocaleString()}
+          />
+          <Legend 
+            verticalAlign="bottom" 
+            height={36}
+            iconType="line"
+            wrapperStyle={{ 
+              paddingTop: '20px',
+              fontSize: '12px',
+              color: '#6b7280'
+            }}
           />
           <Line
             type="monotone"
-            dataKey="primaryValue"
+            dataKey="currentPeriod"
             stroke="#10b981"
-            strokeWidth={3}
+            strokeWidth={2}
             dot={false}
-            activeDot={{ r: 5, fill: "#10b981", strokeWidth: 0 }}
+            name="Mar 1 - Mar 31, 2024"
+            activeDot={{ r: 4, fill: "#10b981", strokeWidth: 0 }}
             animationDuration={1500}
             animationBegin={0}
             connectNulls={false}
-            data-testid="primary-line"
+            data-testid="current-period-line"
           />
-          {averageValue > 0 && (
-            <ReferenceLine 
-              y={averageValue * 0.7} 
-              stroke="#6b7280" 
-              strokeWidth={2}
-              strokeDasharray="5 5"
-              data-testid="reference-line"
-            />
-          )}
+          <Line
+            type="monotone"
+            dataKey="previousPeriod"
+            stroke="#6b7280"
+            strokeWidth={2}
+            strokeDasharray="5 5"
+            dot={false}
+            name="Feb 1 - Feb 31, 2024"
+            animationDuration={1500}
+            animationBegin={300}
+            connectNulls={false}
+            data-testid="previous-period-line"
+          />
         </LineChart>
       </ResponsiveContainer>
     </div>
