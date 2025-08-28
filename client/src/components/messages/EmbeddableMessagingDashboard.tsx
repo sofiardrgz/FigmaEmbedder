@@ -131,7 +131,7 @@ export default function EmbeddableMessagingDashboard({
     <div 
       ref={elementRef}
       style={style}
-      className="flex h-screen bg-background"
+      className="flex h-screen bg-background rounded-[10px] overflow-hidden"
     >
       <div className="flex-1 flex flex-col">
         {/* Header */}
@@ -188,7 +188,7 @@ export default function EmbeddableMessagingDashboard({
         className="w-[1000px] h-full mx-auto"
       >
         <SafariBrowserFrame url="messages.app.missioncontrol.com">
-          <div className="flex h-screen bg-background">
+          <div className="flex h-screen bg-background rounded-[10px] overflow-hidden">
             <div className="flex-1 flex flex-col">
               {/* Header */}
               <header className="flex h-16 shrink-0 items-center gap-2 border-b px-6">
