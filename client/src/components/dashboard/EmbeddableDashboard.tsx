@@ -86,15 +86,15 @@ export default function EmbeddableDashboard({
   const [selectedPeriod, setSelectedPeriod] = useState("Last 30 Days");
 
   const DashboardContent = () => (
-    <div className={`flex h-full bg-background text-foreground rounded-[10px] overflow-hidden ${className}`} data-testid="embeddable-dashboard">
+    <div className={`flex h-full bg-gray-900 text-gray-300 rounded-[10px] overflow-hidden ${className}`} data-testid="embeddable-dashboard">
       {showSidebar && <Sidebar />}
       
       <div className="flex-1 overflow-hidden">
         {/* Top Bar */}
-        <div className="bg-background border-b border-border px-6 py-4" data-testid="topbar">
+        <div className="bg-gray-800 border-b border-gray-700 px-6 py-4" data-testid="topbar">
           <div className="flex items-center space-x-4">
-            <Home className="w-4 h-4 text-muted-foreground" data-testid="home-icon" />
-            <span className="text-foreground font-medium" data-testid="breadcrumb-home">Home</span>
+            <Home className="w-4 h-4 text-gray-400" data-testid="home-icon" />
+            <span className="text-gray-300 font-medium" data-testid="breadcrumb-home">Home</span>
           </div>
         </div>
 
@@ -102,17 +102,17 @@ export default function EmbeddableDashboard({
         <div className="p-6" data-testid="dashboard-content">
           {/* Overview Header */}
           <div className="flex items-center justify-between mb-6" data-testid="overview-header">
-            <h1 className="text-2xl font-semibold text-foreground" data-testid="overview-title">
+            <h1 className="text-2xl font-semibold text-gray-300" data-testid="overview-title">
               Overview
             </h1>
             <div 
-              className="flex items-center space-x-2 bg-muted px-3 py-2 rounded-lg"
+              className="flex items-center space-x-2 bg-gray-800 border border-gray-700 px-3 py-2 rounded-lg"
               data-testid="period-selector"
             >
-              <span className="text-sm text-muted-foreground" data-testid="selected-period">
+              <span className="text-sm text-gray-400" data-testid="selected-period">
                 {selectedPeriod}
               </span>
-              <ChevronDown className="w-3 h-3 text-muted-foreground" data-testid="chevron-down" />
+              <ChevronDown className="w-3 h-3 text-gray-400" data-testid="chevron-down" />
             </div>
           </div>
 

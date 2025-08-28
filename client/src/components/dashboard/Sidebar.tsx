@@ -26,10 +26,10 @@ export default function Sidebar() {
   const [location] = useLocation();
 
   return (
-    <div className="w-64 bg-sidebar border-r border-sidebar-border flex-shrink-0" data-testid="sidebar">
+    <div className="w-64 bg-gray-800 border-r border-gray-700 flex-shrink-0" data-testid="sidebar">
       <div className="p-6">
         <div className="flex items-center space-x-2 mb-8" data-testid="sidebar-header">
-          <span className="font-semibold text-lg text-sidebar-foreground" data-testid="logo-text">
+          <span className="font-semibold text-lg text-gray-300" data-testid="logo-text">
             Mission Control
           </span>
         </div>
@@ -42,10 +42,10 @@ export default function Sidebar() {
               <Link
                 key={item.label}
                 href={item.href}
-                className={`sidebar-item px-3 py-2 rounded-md cursor-pointer flex items-center space-x-3 transition-colors ${
+                className={`sidebar-item px-3 py-2 rounded-md flex items-center space-x-3 transition-colors ${
                   isActive
-                    ? "active bg-sidebar-accent text-sidebar-accent-foreground"
-                    : "text-muted-foreground hover:text-sidebar-foreground hover:bg-sidebar-accent/50"
+                    ? "active bg-gray-700 text-gray-300"
+                    : "text-gray-400 hover:text-gray-300 hover:bg-gray-700"
                 }`}
                 data-testid={item.testId}
               >

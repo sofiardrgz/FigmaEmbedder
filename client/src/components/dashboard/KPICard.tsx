@@ -23,16 +23,16 @@ export default function KPICard({ title, value, icon, chartData, delay = 0 }: KP
 
   return (
     <div 
-      className="kpi-card bg-card rounded-lg border-[0.5px] border-border p-6 opacity-0 animate-[slideInUp_0.8s_ease-out_forwards]" 
+      className="kpi-card bg-gray-800 rounded-lg border-[0.5px] border-gray-700 p-6 opacity-0 animate-[slideInUp_0.6s_ease-out_forwards]" 
       style={{ animationDelay: `${delay}ms` }}
       data-testid={`kpi-card-${title.toLowerCase().replace(/\s+/g, '-')}`}
     >
       <div className="flex items-center justify-between mb-4" data-testid="kpi-header">
         <div className="flex items-center space-x-2">
-          <div className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center" data-testid="kpi-icon-container">
-            <Icon className="text-primary w-4 h-4" data-testid="kpi-icon" />
+          <div className="w-8 h-8 bg-gray-700 rounded-lg flex items-center justify-center" data-testid="kpi-icon-container">
+            <Icon className="text-gray-400 w-4 h-4" data-testid="kpi-icon" />
           </div>
-          <span className="text-sm text-muted-foreground" data-testid="kpi-title">{title}</span>
+          <span className="text-sm text-gray-400" data-testid="kpi-title">{title}</span>
         </div>
       </div>
       <div className="mb-4 text-[21px] font-medium text-[#757778]" data-testid="kpi-value">

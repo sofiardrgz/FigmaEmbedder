@@ -22,35 +22,35 @@ const statusConfig = {
 
 export default function RecentSignupsTable({ signups }: RecentSignupsTableProps) {
   return (
-    <div className="bg-card rounded-lg border border-border opacity-0 animate-[slideInUp_0.8s_ease-out_1.2s_forwards]" data-testid="recent-signups-container">
-      <div className="px-6 py-4 border-b border-border" data-testid="table-header">
-        <h2 className="font-normal text-[16px] text-[#b3b3b3]" data-testid="table-title">
+    <div className="bg-gray-800 rounded-lg border border-gray-700 opacity-0 animate-[slideInUp_0.6s_ease-out_0.9s_forwards]" data-testid="recent-signups-container">
+      <div className="px-6 py-4 border-b border-gray-700" data-testid="table-header">
+        <h2 className="font-normal text-[16px] text-gray-400" data-testid="table-title">
           Most recent signups
         </h2>
       </div>
       <div className="overflow-x-auto" data-testid="table-wrapper">
         <table className="w-full" data-testid="signups-table">
-          <thead className="bg-muted">
+          <thead className="bg-gray-700">
             <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider" data-testid="header-date">
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider" data-testid="header-date">
                 Date
               </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider" data-testid="header-device">
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider" data-testid="header-device">
                 Device
               </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider" data-testid="header-name">
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider" data-testid="header-name">
                 Name
               </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider" data-testid="header-user-id">
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider" data-testid="header-user-id">
                 User ID
               </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider" data-testid="header-kyc-status">
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider" data-testid="header-kyc-status">
                 KYC Status
               </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider" data-testid="header-actions"></th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider" data-testid="header-actions"></th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-border" data-testid="table-body">
+          <tbody className="divide-y divide-gray-700" data-testid="table-body">
             {signups.map((signup, index) => {
               const DeviceIcon = signup.device === "mobile" ? Smartphone : Monitor;
               const statusInfo = statusConfig[signup.status];
@@ -58,34 +58,34 @@ export default function RecentSignupsTable({ signups }: RecentSignupsTableProps)
               return (
                 <tr
                   key={signup.id}
-                  className="table-row cursor-pointer opacity-0 animate-[slideInUp_0.6s_ease-out_forwards]"
-                  style={{ animationDelay: `${1.6 + index * 0.1}s` }}
+                  className="table-row opacity-0 animate-[slideInUp_0.5s_ease-out_forwards] hover:bg-gray-700"
+                  style={{ animationDelay: `${1.2 + index * 0.08}s` }}
                   data-testid={`signup-row-${signup.id}`}
                 >
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-foreground" data-testid={`date-${signup.id}`}>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-300" data-testid={`date-${signup.id}`}>
                     {signup.date}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-muted-foreground" data-testid={`device-${signup.id}`}>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-400" data-testid={`device-${signup.id}`}>
                     <div className="flex items-center space-x-2">
-                      <DeviceIcon className="w-3 h-3" data-testid={`device-icon-${signup.id}`} />
+                      <DeviceIcon className="w-3 h-3 text-gray-400" data-testid={`device-icon-${signup.id}`} />
                       <span className="capitalize" data-testid={`device-type-${signup.id}`}>
                         {signup.device}
                       </span>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-[#a3a3a3]" data-testid={`name-${signup.id}`}>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-300" data-testid={`name-${signup.id}`}>
                     {signup.name}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-muted-foreground" data-testid={`user-id-${signup.id}`}>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-400" data-testid={`user-id-${signup.id}`}>
                     {signup.userId}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap" data-testid={`status-${signup.id}`}>
-                    <span className="status-badge status-pending text-[#919190]" data-testid={`status-badge-${signup.id}`}>
+                    <span className="status-badge status-pending text-gray-400" data-testid={`status-badge-${signup.id}`}>
                       {statusInfo.label}
                     </span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium" data-testid={`actions-${signup.id}`}>
-                    <ChevronRight className="w-3 h-3 text-muted-foreground cursor-pointer hover:text-primary transition-colors" data-testid={`chevron-${signup.id}`} />
+                    <ChevronRight className="w-3 h-3 text-gray-400 transition-colors" data-testid={`chevron-${signup.id}`} />
                   </td>
                 </tr>
               );
