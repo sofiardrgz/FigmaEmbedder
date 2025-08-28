@@ -17,16 +17,16 @@ interface MessageListProps {
 
 export function MessageList({ messages }: MessageListProps) {
   return (
-    <div className="flex flex-col h-full">
-      <div className="p-4 border-b">
+    <div className="flex flex-col h-full bg-gray-800">
+      <div className="p-4 border-b border-gray-700">
         <div className="flex items-center justify-between">
-          <h3 className="font-semibold text-lg">All Messages</h3>
+          <h3 className="font-semibold text-lg text-gray-300">All Conversations</h3>
           {messages.filter(m => m.isNew).length > 0 && (
-            <div className="w-3 h-3 bg-gradient-to-r from-primary to-primary/80 rounded-full"></div>
+            <div className="w-3 h-3 bg-gradient-to-r from-gray-600 to-gray-700 rounded-full"></div>
           )}
         </div>
-        <p className="text-sm text-muted-foreground">
-          {messages.filter(m => m.isNew).length} new messages
+        <p className="text-sm text-gray-400">
+          {messages.filter(m => m.isNew).length} new conversations
         </p>
       </div>
       
@@ -40,40 +40,40 @@ export function MessageList({ messages }: MessageListProps) {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
               transition={{ 
-                duration: 0.3, 
-                delay: message.isNew ? 0 : index * 0.05 
+                duration: 0.2, 
+                delay: message.isNew ? 0 : index * 0.03 
               }}
-              className={`p-3 border-b border-border/50 hover:bg-accent/50 cursor-pointer transition-colors ${
-                message.isNew ? 'bg-primary/5 border-l-2 border-l-primary' : ''
+              className={`p-3 border-b border-gray-700 hover:bg-gray-700 transition-colors ${
+                message.isNew ? 'bg-gray-700 border-l-2 border-l-gray-600' : ''
               }`}
               data-testid={`message-list-item-${message.id}`}
             >
               <div className="flex items-start gap-3">
                 <Avatar className="h-8 w-8 shrink-0">
-                  <AvatarFallback className="text-xs font-semibold">
+                  <AvatarFallback className="text-xs font-semibold bg-gray-700 text-gray-300">
                     {message.avatar}
                   </AvatarFallback>
                 </Avatar>
                 
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-1">
-                    <h4 className="font-medium text-sm truncate">
+                    <h4 className="font-medium text-sm truncate text-gray-300">
                       {message.sender}
                     </h4>
                     {message.isNew && (
                       <motion.div
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
-                        className="w-2 h-2 bg-primary rounded-full"
+                        className="w-2 h-2 bg-gray-600 rounded-full"
                       />
                     )}
                   </div>
                   
-                  <p className="text-xs text-muted-foreground line-clamp-2 leading-relaxed">
+                  <p className="text-xs text-gray-400 line-clamp-2 leading-relaxed">
                     {message.message}
                   </p>
                   
-                  <p className="text-xs text-muted-foreground/70 mt-1">
+                  <p className="text-xs text-gray-500 mt-1">
                     {message.timestamp}
                   </p>
                 </div>

@@ -31,22 +31,22 @@ const MessageCard = forwardRef<HTMLDivElement, MessageCardProps>(({ message, ind
       }}
       exit={{ opacity: 0, x: -50 }}
       transition={{ 
-        duration: 0.4, 
-        delay: message.isNew ? 0 : index * 0.1,
+        duration: 0.2, 
+        delay: message.isNew ? 0 : index * 0.05,
         type: "spring",
-        stiffness: 100,
-        damping: 15
+        stiffness: 150,
+        damping: 20
       }}
       whileHover={{ scale: 1.02 }}
       data-testid={`message-card-${message.id}`}
     >
-      <Card className="rounded-lg text-card-foreground shadow-sm p-4 border-2 transition-all duration-300 border-border hover:border-primary/30 bg-primary/10 ml-[0px] mr-[0px]">
+      <Card className="rounded-lg shadow-sm p-4 border border-gray-600 transition-all duration-300 hover:border-gray-500 bg-gray-800 ml-[0px] mr-[0px]">
         <div className="flex items-start gap-3">
           <Avatar className="h-10 w-10 shrink-0">
             <AvatarFallback className={`text-sm font-semibold ${
               message.type === 'sent' 
-                ? 'bg-primary text-primary-foreground' 
-                : 'bg-secondary text-secondary-foreground'
+                ? 'bg-gray-600 text-gray-200' 
+                : 'bg-gray-700 text-gray-300'
             }`}>
               {message.avatar}
             </AvatarFallback>
@@ -54,24 +54,24 @@ const MessageCard = forwardRef<HTMLDivElement, MessageCardProps>(({ message, ind
           
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 mb-1">
-              <h3 className="font-semibold text-sm text-foreground truncate">
+              <h3 className="font-semibold text-sm text-gray-300 truncate">
                 {message.sender}
               </h3>
               {message.isNew && (
                 <motion.div
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
-                  className="px-2 py-0.5 bg-gradient-to-r from-primary to-primary/80 text-primary-foreground text-xs rounded-full font-medium"
+                  className="px-2 py-0.5 bg-gradient-to-r from-gray-600 to-gray-700 text-gray-200 text-xs rounded-full font-medium"
                 >
                   NEW
                 </motion.div>
               )}
-              <span className="text-xs text-muted-foreground ml-auto">
+              <span className="text-xs text-gray-400 ml-auto">
                 {message.timestamp}
               </span>
             </div>
             
-            <p className="text-sm text-muted-foreground leading-relaxed">
+            <p className="text-sm text-gray-400 leading-relaxed">
               {message.message}
             </p>
           </div>

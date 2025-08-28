@@ -116,7 +116,7 @@ export default function EmbeddableMessagingDashboard({
           );
         }, 5000);
       }
-    }, 10000);
+    }, 4000); // Faster animation intervals (4 seconds instead of 10)
 
     return () => clearInterval(interval);
   }, []);
@@ -129,13 +129,13 @@ export default function EmbeddableMessagingDashboard({
     <div 
       ref={elementRef}
       style={style}
-      className="flex h-screen bg-background rounded-[10px] overflow-hidden"
+      className="flex h-screen bg-gray-900 rounded-[10px] overflow-hidden"
     >
       <div className="flex-1 flex flex-col">
         {/* Header */}
-        <header className="flex h-16 shrink-0 items-center gap-2 border-b px-6">
+        <header className="flex h-16 shrink-0 items-center gap-2 border-b border-gray-700 px-6 bg-gray-800">
           <div className="flex items-center gap-2">
-            <h1 className="text-lg font-semibold">Messages</h1>
+            <h1 className="text-lg font-semibold text-gray-300">Conversations</h1>
             <NewMessageIndicator count={newMessageCount} />
           </div>
         </header>
@@ -143,7 +143,7 @@ export default function EmbeddableMessagingDashboard({
         {/* Main Content */}
         <div className="flex-1 flex overflow-hidden">
           {/* Message List */}
-          <div className="w-80 border-r bg-card/50">
+          <div className="w-80 border-r border-gray-700 bg-gray-800">
             <MessageList messages={messages} />
           </div>
 
@@ -154,9 +154,9 @@ export default function EmbeddableMessagingDashboard({
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5 }}
+                  transition={{ duration: 0.3 }}
                 >
-                  <h2 className="text-2xl font-bold mb-6">Recent Messages</h2>
+                  <h2 className="text-2xl font-bold mb-6 text-gray-300">Recent Conversations</h2>
                   
                   <div className="grid gap-4">
                     <AnimatePresence mode="popLayout">
@@ -186,12 +186,12 @@ export default function EmbeddableMessagingDashboard({
         className="w-[1000px] h-full mx-auto"
       >
         <SafariBrowserFrame url="messages.app.missioncontrol.com">
-          <div className="flex h-screen bg-background rounded-[10px] overflow-hidden">
+          <div className="flex h-screen bg-gray-900 rounded-[10px] overflow-hidden">
             <div className="flex-1 flex flex-col">
               {/* Header */}
-              <header className="flex h-16 shrink-0 items-center gap-2 border-b px-6">
+              <header className="flex h-16 shrink-0 items-center gap-2 border-b border-gray-700 px-6 bg-gray-800">
                 <div className="flex items-center gap-2">
-                  <h1 className="text-lg font-semibold">Messages</h1>
+                  <h1 className="text-lg font-semibold text-gray-300">Conversations</h1>
                   <NewMessageIndicator count={newMessageCount} />
                 </div>
               </header>
@@ -199,7 +199,7 @@ export default function EmbeddableMessagingDashboard({
               {/* Main Content */}
               <div className="flex-1 flex overflow-hidden">
                 {/* Message List */}
-                <div className="w-80 border-r bg-card/50">
+                <div className="w-80 border-r border-gray-700 bg-gray-800">
                   <MessageList messages={messages} />
                 </div>
 
@@ -210,9 +210,9 @@ export default function EmbeddableMessagingDashboard({
                       <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5 }}
+                        transition={{ duration: 0.3 }}
                       >
-                        <h2 className="text-2xl font-bold mb-6">Recent Messages</h2>
+                        <h2 className="text-2xl font-bold mb-6 text-gray-300">Recent Conversations</h2>
                         
                         <div className="grid gap-4">
                           <AnimatePresence mode="popLayout">
