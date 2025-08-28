@@ -4,6 +4,7 @@ import { MessageCard } from "@/components/messages/MessageCard";
 import { MessageList } from "@/components/messages/MessageList";
 import { NewMessageIndicator } from "@/components/messages/NewMessageIndicator";
 import SafariBrowserFrame from "@/components/dashboard/SafariBrowserFrame";
+import { useScrollFade } from "@/hooks/useScrollFade";
 
 interface Message {
   id: string;
@@ -124,8 +125,14 @@ export default function EmbeddableMessagingDashboard({
     setNewMessageCount(0);
   };
 
+  const { elementRef, style } = useScrollFade();
+
   const DashboardContent = () => (
-    <div className="flex h-screen bg-background">
+    <div 
+      ref={elementRef}
+      style={style}
+      className="flex h-screen bg-background"
+    >
       <div className="flex-1 flex flex-col">
         {/* Header */}
         <header className="flex h-16 shrink-0 items-center gap-2 border-b px-6">
@@ -175,9 +182,60 @@ export default function EmbeddableMessagingDashboard({
 
   if (showSafariFrame) {
     return (
-      <SafariBrowserFrame url="messages.app.missioncontrol.com">
-        <DashboardContent />
-      </SafariBrowserFrame>
+      <div 
+        ref={elementRef}
+        style={style}
+        className="w-[1000px] h-full mx-auto"
+      >
+        <SafariBrowserFrame url="messages.app.missioncontrol.com">
+          <div className="flex h-screen bg-background">
+            <div className="flex-1 flex flex-col">
+              {/* Header */}
+              <header className="flex h-16 shrink-0 items-center gap-2 border-b px-6">
+                <div className="flex items-center gap-2">
+                  <h1 className="text-lg font-semibold">Messages</h1>
+                  <NewMessageIndicator count={newMessageCount} onClick={handleMarkAsRead} />
+                </div>
+              </header>
+
+              {/* Main Content */}
+              <div className="flex-1 flex overflow-hidden">
+                {/* Message List */}
+                <div className="w-80 border-r bg-card/50">
+                  <MessageList messages={messages} />
+                </div>
+
+                {/* Message Details */}
+                <div className="flex-1 flex flex-col">
+                  <div className="flex-1 p-6">
+                    <div className="max-w-4xl">
+                      <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5 }}
+                      >
+                        <h2 className="text-2xl font-bold mb-6">Recent Messages</h2>
+                        
+                        <div className="grid gap-4">
+                          <AnimatePresence mode="popLayout">
+                            {messages.slice(0, 6).map((message, index) => (
+                              <MessageCard 
+                                key={message.id} 
+                                message={message} 
+                                index={index}
+                              />
+                            ))}
+                          </AnimatePresence>
+                        </div>
+                      </motion.div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </SafariBrowserFrame>
+      </div>
     );
   }
 
