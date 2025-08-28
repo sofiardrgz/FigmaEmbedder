@@ -1,0 +1,21 @@
+[build]
+  # Build command for the frontend
+  command = "npm run build:frontend"
+  
+  # Directory to publish
+  publish = "dist/public"
+  
+  # Node version
+  environment = { NODE_VERSION = "20" }
+
+# Redirect all routes to index.html for SPA routing
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Optional: Set headers for better caching
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    cache-control = "max-age=31536000"
