@@ -40,14 +40,16 @@ const MessageCard = forwardRef<HTMLDivElement, MessageCardProps>(({ message, ind
       whileHover={{ scale: 1.02 }}
       data-testid={`message-card-${message.id}`}
     >
-      <Card className="rounded-lg shadow-sm p-4 border border-gray-600 transition-all duration-300 hover:border-gray-500 bg-gray-800 ml-[0px] mr-[0px]">
+      <Card 
+        className="rounded-lg shadow-sm p-4 border border-gray-600 transition-all duration-300 hover:border-gray-500 ml-[0px] mr-[0px]"
+        style={{ backgroundColor: '#2E2E2E' }}
+      >
         <div className="flex items-start gap-3">
           <Avatar className="h-10 w-10 shrink-0">
-            <AvatarFallback className={`text-sm font-semibold ${
-              message.type === 'sent' 
-                ? 'bg-gray-600 text-gray-200' 
-                : 'bg-gray-700 text-gray-300'
-            }`}>
+            <AvatarFallback 
+              className="text-sm font-semibold text-gray-300"
+              style={{ backgroundColor: message.type === 'sent' ? '#383838' : '#2E2E2E' }}
+            >
               {message.avatar}
             </AvatarFallback>
           </Avatar>
@@ -61,7 +63,8 @@ const MessageCard = forwardRef<HTMLDivElement, MessageCardProps>(({ message, ind
                 <motion.div
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
-                  className="px-2 py-0.5 bg-gradient-to-r from-gray-600 to-gray-700 text-gray-200 text-xs rounded-full font-medium"
+                  className="px-2 py-0.5 text-gray-200 text-xs rounded-full font-medium"
+                  style={{ backgroundColor: '#383838' }}
                 >
                   NEW
                 </motion.div>

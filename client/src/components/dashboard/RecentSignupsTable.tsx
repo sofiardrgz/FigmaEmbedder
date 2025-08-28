@@ -22,7 +22,7 @@ const statusConfig = {
 
 export default function RecentSignupsTable({ signups }: RecentSignupsTableProps) {
   return (
-    <div className="bg-gray-800 rounded-lg border border-gray-700 opacity-0 animate-[slideInUp_0.6s_ease-out_0.9s_forwards]" data-testid="recent-signups-container">
+    <div className="rounded-lg border border-gray-700 opacity-0 animate-[slideInUp_0.6s_ease-out_0.9s_forwards]" style={{ backgroundColor: '#2E2E2E' }} data-testid="recent-signups-container">
       <div className="px-6 py-4 border-b border-gray-700" data-testid="table-header">
         <h2 className="font-normal text-[16px] text-gray-400" data-testid="table-title">
           Most recent signups
@@ -30,7 +30,7 @@ export default function RecentSignupsTable({ signups }: RecentSignupsTableProps)
       </div>
       <div className="overflow-x-auto" data-testid="table-wrapper">
         <table className="w-full" data-testid="signups-table">
-          <thead className="bg-gray-700">
+          <thead style={{ backgroundColor: '#383838' }}>
             <tr>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider" data-testid="header-date">
                 Date
@@ -58,7 +58,7 @@ export default function RecentSignupsTable({ signups }: RecentSignupsTableProps)
               return (
                 <tr
                   key={signup.id}
-                  className="table-row opacity-0 animate-[slideInUp_0.5s_ease-out_forwards] hover:bg-gray-700"
+                  className="table-row opacity-0 animate-[slideInUp_0.5s_ease-out_forwards]"
                   style={{ animationDelay: `${1.2 + index * 0.08}s` }}
                   data-testid={`signup-row-${signup.id}`}
                 >
