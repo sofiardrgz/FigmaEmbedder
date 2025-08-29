@@ -17,12 +17,12 @@ interface MessageListProps {
 
 export function MessageList({ messages }: MessageListProps) {
   return (
-    <div className="flex flex-col h-full bg-gray-800">
+    <div className="flex flex-col h-full" style={{ backgroundColor: '#1b1a19' }}>
       <div className="p-4 border-b border-gray-700">
         <div className="flex items-center justify-between">
           <h3 className="font-semibold text-lg text-gray-300">All Conversations</h3>
           {messages.filter(m => m.isNew).length > 0 && (
-            <div className="w-3 h-3 bg-gradient-to-r from-gray-600 to-gray-700 rounded-full"></div>
+            <div className="w-3 h-3 rounded-full" style={{ backgroundColor: '#666' }}></div>
           )}
         </div>
         <p className="text-sm text-gray-400">
@@ -43,14 +43,16 @@ export function MessageList({ messages }: MessageListProps) {
                 duration: 0.2, 
                 delay: message.isNew ? 0 : index * 0.03 
               }}
-              className={`p-3 border-b border-gray-700 hover:bg-gray-700 transition-colors ${
-                message.isNew ? 'bg-gray-700 border-l-2 border-l-gray-600' : ''
-              }`}
+              className="p-3 border-b border-gray-700 hover:opacity-80 transition-colors"
+              style={{ 
+                backgroundColor: message.isNew ? '#272727' : 'transparent',
+                borderLeft: message.isNew ? '2px solid #666' : 'none'
+              }}
               data-testid={`message-list-item-${message.id}`}
             >
               <div className="flex items-start gap-3">
                 <Avatar className="h-8 w-8 shrink-0">
-                  <AvatarFallback className="text-xs font-semibold bg-gray-700 text-gray-300">
+                  <AvatarFallback className="text-xs font-semibold text-gray-300" style={{ backgroundColor: '#272727' }}>
                     {message.avatar}
                   </AvatarFallback>
                 </Avatar>
@@ -64,7 +66,8 @@ export function MessageList({ messages }: MessageListProps) {
                       <motion.div
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
-                        className="w-2 h-2 bg-gray-600 rounded-full"
+                        className="w-2 h-2 rounded-full"
+                        style={{ backgroundColor: '#666' }}
                       />
                     )}
                   </div>
