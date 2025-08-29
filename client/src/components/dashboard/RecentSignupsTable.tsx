@@ -65,7 +65,7 @@ export default function RecentSignupsTable({ signups }: RecentSignupsTableProps)
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-300 bg-[#0f0f0fc4]" data-testid={`date-${signup.id}`}>
                     {signup.date}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-400" data-testid={`device-${signup.id}`}>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-400 bg-[#181818]" data-testid={`device-${signup.id}`}>
                     <div className="flex items-center space-x-2">
                       <DeviceIcon className="w-3 h-3 text-gray-400" data-testid={`device-icon-${signup.id}`} />
                       <span className="capitalize" data-testid={`device-type-${signup.id}`}>
