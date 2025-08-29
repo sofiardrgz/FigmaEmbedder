@@ -26,7 +26,7 @@ export default function Sidebar() {
   const [location] = useLocation();
 
   return (
-    <div className="w-64 border-r border-gray-700 flex-shrink-0 ambient-bg bg-[#121212]" style={{ backgroundColor: '#383838' }} data-testid="sidebar">
+    <div className="w-64 border-r border-gray-700 flex-shrink-0 ambient-bg bg-[#141414]" style={{ backgroundColor: '#383838' }} data-testid="sidebar">
       <div className="p-6">
         <div className="flex items-center space-x-2 mb-8" data-testid="sidebar-header">
           <span className="text-[14px] font-medium text-[#919191]" data-testid="logo-text">
