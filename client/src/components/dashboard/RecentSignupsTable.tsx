@@ -62,7 +62,7 @@ export default function RecentSignupsTable({ signups }: RecentSignupsTableProps)
                   style={{ animationDelay: `${1.2 + index * 0.08}s` }}
                   data-testid={`signup-row-${signup.id}`}
                 >
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-300" data-testid={`date-${signup.id}`}>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-300 bg-[#0f0f0fc4]" data-testid={`date-${signup.id}`}>
                     {signup.date}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-400" data-testid={`device-${signup.id}`}>
