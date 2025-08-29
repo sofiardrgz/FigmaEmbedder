@@ -80,7 +80,7 @@ export default function Dashboard() {
         <div className="border-b border-border px-6 py-4 bg-[#121212]" data-testid="topbar">
           <div className="flex items-center space-x-4">
             <Home className="w-4 h-4 text-muted-foreground" data-testid="home-icon" />
-            <span className="text-foreground font-medium" data-testid="breadcrumb-home">Home</span>
+            <span className="text-[14px] font-normal text-[#7d7d7d]" data-testid="breadcrumb-home">Home</span>
           </div>
         </div>
 
