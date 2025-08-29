@@ -11,6 +11,13 @@ This is a full-stack dashboard application built with React, Express, and Postgr
 - Updated branding from "Mission Control" to "Smart Squatch"
 - Implemented consistent green color scheme throughout all interfaces
 - Created embeddable versions at /embed/demo and /embed/demo/no-frame routes
+- Added individual embeddable dashboard components for separate embedding:
+  - /embed/sales - Sales dashboard only
+  - /embed/messages-only - Messages dashboard only  
+  - /embed/contacts - Contacts dashboard only
+  - /embed/calendar - Calendar dashboard only
+  - /embed/copilot - AI Copilot dashboard only
+  - All routes support /no-frame variants for frameless embedding
 
 # User Preferences
 

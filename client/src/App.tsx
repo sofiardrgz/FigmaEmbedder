@@ -10,6 +10,11 @@ import Demo from "@/pages/demo";
 import EmbeddableDashboard from "@/components/dashboard/EmbeddableDashboard";
 import EmbeddableMessagingDashboard from "@/components/messages/EmbeddableMessagingDashboard";
 import EmbeddableDemoAnimation from "@/components/dashboard/EmbeddableDemoAnimation";
+import EmbeddableSalesDashboard from "@/components/dashboard/EmbeddableSalesDashboard";
+import EmbeddableMessagesOnly from "@/components/messages/EmbeddableMessagesOnly";
+import EmbeddableContactsOnly from "@/components/contacts/EmbeddableContactsOnly";
+import EmbeddableCalendarOnly from "@/components/calendar/EmbeddableCalendarOnly";
+import EmbeddableCopilotOnly from "@/components/copilot/EmbeddableCopilotOnly";
 
 function Router() {
   return (
@@ -25,6 +30,16 @@ function Router() {
       <Route path="/embed/messages/no-sidebar" component={() => <EmbeddableMessagingDashboard showSafariFrame={true} showSidebar={false} />} />
       <Route path="/embed/demo" component={() => <EmbeddableDemoAnimation showSafariFrame={true} />} />
       <Route path="/embed/demo/no-frame" component={() => <EmbeddableDemoAnimation showSafariFrame={false} />} />
+      <Route path="/embed/sales" component={() => <EmbeddableSalesDashboard showSafariFrame={true} />} />
+      <Route path="/embed/sales/no-frame" component={() => <EmbeddableSalesDashboard showSafariFrame={false} />} />
+      <Route path="/embed/messages-only" component={() => <EmbeddableMessagesOnly showSafariFrame={true} />} />
+      <Route path="/embed/messages-only/no-frame" component={() => <EmbeddableMessagesOnly showSafariFrame={false} />} />
+      <Route path="/embed/contacts" component={() => <EmbeddableContactsOnly showSafariFrame={true} />} />
+      <Route path="/embed/contacts/no-frame" component={() => <EmbeddableContactsOnly showSafariFrame={false} />} />
+      <Route path="/embed/calendar" component={() => <EmbeddableCalendarOnly showSafariFrame={true} />} />
+      <Route path="/embed/calendar/no-frame" component={() => <EmbeddableCalendarOnly showSafariFrame={false} />} />
+      <Route path="/embed/copilot" component={() => <EmbeddableCopilotOnly showSafariFrame={true} />} />
+      <Route path="/embed/copilot/no-frame" component={() => <EmbeddableCopilotOnly showSafariFrame={false} />} />
       <Route component={NotFound} />
     </Switch>
   );
