@@ -23,7 +23,7 @@ const statusConfig = {
 export default function RecentSignupsTable({ signups }: RecentSignupsTableProps) {
   return (
     <div className="rounded-lg border border-gray-700 opacity-0 animate-[slideInUp_0.6s_ease-out_0.9s_forwards] ambient-bg" style={{ backgroundColor: '#2E2E2E' }} data-testid="recent-signups-container">
-      <div className="px-6 py-4 border-b border-gray-700" data-testid="table-header">
+      <div className="px-6 py-4 border-b border-gray-700 bg-[#121212]" data-testid="table-header">
         <h2 className="font-normal text-[16px] text-gray-400" data-testid="table-title">
           Most recent signups
         </h2>
