@@ -129,25 +129,39 @@ const DemoContent = {
       <h2 className="text-xl font-semibold text-gray-300 mb-6">Messages</h2>
       <div className="space-y-3">
         {[
-          { name: "Sarah Chen", message: "New dashboard design looks amazing!", time: "2 min ago" },
-          { name: "Mike Rodriguez", message: "Great work on the sales report", time: "5 min ago" },
-          { name: "Emily Watson", message: "Can you send the project timeline?", time: "8 min ago" }
+          { name: "Sarah Chen", message: "New dashboard design looks amazing!", time: "2 min ago", unread: true },
+          { name: "Mike Rodriguez", message: "Great work on the sales report", time: "5 min ago", unread: false },
+          { name: "Emily Watson", message: "Can you send the project timeline?", time: "8 min ago", unread: true },
+          { name: "David Park", message: "Meeting rescheduled to 3 PM", time: "12 min ago", unread: false },
+          { name: "Lisa Johnson", message: "Budget approval needed for Q2", time: "15 min ago", unread: true },
+          { name: "Alex Thompson", message: "Client feedback on the proposal", time: "18 min ago", unread: false },
+          { name: "Maria Garcia", message: "New lead from LinkedIn campaign", time: "22 min ago", unread: true },
+          { name: "Tom Wilson", message: "Demo scheduled for Friday", time: "25 min ago", unread: false }
         ].map((msg, i) => (
           <motion.div 
             key={i}
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: i * 0.1 }}
-            className="bg-gray-800/50 p-3 rounded-lg flex items-center gap-3"
+            transition={{ delay: i * 0.08 }}
+            className={`bg-gray-800/50 p-3 rounded-lg flex items-center gap-3 ${
+              msg.unread ? 'border-l-2 border-green-500' : ''
+            }`}
           >
             <div className="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center text-xs font-bold">
               {msg.name.split(' ').map(n => n[0]).join('')}
             </div>
             <div className="flex-1">
-              <div className="text-sm font-medium text-gray-300">{msg.name}</div>
-              <div className="text-xs text-gray-400">{msg.message}</div>
+              <div className={`text-sm ${msg.unread ? 'font-semibold text-gray-200' : 'font-medium text-gray-300'}`}>
+                {msg.name}
+              </div>
+              <div className={`text-xs ${msg.unread ? 'text-gray-300' : 'text-gray-400'}`}>
+                {msg.message}
+              </div>
             </div>
-            <div className="text-xs text-gray-500">{msg.time}</div>
+            <div className="flex items-center gap-2">
+              {msg.unread && <div className="w-2 h-2 bg-green-500 rounded-full"></div>}
+              <div className="text-xs text-gray-500">{msg.time}</div>
+            </div>
           </motion.div>
         ))}
       </div>
@@ -157,29 +171,68 @@ const DemoContent = {
   Contacts: (
     <div className="p-6">
       <h2 className="text-xl font-semibold text-gray-300 mb-6">Contacts</h2>
-      <div className="grid grid-cols-2 gap-4">
+      
+      {/* New Contact Added Notification */}
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.9, y: -10 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        transition={{ delay: 0.2 }}
+        className="bg-green-600/20 border border-green-500 p-3 rounded-lg mb-4"
+      >
+        <div className="flex items-center gap-2">
+          <Plus className="w-4 h-4 text-green-400" />
+          <span className="text-green-400 font-medium text-sm">New Contact Added</span>
+        </div>
+        <div className="text-xs text-gray-300 mt-1">Robert Miller - COO at InnovateNow</div>
+      </motion.div>
+
+      <div className="grid grid-cols-2 gap-3">
         {[
-          { name: "John Smith", role: "CEO", company: "TechCorp", status: "active" },
-          { name: "Lisa Johnson", role: "Marketing Dir", company: "StartupXYZ", status: "prospect" },
-          { name: "David Chen", role: "CTO", company: "InnovateLab", status: "active" },
-          { name: "Maria Garcia", role: "VP Sales", company: "GrowthCo", status: "prospect" }
+          { name: "Robert Miller", role: "COO", company: "InnovateNow", status: "new", isNew: true },
+          { name: "John Smith", role: "CEO", company: "TechCorp", status: "active", isNew: false },
+          { name: "Lisa Johnson", role: "Marketing Dir", company: "StartupXYZ", status: "prospect", isNew: false },
+          { name: "David Chen", role: "CTO", company: "InnovateLab", status: "active", isNew: false },
+          { name: "Maria Garcia", role: "VP Sales", company: "GrowthCo", status: "prospect", isNew: false },
+          { name: "Sarah Wilson", role: "Product Manager", company: "DigitalEdge", status: "active", isNew: false },
+          { name: "Kevin Brown", role: "Director", company: "CloudTech", status: "prospect", isNew: false },
+          { name: "Amy Davis", role: "Founder", company: "StartupHub", status: "active", isNew: false }
         ].map((contact, i) => (
           <motion.div 
             key={i}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.1 }}
-            className="bg-gray-800/50 p-3 rounded-lg"
+            transition={{ delay: i * 0.08 }}
+            className={`bg-gray-800/50 p-3 rounded-lg ${
+              contact.isNew ? 'ring-1 ring-green-500/30 bg-green-600/10' : ''
+            }`}
           >
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-sm font-bold">
+              <div className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold ${
+                contact.isNew ? 'bg-green-600' : 'bg-blue-600'
+              }`}>
                 {contact.name.split(' ').map(n => n[0]).join('')}
               </div>
-              <div>
+              <div className="flex-1">
                 <div className="text-sm font-medium text-gray-300">{contact.name}</div>
                 <div className="text-xs text-gray-400">{contact.role} at {contact.company}</div>
-                <div className={`text-xs ${contact.status === 'active' ? 'text-green-400' : 'text-yellow-400'}`}>
-                  {contact.status}
+                <div className="flex items-center gap-2 mt-1">
+                  <div className={`text-xs px-2 py-0.5 rounded ${
+                    contact.status === 'active' ? 'bg-green-600/20 text-green-400' : 
+                    contact.status === 'new' ? 'bg-blue-600/20 text-blue-400' :
+                    'bg-yellow-600/20 text-yellow-400'
+                  }`}>
+                    {contact.status}
+                  </div>
+                  {contact.isNew && (
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ delay: 0.5 }}
+                      className="text-xs text-green-400 font-medium"
+                    >
+                      NEW
+                    </motion.div>
+                  )}
                 </div>
               </div>
             </div>
