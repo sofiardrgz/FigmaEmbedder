@@ -117,7 +117,7 @@ export function MessagesDashboardContent() {
   };
 
   return (
-    <div className="flex rounded-[15px] overflow-hidden" style={{ backgroundColor: '#1b1a19', height: '90vh' }}>
+    <div className="flex rounded-[15px] overflow-hidden" style={{ backgroundColor: '#1b1a19', height: '100vh' }}>
       <div className="flex-1 flex flex-col">
         {/* Header */}
         <header className="flex h-16 shrink-0 items-center gap-2 border-b border-gray-700 px-4" style={{ backgroundColor: '#1b1a19' }}>
@@ -130,7 +130,7 @@ export function MessagesDashboardContent() {
         {/* Main Content */}
         <div className="flex-1 flex overflow-hidden">
           {/* Message List */}
-          <div className="w-64 border-r border-gray-700" style={{ backgroundColor: '#1b1a19' }}>
+          <div className="w-56 border-r border-gray-700" style={{ backgroundColor: '#1b1a19' }}>
             <MessageList messages={messages} />
           </div>
 

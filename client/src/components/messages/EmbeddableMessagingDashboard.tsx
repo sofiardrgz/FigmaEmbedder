@@ -128,7 +128,7 @@ export default function EmbeddableMessagingDashboard({
   const DashboardContent = () => (
     <div 
       ref={elementRef}
-      style={{ ...style, backgroundColor: '#1b1a19', maxWidth: '980px', height: '90vh', margin: '0 auto' }}
+      style={{ ...style, backgroundColor: '#1b1a19', width: '900px', height: '100vh', margin: '0 auto' }}
       className="flex rounded-[15px] overflow-hidden ambient-bg"
     >
       <div className="flex-1 flex flex-col">
@@ -143,7 +143,7 @@ export default function EmbeddableMessagingDashboard({
         {/* Main Content */}
         <div className="flex-1 flex overflow-hidden">
           {/* Message List */}
-          <div className="w-64 border-r border-gray-700 ambient-bg" style={{ backgroundColor: '#1b1a19' }}>
+          <div className="w-56 border-r border-gray-700 ambient-bg" style={{ backgroundColor: '#1b1a19' }}>
             <MessageList messages={messages} />
           </div>
 
@@ -186,7 +186,7 @@ export default function EmbeddableMessagingDashboard({
         className="w-[1000px] h-full mx-auto"
       >
         <SafariBrowserFrame url="messages.app.missioncontrol.com">
-          <div className="flex rounded-[15px] overflow-hidden ambient-bg" style={{ backgroundColor: '#1b1a19', maxWidth: '980px', height: '90vh', margin: '0 auto' }}>
+          <div className="flex rounded-[15px] overflow-hidden ambient-bg" style={{ backgroundColor: '#1b1a19', width: '900px', height: '100vh', margin: '0 auto' }}>
             <div className="flex-1 flex flex-col">
               {/* Header */}
               <header className="flex h-16 shrink-0 items-center gap-2 border-b border-gray-700 px-4 ambient-bg" style={{ backgroundColor: '#1b1a19' }}>
@@ -199,7 +199,7 @@ export default function EmbeddableMessagingDashboard({
               {/* Main Content */}
               <div className="flex-1 flex overflow-hidden">
                 {/* Message List */}
-                <div className="w-64 border-r border-gray-700 ambient-bg" style={{ backgroundColor: '#1b1a19' }}>
+                <div className="w-56 border-r border-gray-700 ambient-bg" style={{ backgroundColor: '#1b1a19' }}>
                   <MessageList messages={messages} />
                 </div>
 
