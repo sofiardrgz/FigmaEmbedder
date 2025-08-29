@@ -18,6 +18,15 @@ export interface RecentSignup {
   status: 'completed' | 'pending' | 'error';
 }
 
+export interface KPICardProps {
+  title: string;
+  value: number;
+  icon: "user-plus" | "phone" | "phone-call";
+  chartData: ChartDataPoint[];
+  delay?: number;
+  percentage?: string;
+}
+
 export interface DashboardData {
   kpis: KPIData;
   chartData: {

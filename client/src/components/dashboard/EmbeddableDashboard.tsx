@@ -125,6 +125,7 @@ export default function EmbeddableDashboard({
               icon="user-plus"
               chartData={data.chartData.newLeads}
               delay={200}
+              percentage="+24%"
             />
             <KPICard
               title="Follow-ups"
@@ -132,6 +133,7 @@ export default function EmbeddableDashboard({
               icon="phone"
               chartData={data.chartData.followUps}
               delay={400}
+              percentage="+18%"
             />
             <KPICard
               title="Answered Calls"
@@ -139,6 +141,7 @@ export default function EmbeddableDashboard({
               icon="phone-call"
               chartData={data.chartData.answeredCalls}
               delay={600}
+              percentage="+31%"
             />
           </div>
 

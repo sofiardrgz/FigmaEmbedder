@@ -5,9 +5,10 @@ import type { ChartDataPoint } from "@/types/dashboard";
 interface AnimatedChartProps {
   data: ChartDataPoint[];
   delay?: number;
+  percentage?: string;
 }
 
-export default function AnimatedChart({ data, delay = 0 }: AnimatedChartProps) {
+export default function AnimatedChart({ data, delay = 0, percentage = "+12%" }: AnimatedChartProps) {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
@@ -76,7 +77,7 @@ export default function AnimatedChart({ data, delay = 0 }: AnimatedChartProps) {
       {/* Trend indicator */}
       <div className="absolute top-2 right-2 flex items-center space-x-1">
         <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-        <span className="text-xs text-green-500 font-medium">+12%</span>
+        <span className="text-xs text-green-500 font-medium">{percentage}</span>
       </div>
     </div>
   );

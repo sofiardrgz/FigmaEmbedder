@@ -1,15 +1,7 @@
 import { UserPlus, Phone, PhoneCall } from "lucide-react";
 import AnimatedChart from "./AnimatedChart";
 import { useCounterAnimation } from "@/hooks/use-counter-animation";
-import type { ChartDataPoint } from "@/types/dashboard";
-
-interface KPICardProps {
-  title: string;
-  value: number;
-  icon: "user-plus" | "phone" | "phone-call";
-  chartData: ChartDataPoint[];
-  delay?: number;
-}
+import type { ChartDataPoint, KPICardProps } from "@/types/dashboard";
 
 const iconMap = {
   "user-plus": UserPlus,
@@ -17,7 +9,7 @@ const iconMap = {
   "phone-call": PhoneCall,
 };
 
-export default function KPICard({ title, value, icon, chartData, delay = 0 }: KPICardProps) {
+export default function KPICard({ title, value, icon, chartData, delay = 0, percentage }: KPICardProps) {
   const Icon = iconMap[icon];
   const animatedValue = useCounterAnimation(value, 2000, delay);
 
@@ -39,7 +31,7 @@ export default function KPICard({ title, value, icon, chartData, delay = 0 }: KP
         {animatedValue.toLocaleString()}
       </div>
       <div className="h-[100px] w-full" data-testid="kpi-chart-container">
-        <AnimatedChart data={chartData} delay={delay + 500} />
+        <AnimatedChart data={chartData} delay={delay + 500} percentage={percentage} />
       </div>
     </div>
   );

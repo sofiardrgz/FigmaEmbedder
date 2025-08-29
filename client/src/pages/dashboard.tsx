@@ -113,6 +113,7 @@ export default function Dashboard() {
               icon="user-plus"
               chartData={mockDashboardData.chartData.newLeads}
               delay={200}
+              percentage="+24%"
               data-testid="kpi-card-new-leads"
             />
             <KPICard
@@ -121,6 +122,7 @@ export default function Dashboard() {
               icon="phone"
               chartData={mockDashboardData.chartData.followUps}
               delay={400}
+              percentage="+18%"
               data-testid="kpi-card-follow-ups"
             />
             <KPICard
@@ -129,6 +131,7 @@ export default function Dashboard() {
               icon="phone-call"
               chartData={mockDashboardData.chartData.answeredCalls}
               delay={600}
+              percentage="+31%"
               data-testid="kpi-card-answered-calls"
             />
           </div>
