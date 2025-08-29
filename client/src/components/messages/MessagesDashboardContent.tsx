@@ -117,10 +117,10 @@ export function MessagesDashboardContent() {
   };
 
   return (
-    <div className="flex h-screen" style={{ backgroundColor: '#1b1a19' }}>
+    <div className="flex" style={{ backgroundColor: '#1b1a19', height: '100vh' }}>
       <div className="flex-1 flex flex-col">
         {/* Header */}
-        <header className="flex h-16 shrink-0 items-center gap-2 border-b border-gray-700 px-6" style={{ backgroundColor: '#1b1a19' }}>
+        <header className="flex h-16 shrink-0 items-center gap-2 border-b border-gray-700 px-4" style={{ backgroundColor: '#1b1a19' }}>
           <div className="flex items-center gap-2">
             <h1 className="text-lg font-semibold text-gray-300">Messages</h1>
             <NewMessageIndicator count={newMessageCount} />
@@ -130,7 +130,7 @@ export function MessagesDashboardContent() {
         {/* Main Content */}
         <div className="flex-1 flex overflow-hidden">
           {/* Message List */}
-          <div className="w-80 border-r border-gray-700" style={{ backgroundColor: '#1b1a19' }}>
+          <div className="w-64 border-r border-gray-700" style={{ backgroundColor: '#1b1a19' }}>
             <MessageList messages={messages} />
           </div>
 
@@ -143,7 +143,7 @@ export function MessagesDashboardContent() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5 }}
                 >
-                  <h2 className="text-2xl font-bold mb-6 text-gray-300">Recent Messages</h2>
+                  <h2 className="text-xl font-bold mb-4 text-gray-300">Recent Messages</h2>
                   
                   <div className="grid gap-4">
                     <AnimatePresence mode="popLayout">

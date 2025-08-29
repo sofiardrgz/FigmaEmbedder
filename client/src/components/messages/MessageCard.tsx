@@ -41,13 +41,13 @@ const MessageCard = forwardRef<HTMLDivElement, MessageCardProps>(({ message, ind
       data-testid={`message-card-${message.id}`}
     >
       <Card 
-        className="rounded-lg shadow-sm p-4 border border-gray-600 transition-all duration-300 hover:border-gray-500 ml-[0px] mr-[0px] ambient-bg"
+        className="rounded-lg shadow-sm p-3 border border-gray-600 transition-all duration-300 hover:border-gray-500 ml-[0px] mr-[0px] ambient-bg"
         style={{ backgroundColor: '#272727' }}
       >
         <div className="flex items-start gap-3">
-          <Avatar className="h-10 w-10 shrink-0">
+          <Avatar className="h-8 w-8 shrink-0">
             <AvatarFallback 
-              className="text-sm font-semibold text-gray-300"
+              className="text-xs font-semibold text-gray-300"
               style={{ backgroundColor: message.type === 'sent' ? '#1b1a19' : '#272727' }}
             >
               {message.avatar}
@@ -56,7 +56,7 @@ const MessageCard = forwardRef<HTMLDivElement, MessageCardProps>(({ message, ind
           
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 mb-1">
-              <h3 className="font-semibold text-sm text-gray-300 truncate">
+              <h3 className="font-semibold text-xs text-gray-300 truncate">
                 {message.sender}
               </h3>
               {message.isNew && (

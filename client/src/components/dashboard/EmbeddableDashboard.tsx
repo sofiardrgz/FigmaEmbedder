@@ -86,7 +86,7 @@ export default function EmbeddableDashboard({
   const [selectedPeriod, setSelectedPeriod] = useState("Last 30 Days");
 
   const DashboardContent = () => (
-    <div className={`flex h-full text-gray-300 rounded-[10px] overflow-hidden ambient-bg ${className}`} style={{ backgroundColor: '#1b1a19' }} data-testid="embeddable-dashboard">
+    <div className={`flex text-gray-300 rounded-[10px] overflow-hidden ambient-bg ${className}`} style={{ backgroundColor: '#1b1a19', maxWidth: '980px', height: '100vh', margin: '0 auto' }} data-testid="embeddable-dashboard">
       {showSidebar && <Sidebar />}
       
       <div className="flex-1 overflow-hidden">

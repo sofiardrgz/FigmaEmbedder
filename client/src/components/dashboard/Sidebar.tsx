@@ -26,9 +26,9 @@ export default function Sidebar() {
   const [location] = useLocation();
 
   return (
-    <div className="w-64 border-r border-gray-700 flex-shrink-0 ambient-bg" style={{ backgroundColor: '#1b1a19' }} data-testid="sidebar">
-      <div className="p-6">
-        <div className="flex items-center space-x-2 mb-8" data-testid="sidebar-header">
+    <div className="w-48 border-r border-gray-700 flex-shrink-0 ambient-bg" style={{ backgroundColor: '#1b1a19' }} data-testid="sidebar">
+      <div className="p-4">
+        <div className="flex items-center space-x-2 mb-6" data-testid="sidebar-header">
           <span className="font-semibold text-lg text-gray-300" data-testid="logo-text">
             Mission Control
           </span>

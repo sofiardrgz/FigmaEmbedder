@@ -73,11 +73,11 @@ export default function Dashboard() {
   const [selectedPeriod, setSelectedPeriod] = useState("Last 30 Days");
 
   return (
-    <div className="flex min-h-screen text-foreground" style={{ backgroundColor: '#1b1a19' }} data-testid="dashboard-container">
+    <div className="flex text-foreground" style={{ backgroundColor: '#1b1a19', maxWidth: '980px', height: '100vh', margin: '0 auto' }} data-testid="dashboard-container">
       <Sidebar />
-      <div className="flex-1 overflow-auto">
+      <div className="flex-1 overflow-hidden">
         {/* Top Bar */}
-        <div className="border-b border-border px-6 py-4" style={{ backgroundColor: '#1b1a19' }} data-testid="topbar">
+        <div className="border-b border-border px-4 py-3" style={{ backgroundColor: '#1b1a19' }} data-testid="topbar">
           <div className="flex items-center space-x-4">
             <Home className="w-4 h-4 text-muted-foreground" data-testid="home-icon" />
             <span className="text-[14px] font-normal text-[#7d7d7d]" data-testid="breadcrumb-home">Home</span>
@@ -85,9 +85,9 @@ export default function Dashboard() {
         </div>
 
         {/* Dashboard Content */}
-        <div className="p-6" style={{ backgroundColor: '#1b1a19' }} data-testid="dashboard-content">
+        <div className="p-4 overflow-hidden" style={{ backgroundColor: '#1b1a19' }} data-testid="dashboard-content">
           {/* Overview Header */}
-          <div className="flex items-center justify-between mb-6" data-testid="overview-header">
+          <div className="flex items-center justify-between mb-4" data-testid="overview-header">
             <h1 className="text-[17px] font-normal text-[#999999]" data-testid="overview-title">
               Overview
             </h1>
@@ -106,7 +106,7 @@ export default function Dashboard() {
           </div>
 
           {/* KPI Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8" data-testid="kpi-grid">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6" data-testid="kpi-grid">
             <KPICard
               title="New Leads"
               value={mockDashboardData.kpis.newLeads}
