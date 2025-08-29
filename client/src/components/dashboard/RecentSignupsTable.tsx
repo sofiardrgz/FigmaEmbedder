@@ -79,7 +79,7 @@ export default function RecentSignupsTable({ signups }: RecentSignupsTableProps)
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-400 bg-[#181818]" data-testid={`user-id-${signup.id}`}>
                     {signup.userId}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap" data-testid={`status-${signup.id}`}>
+                  <td className="px-6 py-4 whitespace-nowrap bg-[#181818]" data-testid={`status-${signup.id}`}>
                     <span className="status-badge status-pending text-gray-400" data-testid={`status-badge-${signup.id}`}>
                       {statusInfo.label}
                     </span>
