@@ -22,7 +22,7 @@ const mockDashboardData: DashboardData = {
     })),
     answeredCalls: Array.from({ length: 30 }, (_, i) => ({
       date: `Mar ${i + 1}`,
-      value: Math.floor(Math.random() * 40 + 10),
+      value: Math.floor(Math.random() * 25 + 5),
     })),
   },
   recentSignups: [
