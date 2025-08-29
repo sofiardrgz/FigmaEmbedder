@@ -38,6 +38,7 @@ export default function Sidebar() {
           {navigationItems.map((item) => {
             const Icon = item.icon;
             const isActive = location === item.href;
+            const isZap = item.label === "Automations";
             return (
               <div
                 key={item.label}
@@ -49,7 +50,7 @@ export default function Sidebar() {
                 style={isActive ? { backgroundColor: '#2E2E2E' } : {}}
                 data-testid={item.testId}
               >
-                <Icon className={item.icon === Zap ? "w-6 h-6 stroke-2" : "w-4 h-4"} />
+                <Icon className={isZap ? "w-8 h-8 stroke-[3]" : "w-4 h-4"} />
                 <span className="text-sm font-medium">{item.label}</span>
               </div>
             );
