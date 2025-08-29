@@ -17,6 +17,8 @@ This is a full-stack dashboard application built with React, Express, and Postgr
   - /embed/contacts - Contacts dashboard only
   - /embed/calendar - Calendar dashboard only
   - /embed/copilot - AI Copilot dashboard only
+  - /embed/marketing - Marketing analytics dashboard only
+  - /embed/payments - Payments & invoices dashboard only
   - All routes support /no-frame variants for frameless embedding
 
 # User Preferences

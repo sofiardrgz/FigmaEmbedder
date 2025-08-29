@@ -15,6 +15,8 @@ import EmbeddableMessagesOnly from "@/components/messages/EmbeddableMessagesOnly
 import EmbeddableContactsOnly from "@/components/contacts/EmbeddableContactsOnly";
 import EmbeddableCalendarOnly from "@/components/calendar/EmbeddableCalendarOnly";
 import EmbeddableCopilotOnly from "@/components/copilot/EmbeddableCopilotOnly";
+import EmbeddableMarketingOnly from "@/components/marketing/EmbeddableMarketingOnly";
+import EmbeddablePaymentsOnly from "@/components/payments/EmbeddablePaymentsOnly";
 
 function Router() {
   return (
@@ -40,6 +42,10 @@ function Router() {
       <Route path="/embed/calendar/no-frame" component={() => <EmbeddableCalendarOnly showSafariFrame={false} />} />
       <Route path="/embed/copilot" component={() => <EmbeddableCopilotOnly showSafariFrame={true} />} />
       <Route path="/embed/copilot/no-frame" component={() => <EmbeddableCopilotOnly showSafariFrame={false} />} />
+      <Route path="/embed/marketing" component={() => <EmbeddableMarketingOnly showSafariFrame={true} />} />
+      <Route path="/embed/marketing/no-frame" component={() => <EmbeddableMarketingOnly showSafariFrame={false} />} />
+      <Route path="/embed/payments" component={() => <EmbeddablePaymentsOnly showSafariFrame={true} />} />
+      <Route path="/embed/payments/no-frame" component={() => <EmbeddablePaymentsOnly showSafariFrame={false} />} />
       <Route component={NotFound} />
     </Switch>
   );
