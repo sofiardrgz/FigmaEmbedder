@@ -87,7 +87,7 @@ export default function Dashboard() {
         {/* Dashboard Content */}
         <div className="p-4 overflow-hidden" style={{ backgroundColor: '#1b1a19' }} data-testid="dashboard-content">
           {/* Overview Header */}
-          <div className="flex items-center justify-between mb-3" data-testid="overview-header">
+          <div className="flex items-center justify-between mb-6" data-testid="overview-header">
             <h1 className="text-[17px] font-normal text-[#999999]" data-testid="overview-title">
               Overview
             </h1>
