@@ -507,7 +507,7 @@ export default function EmbeddableDemoAnimation({
       <div className="w-48 border-r border-gray-700 flex-shrink-0" style={{ backgroundColor: '#0d0d0d' }}>
         <div className="p-4">
           <div className="flex items-center space-x-2 mb-5">
-            <span className="font-semibold text-lg text-gray-300">Mission Control</span>
+            <span className="font-semibold text-lg text-gray-300">Smart Squatch</span>
           </div>
           
           <nav className="space-y-1">
