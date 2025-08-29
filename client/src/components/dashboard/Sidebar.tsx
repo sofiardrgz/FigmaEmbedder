@@ -49,7 +49,7 @@ export default function Sidebar() {
                 style={isActive ? { backgroundColor: '#2E2E2E' } : {}}
                 data-testid={item.testId}
               >
-                <Icon className={item.label === "Automations" ? "w-5 h-5" : "w-4 h-4"} />
+                <Icon className={item.icon === Zap ? "w-5 h-5" : "w-4 h-4"} />
                 <span className="text-sm font-medium">{item.label}</span>
               </div>
             );
