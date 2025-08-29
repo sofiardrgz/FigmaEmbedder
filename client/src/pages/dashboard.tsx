@@ -73,7 +73,7 @@ export default function Dashboard() {
   const [selectedPeriod, setSelectedPeriod] = useState("Last 30 Days");
 
   return (
-    <div className="flex text-foreground" style={{ backgroundColor: '#1b1a19', maxWidth: '980px', height: '90vh', margin: '0 auto' }} data-testid="dashboard-container">
+    <div className="flex text-foreground rounded-[15px] overflow-hidden" style={{ backgroundColor: '#1b1a19', maxWidth: '980px', height: '90vh', margin: '0 auto' }} data-testid="dashboard-container">
       <Sidebar />
       <div className="flex-1 overflow-hidden">
         {/* Top Bar */}

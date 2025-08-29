@@ -129,7 +129,7 @@ export default function EmbeddableMessagingDashboard({
     <div 
       ref={elementRef}
       style={{ ...style, backgroundColor: '#1b1a19', maxWidth: '980px', height: '90vh', margin: '0 auto' }}
-      className="flex rounded-[10px] overflow-hidden ambient-bg"
+      className="flex rounded-[15px] overflow-hidden ambient-bg"
     >
       <div className="flex-1 flex flex-col">
         {/* Header */}
@@ -186,7 +186,7 @@ export default function EmbeddableMessagingDashboard({
         className="w-[1000px] h-full mx-auto"
       >
         <SafariBrowserFrame url="messages.app.missioncontrol.com">
-          <div className="flex rounded-[10px] overflow-hidden ambient-bg" style={{ backgroundColor: '#1b1a19', maxWidth: '980px', height: '90vh', margin: '0 auto' }}>
+          <div className="flex rounded-[15px] overflow-hidden ambient-bg" style={{ backgroundColor: '#1b1a19', maxWidth: '980px', height: '90vh', margin: '0 auto' }}>
             <div className="flex-1 flex flex-col">
               {/* Header */}
               <header className="flex h-16 shrink-0 items-center gap-2 border-b border-gray-700 px-4 ambient-bg" style={{ backgroundColor: '#1b1a19' }}>
