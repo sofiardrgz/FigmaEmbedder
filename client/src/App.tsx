@@ -6,20 +6,25 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
 import Dashboard from "@/pages/dashboard";
 import Messages from "@/pages/messages";
+import Demo from "@/pages/demo";
 import EmbeddableDashboard from "@/components/dashboard/EmbeddableDashboard";
 import EmbeddableMessagingDashboard from "@/components/messages/EmbeddableMessagingDashboard";
+import EmbeddableDemoAnimation from "@/components/dashboard/EmbeddableDemoAnimation";
 
 function Router() {
   return (
     <Switch>
       <Route path="/" component={Dashboard} />
       <Route path="/messages" component={Messages} />
+      <Route path="/demo" component={Demo} />
       <Route path="/embed" component={() => <EmbeddableDashboard showSafariFrame={true} />} />
       <Route path="/embed/no-frame" component={() => <EmbeddableDashboard showSafariFrame={false} />} />
       <Route path="/embed/no-sidebar" component={() => <EmbeddableDashboard showSafariFrame={true} showSidebar={false} />} />
       <Route path="/embed/messages" component={() => <EmbeddableMessagingDashboard showSafariFrame={true} />} />
       <Route path="/embed/messages/no-frame" component={() => <EmbeddableMessagingDashboard showSafariFrame={false} />} />
       <Route path="/embed/messages/no-sidebar" component={() => <EmbeddableMessagingDashboard showSafariFrame={true} showSidebar={false} />} />
+      <Route path="/embed/demo" component={() => <EmbeddableDemoAnimation showSafariFrame={true} />} />
+      <Route path="/embed/demo/no-frame" component={() => <EmbeddableDemoAnimation showSafariFrame={false} />} />
       <Route component={NotFound} />
     </Switch>
   );

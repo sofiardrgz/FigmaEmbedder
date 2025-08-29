@@ -1,6 +1,6 @@
 # Overview
 
-This is a full-stack dashboard application built with React, Express, and PostgreSQL. The project showcases a modern web application architecture with a clean dashboard interface displaying KPI metrics, animated charts, and recent signup data. The application uses a monorepo structure with shared schemas and follows modern development practices with TypeScript throughout.
+This is a full-stack dashboard application built with React, Express, and PostgreSQL. The project showcases a modern web application architecture with a clean dashboard interface displaying KPI metrics, animated charts, and recent signup data. The application now includes three main dashboard views: Sales Dashboard, Messages Dashboard, and an Animated Demo Dashboard that automatically cycles through all features. The application uses a monorepo structure with shared schemas and follows modern development practices with TypeScript throughout.
 
 # User Preferences
 
@@ -33,6 +33,26 @@ Preferred communication style: Simple, everyday language.
 - **Users**: Basic user authentication with username/password
 - **Dashboard Metrics**: KPI tracking with JSON data storage for chart information
 - **Signups**: User registration tracking with device and status information
+
+## Dashboard Features
+- **Sales Dashboard** (`/`): Main dashboard with KPI cards, charts, and recent signups table
+- **Messages Dashboard** (`/messages`): Real-time messaging interface with conversation management
+- **Demo Dashboard** (`/demo`): Animated showcase that automatically cycles through all features:
+  - Messages with real-time notifications
+  - Contacts management with status tracking
+  - Calendar with appointment notifications
+  - Automations workflow tracking
+  - AI Copilot with chat interface
+  - Marketing analytics for social media
+  - Payments and invoices management
+
+## Design System
+- **Color Scheme**: Dark theme with #0d0d0d primary background, #1a1a1a for cards
+- **Hover Effects**: Dark green (#16a34a) throughout all interactive elements
+- **Typography**: Inter font family with consistent sizing and spacing
+- **Animations**: Framer Motion for smooth transitions and micro-interactions
+- **Layout**: 900px fixed width, 100vh height for iframe embedding
+- **Icons**: Lucide React icons with uniform 16px sizing
 
 ## Development Setup
 - **Build System**: Vite for frontend bundling and esbuild for backend compilation
