@@ -106,7 +106,7 @@ export default function Dashboard() {
           </div>
 
           {/* KPI Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-5" data-testid="kpi-grid">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-8" data-testid="kpi-grid">
             <KPICard
               title="New Leads"
               value={mockDashboardData.kpis.newLeads}

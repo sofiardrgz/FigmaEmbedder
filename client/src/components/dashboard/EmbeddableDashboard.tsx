@@ -118,7 +118,7 @@ export default function EmbeddableDashboard({
           </div>
 
           {/* KPI Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8" data-testid="kpi-grid">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12" data-testid="kpi-grid">
             <KPICard
               title="New Leads"
               value={data.kpis.newLeads}
