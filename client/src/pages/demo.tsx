@@ -319,14 +319,19 @@ export default function Demo() {
 
   useEffect(() => {
     let currentIndex = 0;
+    console.log("Starting demo animation with", navigationItems.length, "items");
+    
     const interval = setInterval(() => {
-      const nextIndex = (currentIndex + 1) % navigationItems.length;
-      setHoveredItem(navigationItems[nextIndex].label);
-      setActiveSection(navigationItems[nextIndex].label);
-      currentIndex = nextIndex;
+      currentIndex = (currentIndex + 1) % navigationItems.length;
+      console.log("Switching to:", navigationItems[currentIndex].label);
+      setHoveredItem(navigationItems[currentIndex].label);
+      setActiveSection(navigationItems[currentIndex].label);
     }, 3000);
 
-    return () => clearInterval(interval);
+    return () => {
+      console.log("Clearing demo animation interval");
+      clearInterval(interval);
+    };
   }, []);
 
   return (
