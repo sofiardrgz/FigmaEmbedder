@@ -23,7 +23,7 @@ export default function KPICard({ title, value, icon, chartData, delay = 0 }: KP
 
   return (
     <div 
-      className="kpi-card rounded-lg border-[0.5px] border-gray-700 p-6 opacity-0 animate-[slideInUp_0.6s_ease-out_forwards]"
+      className="kpi-card rounded-lg border-[0.5px] border-gray-700 p-6 opacity-0 animate-[slideInUp_0.6s_ease-out_forwards] ambient-bg"
       style={{ backgroundColor: '#2E2E2E', animationDelay: `${delay}ms` }}
       data-testid={`kpi-card-${title.toLowerCase().replace(/\s+/g, '-')}`}
     >

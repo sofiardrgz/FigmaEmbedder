@@ -41,7 +41,7 @@ const MessageCard = forwardRef<HTMLDivElement, MessageCardProps>(({ message, ind
       data-testid={`message-card-${message.id}`}
     >
       <Card 
-        className="rounded-lg shadow-sm p-4 border border-gray-600 transition-all duration-300 hover:border-gray-500 ml-[0px] mr-[0px]"
+        className="rounded-lg shadow-sm p-4 border border-gray-600 transition-all duration-300 hover:border-gray-500 ml-[0px] mr-[0px] ambient-bg"
         style={{ backgroundColor: '#2E2E2E' }}
       >
         <div className="flex items-start gap-3">
