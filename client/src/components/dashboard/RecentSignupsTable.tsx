@@ -35,7 +35,7 @@ export default function RecentSignupsTable({ signups }: RecentSignupsTableProps)
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider bg-[#181818]" data-testid="header-date">
                 Date
               </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider" data-testid="header-device">
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider bg-[#181818]" data-testid="header-device">
                 Device
               </th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider" data-testid="header-name">
