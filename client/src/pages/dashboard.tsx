@@ -73,7 +73,7 @@ export default function Dashboard() {
   const [selectedPeriod, setSelectedPeriod] = useState("Last 30 Days");
 
   return (
-    <div className="flex text-foreground" style={{ backgroundColor: '#1b1a19', maxWidth: '980px', height: '100vh', margin: '0 auto' }} data-testid="dashboard-container">
+    <div className="flex text-foreground" style={{ backgroundColor: '#1b1a19', maxWidth: '980px', height: '90vh', margin: '0 auto' }} data-testid="dashboard-container">
       <Sidebar />
       <div className="flex-1 overflow-hidden">
         {/* Top Bar */}
@@ -87,7 +87,7 @@ export default function Dashboard() {
         {/* Dashboard Content */}
         <div className="p-4 overflow-hidden" style={{ backgroundColor: '#1b1a19' }} data-testid="dashboard-content">
           {/* Overview Header */}
-          <div className="flex items-center justify-between mb-4" data-testid="overview-header">
+          <div className="flex items-center justify-between mb-3" data-testid="overview-header">
             <h1 className="text-[17px] font-normal text-[#999999]" data-testid="overview-title">
               Overview
             </h1>
@@ -106,7 +106,7 @@ export default function Dashboard() {
           </div>
 
           {/* KPI Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6" data-testid="kpi-grid">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-5" data-testid="kpi-grid">
             <KPICard
               title="New Leads"
               value={mockDashboardData.kpis.newLeads}

@@ -28,13 +28,13 @@ export default function Sidebar() {
   return (
     <div className="w-48 border-r border-gray-700 flex-shrink-0 ambient-bg" style={{ backgroundColor: '#1b1a19' }} data-testid="sidebar">
       <div className="p-4">
-        <div className="flex items-center space-x-2 mb-6" data-testid="sidebar-header">
+        <div className="flex items-center space-x-2 mb-5" data-testid="sidebar-header">
           <span className="font-semibold text-lg text-gray-300" data-testid="logo-text">
             Mission Control
           </span>
         </div>
         
-        <nav className="space-y-2" data-testid="sidebar-navigation">
+        <nav className="space-y-1" data-testid="sidebar-navigation">
           {navigationItems.map((item) => {
             const Icon = item.icon;
             const isActive = location === item.href;

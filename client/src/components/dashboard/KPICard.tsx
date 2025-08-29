@@ -38,7 +38,7 @@ export default function KPICard({ title, value, icon, chartData, delay = 0 }: KP
       <div className="mb-3 text-lg font-medium text-[#757778]" data-testid="kpi-value">
         {animatedValue.toLocaleString()}
       </div>
-      <div className="h-[120px] w-full" data-testid="kpi-chart-container">
+      <div className="h-[100px] w-full" data-testid="kpi-chart-container">
         <AnimatedChart data={chartData} delay={delay + 500} />
       </div>
     </div>
