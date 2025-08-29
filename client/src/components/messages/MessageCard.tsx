@@ -42,13 +42,13 @@ const MessageCard = forwardRef<HTMLDivElement, MessageCardProps>(({ message, ind
     >
       <Card 
         className="rounded-lg shadow-sm p-4 border border-gray-600 transition-all duration-300 hover:border-gray-500 ml-[0px] mr-[0px] ambient-bg"
-        style={{ backgroundColor: '#383838' }}
+        style={{ backgroundColor: '#272727' }}
       >
         <div className="flex items-start gap-3">
           <Avatar className="h-10 w-10 shrink-0">
             <AvatarFallback 
               className="text-sm font-semibold text-gray-300"
-              style={{ backgroundColor: message.type === 'sent' ? '#2E2E2E' : '#383838' }}
+              style={{ backgroundColor: message.type === 'sent' ? '#1b1a19' : '#272727' }}
             >
               {message.avatar}
             </AvatarFallback>
@@ -64,7 +64,7 @@ const MessageCard = forwardRef<HTMLDivElement, MessageCardProps>(({ message, ind
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   className="px-2 py-0.5 text-gray-200 text-xs rounded-full font-medium"
-                  style={{ backgroundColor: '#2E2E2E' }}
+                  style={{ backgroundColor: '#1b1a19' }}
                 >
                   NEW
                 </motion.div>

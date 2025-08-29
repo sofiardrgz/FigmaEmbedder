@@ -3,7 +3,7 @@ import { MessagesDashboardContent } from "@/components/messages/MessagesDashboar
 
 export default function Messages() {
   return (
-    <div className="flex min-h-screen text-foreground" style={{ backgroundColor: '#383838' }}>
+    <div className="flex min-h-screen text-foreground" style={{ backgroundColor: '#1b1a19' }}>
       <Sidebar />
       <div className="flex-1">
         <MessagesDashboardContent />

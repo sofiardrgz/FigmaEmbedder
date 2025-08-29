@@ -128,12 +128,12 @@ export default function EmbeddableMessagingDashboard({
   const DashboardContent = () => (
     <div 
       ref={elementRef}
-      style={{ ...style, backgroundColor: '#383838' }}
+      style={{ ...style, backgroundColor: '#1b1a19' }}
       className="flex h-screen rounded-[10px] overflow-hidden ambient-bg"
     >
       <div className="flex-1 flex flex-col">
         {/* Header */}
-        <header className="flex h-16 shrink-0 items-center gap-2 border-b border-gray-700 px-6 ambient-bg" style={{ backgroundColor: '#383838' }}>
+        <header className="flex h-16 shrink-0 items-center gap-2 border-b border-gray-700 px-6 ambient-bg" style={{ backgroundColor: '#1b1a19' }}>
           <div className="flex items-center gap-2">
             <h1 className="text-lg font-semibold text-gray-300">Conversations</h1>
             <NewMessageIndicator count={newMessageCount} />
@@ -143,7 +143,7 @@ export default function EmbeddableMessagingDashboard({
         {/* Main Content */}
         <div className="flex-1 flex overflow-hidden">
           {/* Message List */}
-          <div className="w-80 border-r border-gray-700 ambient-bg" style={{ backgroundColor: '#383838' }}>
+          <div className="w-80 border-r border-gray-700 ambient-bg" style={{ backgroundColor: '#1b1a19' }}>
             <MessageList messages={messages} />
           </div>
 
@@ -186,10 +186,10 @@ export default function EmbeddableMessagingDashboard({
         className="w-[1000px] h-full mx-auto"
       >
         <SafariBrowserFrame url="messages.app.missioncontrol.com">
-          <div className="flex h-screen rounded-[10px] overflow-hidden ambient-bg" style={{ backgroundColor: '#383838' }}>
+          <div className="flex h-screen rounded-[10px] overflow-hidden ambient-bg" style={{ backgroundColor: '#1b1a19' }}>
             <div className="flex-1 flex flex-col">
               {/* Header */}
-              <header className="flex h-16 shrink-0 items-center gap-2 border-b border-gray-700 px-6 ambient-bg" style={{ backgroundColor: '#383838' }}>
+              <header className="flex h-16 shrink-0 items-center gap-2 border-b border-gray-700 px-6 ambient-bg" style={{ backgroundColor: '#1b1a19' }}>
                 <div className="flex items-center gap-2">
                   <h1 className="text-lg font-semibold text-gray-300">Conversations</h1>
                   <NewMessageIndicator count={newMessageCount} />
@@ -199,7 +199,7 @@ export default function EmbeddableMessagingDashboard({
               {/* Main Content */}
               <div className="flex-1 flex overflow-hidden">
                 {/* Message List */}
-                <div className="w-80 border-r border-gray-700 ambient-bg" style={{ backgroundColor: '#383838' }}>
+                <div className="w-80 border-r border-gray-700 ambient-bg" style={{ backgroundColor: '#1b1a19' }}>
                   <MessageList messages={messages} />
                 </div>
 

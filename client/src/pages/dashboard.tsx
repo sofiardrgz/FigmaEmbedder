@@ -73,11 +73,11 @@ export default function Dashboard() {
   const [selectedPeriod, setSelectedPeriod] = useState("Last 30 Days");
 
   return (
-    <div className="flex min-h-screen text-foreground" style={{ backgroundColor: '#383838' }} data-testid="dashboard-container">
+    <div className="flex min-h-screen text-foreground" style={{ backgroundColor: '#1b1a19' }} data-testid="dashboard-container">
       <Sidebar />
       <div className="flex-1 overflow-auto">
         {/* Top Bar */}
-        <div className="border-b border-border px-6 py-4" style={{ backgroundColor: '#383838' }} data-testid="topbar">
+        <div className="border-b border-border px-6 py-4" style={{ backgroundColor: '#1b1a19' }} data-testid="topbar">
           <div className="flex items-center space-x-4">
             <Home className="w-4 h-4 text-muted-foreground" data-testid="home-icon" />
             <span className="text-[14px] font-normal text-[#7d7d7d]" data-testid="breadcrumb-home">Home</span>
@@ -85,7 +85,7 @@ export default function Dashboard() {
         </div>
 
         {/* Dashboard Content */}
-        <div className="p-6" style={{ backgroundColor: '#383838' }} data-testid="dashboard-content">
+        <div className="p-6" style={{ backgroundColor: '#1b1a19' }} data-testid="dashboard-content">
           {/* Overview Header */}
           <div className="flex items-center justify-between mb-6" data-testid="overview-header">
             <h1 className="text-[17px] font-normal text-[#999999]" data-testid="overview-title">
