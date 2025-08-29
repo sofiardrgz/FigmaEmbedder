@@ -142,9 +142,7 @@ const DemoContent = {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: i * 0.08 }}
-            className={`bg-gray-800/50 p-3 rounded-lg flex items-center gap-3 ${
-              msg.unread ? 'border-l-2 border-green-500' : ''
-            }`}
+            className="bg-gray-800/50 p-3 rounded-lg flex items-center gap-3"
           >
             <div className="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center text-xs font-bold">
               {msg.name.split(' ').map(n => n[0]).join('')}
@@ -206,9 +204,7 @@ const DemoContent = {
             }`}
           >
             <div className="flex items-center gap-3">
-              <div className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold ${
-                contact.isNew ? 'bg-green-600' : 'bg-blue-600'
-              }`}>
+              <div className="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center text-sm font-bold">
                 {contact.name.split(' ').map(n => n[0]).join('')}
               </div>
               <div className="flex-1">
