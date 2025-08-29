@@ -50,7 +50,7 @@ export default function Sidebar() {
                 style={isActive ? { backgroundColor: '#2E2E2E' } : {}}
                 data-testid={item.testId}
               >
-                <Icon className={isZap ? "w-8 h-8 stroke-[3]" : "w-4 h-4"} />
+                <Icon className="w-4 h-4" />
                 <span className="text-sm font-medium">{item.label}</span>
               </div>
             );
