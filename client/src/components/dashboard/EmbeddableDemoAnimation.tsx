@@ -333,10 +333,39 @@ const DemoContent = {
       >
         <div className="flex items-start gap-3">
           <Bot className="w-5 h-5 text-green-400 mt-0.5" />
-          <div>
-            <div className="text-sm font-medium text-green-400 mb-1">AI Copilot</div>
-            <div className="text-sm text-gray-300">Sure! I'll create an email for you!</div>
-            <div className="text-xs text-gray-400 mt-2">Email draft created with subject line, compelling copy, and call-to-action ready for review.</div>
+          <div className="flex-1">
+            <div className="text-sm font-medium text-green-400 mb-2">AI Copilot</div>
+            <div className="text-sm text-gray-300 mb-3">Sure! I'll create an email for you!</div>
+            
+            {/* Email Preview */}
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 1 }}
+              className="bg-gray-900/50 border border-gray-600 rounded-lg p-4 mt-3"
+            >
+              <div className="text-xs text-gray-400 mb-2">Email Draft:</div>
+              <div className="space-y-2">
+                <div className="text-xs">
+                  <span className="text-gray-400">Subject:</span>
+                  <span className="text-gray-300 ml-2">🚀 Introducing Our Game-Changing New Platform</span>
+                </div>
+                <div className="text-xs">
+                  <span className="text-gray-400">To:</span>
+                  <span className="text-gray-300 ml-2">Your Customer List</span>
+                </div>
+                <div className="border-t border-gray-600 pt-2 mt-2">
+                  <div className="text-xs text-gray-300 leading-relaxed">
+                    Hi [Name],<br/><br/>
+                    We're excited to share something special with you...<br/><br/>
+                    Our new platform delivers 10x faster results with intuitive design that your team will love.<br/><br/>
+                    <span className="text-green-400">→ Get early access now</span><br/><br/>
+                    Best regards,<br/>
+                    The Team
+                  </div>
+                </div>
+              </div>
+            </motion.div>
           </div>
         </div>
       </motion.div>
