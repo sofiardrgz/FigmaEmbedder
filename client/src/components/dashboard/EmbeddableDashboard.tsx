@@ -101,7 +101,7 @@ export default function EmbeddableDashboard({
         {/* Dashboard Content */}
         <div className="p-6" data-testid="dashboard-content">
           {/* Overview Header */}
-          <div className="flex items-center justify-between mb-12" data-testid="overview-header">
+          <div className="flex items-center justify-between mb-16" data-testid="overview-header">
             <h1 className="text-2xl font-semibold text-gray-300" data-testid="overview-title">
               Overview
             </h1>
