@@ -22,15 +22,15 @@ const statusConfig = {
 
 export default function RecentSignupsTable({ signups }: RecentSignupsTableProps) {
   return (
-    <div className="rounded-lg border border-gray-700 opacity-0 animate-[slideInUp_0.6s_ease-out_0.9s_forwards] ambient-bg" style={{ backgroundColor: '#272727' }} data-testid="recent-signups-container">
-      <div className="px-4 py-3 border-b border-gray-700" style={{ backgroundColor: '#272727' }} data-testid="table-header">
+    <div className="rounded-lg border border-gray-700 opacity-0 animate-[slideInUp_0.6s_ease-out_0.9s_forwards] ambient-bg" style={{ backgroundColor: '#1a1a1a' }} data-testid="recent-signups-container">
+      <div className="px-4 py-3 border-b border-gray-700" style={{ backgroundColor: '#1a1a1a' }} data-testid="table-header">
         <h2 className="font-normal text-[16px] text-gray-400" data-testid="table-title">
           Most recent signups
         </h2>
       </div>
       <div className="overflow-x-auto" data-testid="table-wrapper">
         <table className="w-full" data-testid="signups-table">
-          <thead style={{ backgroundColor: '#1b1a19' }}>
+          <thead style={{ backgroundColor: '#0d0d0d' }}>
             <tr>
               <th className="px-4 py-2 text-left text-xs font-medium text-gray-400 uppercase tracking-wider" data-testid="header-date">
                 Date
@@ -56,7 +56,7 @@ export default function RecentSignupsTable({ signups }: RecentSignupsTableProps)
               return (
                 <tr
                   key={signup.id}
-                  className="table-row opacity-0 animate-[slideInUp_0.5s_ease-out_forwards]"
+                  className="table-row opacity-0 animate-[slideInUp_0.5s_ease-out_forwards] hover:bg-green-600/10 transition-colors cursor-pointer"
                   style={{ animationDelay: `${1.2 + index * 0.08}s` }}
                   data-testid={`signup-row-${signup.id}`}
                 >
@@ -83,7 +83,7 @@ export default function RecentSignupsTable({ signups }: RecentSignupsTableProps)
                     </span>
                   </td>
                   <td className="px-4 py-3 whitespace-nowrap text-right text-sm font-medium" data-testid={`actions-${signup.id}`}>
-                    <ChevronRight className="w-3 h-3 text-gray-400 transition-colors" data-testid={`chevron-${signup.id}`} />
+                    <ChevronRight className="w-3 h-3 text-gray-400 transition-colors hover:text-green-400" data-testid={`chevron-${signup.id}`} />
                   </td>
                 </tr>
               );

@@ -86,12 +86,12 @@ export default function EmbeddableDashboard({
   const [selectedPeriod, setSelectedPeriod] = useState("Last 30 Days");
 
   const DashboardContent = () => (
-    <div className={`flex text-gray-300 rounded-[15px] overflow-hidden ambient-bg ${className}`} style={{ backgroundColor: '#1b1a19', width: '900px', height: '100vh', margin: '0 auto' }} data-testid="embeddable-dashboard">
+    <div className={`flex text-gray-300 rounded-[15px] overflow-hidden ambient-bg ${className}`} style={{ backgroundColor: '#0d0d0d', width: '900px', height: '100vh', margin: '0 auto' }} data-testid="embeddable-dashboard">
       {showSidebar && <Sidebar />}
       
       <div className="flex-1 overflow-hidden">
         {/* Top Bar */}
-        <div className="border-b border-gray-700 px-6 py-4 ambient-bg" style={{ backgroundColor: '#1b1a19' }} data-testid="topbar">
+        <div className="border-b border-gray-700 px-6 py-4 ambient-bg" style={{ backgroundColor: '#0d0d0d' }} data-testid="topbar">
           <div className="flex items-center space-x-4">
             <Home className="w-4 h-4 text-gray-400" data-testid="home-icon" />
             <span className="text-gray-300 font-medium" data-testid="breadcrumb-home">Home</span>
@@ -106,8 +106,8 @@ export default function EmbeddableDashboard({
               Overview
             </h1>
             <div 
-              className="flex items-center space-x-2 border border-gray-700 px-3 py-2 rounded-lg"
-              style={{ backgroundColor: '#383838' }}
+              className="flex items-center space-x-2 border border-gray-700 px-3 py-2 rounded-lg transition-colors hover:bg-green-600/20"
+              style={{ backgroundColor: '#1a1a1a' }}
               data-testid="period-selector"
             >
               <span className="text-sm text-gray-400" data-testid="selected-period">

@@ -28,7 +28,7 @@ export default function Sidebar() {
   const [location] = useLocation();
 
   return (
-    <div className="w-48 border-r border-gray-700 flex-shrink-0 ambient-bg" style={{ backgroundColor: '#1b1a19' }} data-testid="sidebar">
+    <div className="w-48 border-r border-gray-700 flex-shrink-0 ambient-bg" style={{ backgroundColor: '#0d0d0d' }} data-testid="sidebar">
       <div className="p-4">
         <div className="flex items-center space-x-2 mb-5" data-testid="sidebar-header">
           <span className="font-semibold text-lg text-gray-300" data-testid="logo-text">
@@ -44,12 +44,12 @@ export default function Sidebar() {
             return (
               <div
                 key={item.label}
-                className={`sidebar-item px-4 py-2 rounded-md flex items-center space-x-3 ${
+                className={`sidebar-item px-4 py-2 rounded-md flex items-center space-x-3 transition-colors hover:bg-green-600/20 ${
                   isActive
                     ? "active text-gray-300"
-                    : "text-gray-400"
+                    : "text-gray-400 hover:text-green-400"
                 }`}
-                style={isActive ? { backgroundColor: '#2E2E2E' } : {}}
+                style={isActive ? { backgroundColor: '#16a34a' } : {}}
                 data-testid={item.testId}
               >
                 <Icon className="w-4 h-4" />

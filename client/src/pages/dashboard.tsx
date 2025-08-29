@@ -73,11 +73,11 @@ export default function Dashboard() {
   const [selectedPeriod, setSelectedPeriod] = useState("Last 30 Days");
 
   return (
-    <div className="flex text-foreground rounded-[15px] overflow-hidden" style={{ backgroundColor: '#1b1a19', width: '900px', height: '100vh', margin: '0 auto' }} data-testid="dashboard-container">
+    <div className="flex text-foreground rounded-[15px] overflow-hidden" style={{ backgroundColor: '#0d0d0d', width: '900px', height: '100vh', margin: '0 auto' }} data-testid="dashboard-container">
       <Sidebar />
       <div className="flex-1 overflow-hidden">
         {/* Top Bar */}
-        <div className="border-b border-border px-4 py-3" style={{ backgroundColor: '#1b1a19' }} data-testid="topbar">
+        <div className="border-b border-border px-4 py-3" style={{ backgroundColor: '#0d0d0d' }} data-testid="topbar">
           <div className="flex items-center space-x-4">
             <Home className="w-4 h-4 text-muted-foreground" data-testid="home-icon" />
             <span className="text-[14px] font-normal text-[#7d7d7d]" data-testid="breadcrumb-home">Home</span>
@@ -85,14 +85,15 @@ export default function Dashboard() {
         </div>
 
         {/* Dashboard Content */}
-        <div className="p-4 overflow-hidden" style={{ backgroundColor: '#1b1a19' }} data-testid="dashboard-content">
+        <div className="p-4 overflow-hidden" style={{ backgroundColor: '#0d0d0d' }} data-testid="dashboard-content">
           {/* Overview Header */}
           <div className="flex items-center justify-between mb-12" data-testid="overview-header">
             <h1 className="text-[17px] font-normal text-[#999999]" data-testid="overview-title">
               Overview
             </h1>
             <div 
-              className="flex items-center space-x-2 bg-muted px-3 py-2 rounded-lg cursor-pointer hover:bg-muted/80 transition-colors"
+              className="flex items-center space-x-2 px-3 py-2 rounded-lg cursor-pointer transition-colors hover:bg-green-600/20"
+              style={{ backgroundColor: '#1a1a1a' }}
               onClick={() => {
                 // TODO: Implement period selector
               }}

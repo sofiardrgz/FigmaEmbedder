@@ -117,10 +117,10 @@ export function MessagesDashboardContent() {
   };
 
   return (
-    <div className="flex rounded-[15px] overflow-hidden" style={{ backgroundColor: '#1b1a19', height: '100vh' }}>
+    <div className="flex rounded-[15px] overflow-hidden" style={{ backgroundColor: '#0d0d0d', height: '100vh' }}>
       <div className="flex-1 flex flex-col">
         {/* Header */}
-        <header className="flex h-16 shrink-0 items-center gap-2 border-b border-gray-700 px-4" style={{ backgroundColor: '#1b1a19' }}>
+        <header className="flex h-16 shrink-0 items-center gap-2 border-b border-gray-700 px-4" style={{ backgroundColor: '#0d0d0d' }}>
           <div className="flex items-center gap-2">
             <h1 className="text-lg font-semibold text-gray-300">Messages</h1>
             <NewMessageIndicator count={newMessageCount} />
@@ -130,7 +130,7 @@ export function MessagesDashboardContent() {
         {/* Main Content */}
         <div className="flex-1 flex overflow-hidden">
           {/* Message List */}
-          <div className="w-56 border-r border-gray-700" style={{ backgroundColor: '#1b1a19' }}>
+          <div className="w-56 border-r border-gray-700" style={{ backgroundColor: '#0d0d0d' }}>
             <MessageList messages={messages} />
           </div>
 
