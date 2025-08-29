@@ -2,6 +2,16 @@
 
 This is a full-stack dashboard application built with React, Express, and PostgreSQL. The project showcases a modern web application architecture with a clean dashboard interface displaying KPI metrics, animated charts, and recent signup data. The application now includes three main dashboard views: Sales Dashboard, Messages Dashboard, and an Animated Demo Dashboard that automatically cycles through all features. The application uses a monorepo structure with shared schemas and follows modern development practices with TypeScript throughout.
 
+## Recent Changes (August 29, 2025)
+- Created comprehensive animated demo dashboard with auto-cycling through 8 sections
+- Enhanced Sales Dashboard with revenue charts, conversion metrics, and leads pipeline table
+- Expanded Messages Dashboard with 8 messages, unread indicators, and clean styling
+- Enhanced Contacts Dashboard with 8 contacts, new contact notifications, and status badges
+- Added detailed AI Copilot showing actual email creation with full preview
+- Updated branding from "Mission Control" to "Smart Squatch"
+- Implemented consistent green color scheme throughout all interfaces
+- Created embeddable versions at /embed/demo and /embed/demo/no-frame routes
+
 # User Preferences
 
 Preferred communication style: Simple, everyday language.
