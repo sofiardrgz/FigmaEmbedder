@@ -7,7 +7,8 @@ import {
   Megaphone, 
   CreditCard, 
   Settings,
-  BarChart3
+  BarChart3,
+  Bot
 } from "lucide-react";
 import { useLocation } from "wouter";
 
@@ -17,6 +18,7 @@ const navigationItems = [
   { icon: Users, label: "Contacts", href: "/contacts", testId: "nav-contacts" },
   { icon: Calendar, label: "Calendar", href: "/calendar", testId: "nav-calendar" },
   { icon: Zap, label: "Automations", href: "/automations", testId: "nav-automations" },
+  { icon: Bot, label: "Copilot", href: "/copilot", testId: "nav-copilot" },
   { icon: Megaphone, label: "Marketing", href: "/marketing", testId: "nav-marketing" },
   { icon: CreditCard, label: "Payments", href: "/payments", testId: "nav-payments" },
   { icon: Settings, label: "Settings", href: "/settings", testId: "nav-settings" },
