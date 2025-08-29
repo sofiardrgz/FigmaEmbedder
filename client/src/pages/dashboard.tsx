@@ -18,11 +18,11 @@ const mockDashboardData: DashboardData = {
     })),
     followUps: Array.from({ length: 30 }, (_, i) => ({
       date: `Mar ${i + 1}`,
-      value: Math.floor(Math.random() * 60 + 20),
+      value: Math.floor(Math.random() * 100 + 30),
     })),
     answeredCalls: Array.from({ length: 30 }, (_, i) => ({
       date: `Mar ${i + 1}`,
-      value: Math.floor(Math.random() * 25 + 5),
+      value: Math.floor(Math.random() * 50 + 15),
     })),
   },
   recentSignups: [
