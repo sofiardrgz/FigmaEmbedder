@@ -1,6 +1,6 @@
 [build]
   command = "vite build"
-  publish = "dist"
+  publish = "dist/public"
 
 # SPA routing - redirect all routes to index.html
 [[redirects]]
