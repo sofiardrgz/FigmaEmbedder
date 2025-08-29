@@ -22,30 +22,30 @@ const statusConfig = {
 
 export default function RecentSignupsTable({ signups }: RecentSignupsTableProps) {
   return (
-    <div className="rounded-lg border border-gray-700 opacity-0 animate-[slideInUp_0.6s_ease-out_0.9s_forwards] ambient-bg" style={{ backgroundColor: '#2E2E2E' }} data-testid="recent-signups-container">
-      <div className="px-6 py-4 border-b border-gray-700 bg-[#121212]" data-testid="table-header">
+    <div className="rounded-lg border border-gray-700 opacity-0 animate-[slideInUp_0.6s_ease-out_0.9s_forwards] ambient-bg" style={{ backgroundColor: '#383838' }} data-testid="recent-signups-container">
+      <div className="px-6 py-4 border-b border-gray-700" style={{ backgroundColor: '#383838' }} data-testid="table-header">
         <h2 className="font-normal text-[16px] text-gray-400" data-testid="table-title">
           Most recent signups
         </h2>
       </div>
       <div className="overflow-x-auto" data-testid="table-wrapper">
         <table className="w-full" data-testid="signups-table">
-          <thead style={{ backgroundColor: '#383838' }}>
+          <thead style={{ backgroundColor: '#2E2E2E' }}>
             <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider bg-[#181818]" data-testid="header-date">
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider" data-testid="header-date">
                 Date
               </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider bg-[#181818]" data-testid="header-device">
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider" data-testid="header-device">
                 Device
               </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider bg-[#181818]" data-testid="header-name">
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider" data-testid="header-name">
                 Name
               </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider bg-[#181818]" data-testid="header-user-id">
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider" data-testid="header-user-id">
                 User ID
               </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider bg-[#181818]" data-testid="header-kyc-status">Status</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider bg-[#181818]" data-testid="header-actions"></th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider" data-testid="header-kyc-status">Status</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider" data-testid="header-actions"></th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-700" data-testid="table-body">
@@ -60,10 +60,10 @@ export default function RecentSignupsTable({ signups }: RecentSignupsTableProps)
                   style={{ animationDelay: `${1.2 + index * 0.08}s` }}
                   data-testid={`signup-row-${signup.id}`}
                 >
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-300 bg-[#0f0f0fc4]" data-testid={`date-${signup.id}`}>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-300" data-testid={`date-${signup.id}`}>
                     {signup.date}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-400 bg-[#181818]" data-testid={`device-${signup.id}`}>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-400" data-testid={`device-${signup.id}`}>
                     <div className="flex items-center space-x-2">
                       <DeviceIcon className="w-3 h-3 text-gray-400" data-testid={`device-icon-${signup.id}`} />
                       <span className="capitalize" data-testid={`device-type-${signup.id}`}>
@@ -71,18 +71,18 @@ export default function RecentSignupsTable({ signups }: RecentSignupsTableProps)
                       </span>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-300 bg-[#181818]" data-testid={`name-${signup.id}`}>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-300" data-testid={`name-${signup.id}`}>
                     {signup.name}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-400 bg-[#181818]" data-testid={`user-id-${signup.id}`}>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-400" data-testid={`user-id-${signup.id}`}>
                     {signup.userId}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap bg-[#181818]" data-testid={`status-${signup.id}`}>
+                  <td className="px-6 py-4 whitespace-nowrap" data-testid={`status-${signup.id}`}>
                     <span className="status-badge status-pending text-gray-400" data-testid={`status-badge-${signup.id}`}>
                       {statusInfo.label}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium bg-[#121212]" data-testid={`actions-${signup.id}`}>
+                  <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium" data-testid={`actions-${signup.id}`}>
                     <ChevronRight className="w-3 h-3 text-gray-400 transition-colors" data-testid={`chevron-${signup.id}`} />
                   </td>
                 </tr>
