@@ -48,24 +48,25 @@ export default function MarketingCard({ className = "" }: MarketingCardProps) {
             </div>
             <motion.div 
               animate={{ 
-                scale: [1, 1.05, 1.02, 1.08, 1],
-                textShadow: [
-                  "0 0 0px rgba(34, 197, 94, 0)",
-                  "0 0 6px rgba(34, 197, 94, 0.3)",
-                  "0 0 2px rgba(34, 197, 94, 0.1)",
-                  "0 0 8px rgba(34, 197, 94, 0.4)",
-                  "0 0 0px rgba(34, 197, 94, 0)"
-                ]
+                scale: [1, 1.02, 1],
+                opacity: [1, 0.8, 1]
               }}
               transition={{ 
                 repeat: Infinity, 
-                duration: 7, 
-                ease: "easeInOut",
-                times: [0, 0.3, 0.5, 0.8, 1]
+                duration: 4, 
+                ease: "easeInOut"
               }}
-              className="text-xl font-bold text-gray-300"
+              className="text-xl font-bold text-white"
             >
-              90.3K
+              <motion.span
+                key={animationState}
+                animate={{ 
+                  color: ["#ffffff", "#d1d5db", "#ffffff"]
+                }}
+                transition={{ duration: 2, ease: "easeInOut" }}
+              >
+                {90.3 + animationState * 0.5}K
+              </motion.span>
             </motion.div>
             <div className="text-green-400 text-sm">+15% this week</div>
           </motion.div>
@@ -107,9 +108,13 @@ export default function MarketingCard({ className = "" }: MarketingCardProps) {
                 <div className="text-right">
                   <motion.div 
                     animate={animationState === i ? { 
-                      scale: [1, 1.1, 1]
+                      scale: [1, 1.05, 1],
+                      color: ["#d1d5db", "#ffffff", "#d1d5db"]
                     } : {}}
-                    transition={{ duration: 0.5 }}
+                    transition={{ 
+                      duration: 1.5,
+                      ease: "easeInOut"
+                    }}
                     className="text-sm font-bold text-gray-300"
                   >
                     {platform.likes}

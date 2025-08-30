@@ -47,17 +47,25 @@ export default function PaymentsCard({ className = "" }: PaymentsCardProps) {
           {/* New Payment Notification */}
           {showPayment && (
             <motion.div 
-              initial={{ opacity: 0, scale: 0.9, y: -10 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: -10 }}
-              transition={{ duration: 0.5 }}
-              className="bg-green-600/20 border border-green-500 p-3 rounded"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ 
+                duration: 1.0,
+                ease: "easeOut"
+              }}
+              className="bg-gray-700/50 border border-gray-600 p-3 rounded mb-4"
             >
               <div className="flex items-center gap-2 mb-2">
-                <CheckCircle className="w-4 h-4 text-green-400" />
-                <span className="text-green-400 font-semibold text-sm">Invoice Paid</span>
+                <motion.div
+                  animate={{ rotate: [0, 360] }}
+                  transition={{ duration: 2, ease: "easeInOut" }}
+                >
+                  <CheckCircle className="w-4 h-4 text-gray-300" />
+                </motion.div>
+                <span className="text-gray-300 font-medium text-sm">Payment Received</span>
               </div>
-              <div className="text-base font-medium text-gray-200">$2,500 received</div>
+              <div className="text-base font-medium text-white">$2,500 received</div>
               <div className="text-sm text-gray-400">INV-001 from TechCorp</div>
             </motion.div>
           )}
@@ -75,24 +83,28 @@ export default function PaymentsCard({ className = "" }: PaymentsCardProps) {
             </div>
             <motion.div 
               animate={{ 
-                scale: [1, 1.04, 1, 1.06, 1],
-                textShadow: [
-                  "0 0 0px rgba(34, 197, 94, 0)",
-                  "0 0 4px rgba(34, 197, 94, 0.2)",
-                  "0 0 0px rgba(34, 197, 94, 0)",
-                  "0 0 6px rgba(34, 197, 94, 0.3)",
-                  "0 0 0px rgba(34, 197, 94, 0)"
-                ]
+                scale: [1, 1.02, 1],
+                opacity: [1, 0.9, 1]
               }}
               transition={{ 
                 repeat: Infinity, 
-                duration: 9, 
-                ease: "easeInOut",
-                times: [0, 0.25, 0.5, 0.75, 1]
+                duration: 5, 
+                ease: "easeInOut"
               }}
-              className="text-xl font-bold text-gray-300"
+              className="text-xl font-bold text-white"
             >
-              $24.5K
+              <motion.span
+                animate={{ 
+                  color: ["#ffffff", "#d1d5db", "#ffffff"]
+                }}
+                transition={{ 
+                  repeat: Infinity,
+                  duration: 3, 
+                  ease: "easeInOut"
+                }}
+              >
+                $24.5K
+              </motion.span>
             </motion.div>
             <div className="text-green-400 text-sm">+7% this month</div>
           </motion.div>

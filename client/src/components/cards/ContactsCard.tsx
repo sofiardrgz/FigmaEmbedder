@@ -50,27 +50,25 @@ export default function ContactsCard({ className = "" }: ContactsCardProps) {
         {/* New Contact Notification */}
         {showNewContact && (
           <motion.div 
-            initial={{ opacity: 0, scale: 0.9, y: -10 }}
-            animate={{ 
-              opacity: 1, 
-              scale: highlightNew ? [1, 1.05, 1] : 1,
-              y: 0
-            }}
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
             transition={{ 
-              duration: 0.8,
-              scale: { 
-                repeat: highlightNew ? Infinity : 0, 
-                duration: 2.5,
-                ease: "easeInOut" 
-              }
+              duration: 1.2,
+              ease: "easeOut"
             }}
-            className="bg-green-600/20 border border-green-500 p-3 rounded mb-4"
+            className="bg-gray-700/50 border border-gray-600 p-3 rounded mb-4"
           >
             <div className="flex items-center gap-2 mb-2">
-              <Plus className="w-4 h-4 text-green-400" />
-              <span className="text-green-400 font-semibold text-sm">New Lead</span>
+              <motion.div
+                animate={{ rotate: [0, 180, 360] }}
+                transition={{ duration: 2, ease: "easeInOut" }}
+              >
+                <Plus className="w-4 h-4 text-gray-300" />
+              </motion.div>
+              <span className="text-gray-300 font-medium text-sm">New Contact Added</span>
             </div>
-            <div className="text-base font-medium text-gray-200">Robert Miller</div>
+            <div className="text-base font-medium text-white">Robert Miller</div>
             <div className="text-sm text-gray-400">COO at InnovateNow</div>
           </motion.div>
         )}

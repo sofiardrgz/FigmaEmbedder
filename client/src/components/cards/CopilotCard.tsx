@@ -58,14 +58,13 @@ export default function CopilotCard({ className = "" }: CopilotCardProps) {
               <div className="flex items-start gap-3">
                 <motion.div
                   animate={{ 
-                    scale: [1, 1.05, 1, 1.08, 1],
-                    color: ["#9ca3af", "#22c55e", "#16a34a", "#22c55e", "#9ca3af"]
+                    scale: [1, 1.05, 1],
+                    opacity: [0.7, 1, 0.7]
                   }}
                   transition={{ 
                     repeat: Infinity, 
-                    duration: 4, 
-                    ease: "easeInOut",
-                    times: [0, 0.25, 0.5, 0.75, 1]
+                    duration: 3, 
+                    ease: "easeInOut"
                   }}
                 >
                   <Bot className="w-5 h-5 flex-shrink-0" />
@@ -85,7 +84,7 @@ export default function CopilotCard({ className = "" }: CopilotCardProps) {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5 }}
-              className="bg-green-600/20 border border-green-500 rounded p-4 text-center"
+              className="bg-gray-700/50 border border-gray-600 rounded p-4 text-center"
             >
               <motion.div
                 animate={{ 
@@ -98,9 +97,9 @@ export default function CopilotCard({ className = "" }: CopilotCardProps) {
                 }}
                 className="inline-block mb-2"
               >
-                <Phone className="w-6 h-6 text-green-400" />
+                <Phone className="w-6 h-6 text-gray-300" />
               </motion.div>
-              <div className="text-sm font-medium text-green-400">Calling...</div>
+              <div className="text-sm font-medium text-gray-300">Calling...</div>
               <div className="text-sm text-gray-300 mt-1">Robert Miller</div>
               <div className="text-xs text-gray-400 mt-1">COO at InnovateNow</div>
             </motion.div>

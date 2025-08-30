@@ -56,8 +56,8 @@ export default function MessagesCard({ className = "" }: MessagesCardProps) {
               animate={{ 
                 opacity: 1, 
                 x: 0,
-                backgroundColor: i === highlightedMessage ? "rgba(34, 197, 94, 0.1)" : "rgba(31, 41, 55, 0.5)",
-                scale: i === highlightedMessage ? 1.02 : 1
+                backgroundColor: i === highlightedMessage ? "rgba(55, 65, 81, 0.8)" : "rgba(31, 41, 55, 0.5)",
+                scale: i === highlightedMessage ? 1.01 : 1
               }}
               transition={{ 
                 duration: 0.5,
@@ -81,23 +81,15 @@ export default function MessagesCard({ className = "" }: MessagesCardProps) {
               {i === highlightedMessage && (
                 <motion.div 
                   animate={{ 
-                    scale: [1, 1.3, 1.1, 1.4, 1],
-                    opacity: [0.6, 1, 0.8, 1, 0.6],
-                    boxShadow: [
-                      "0 0 0px rgba(34, 197, 94, 0)",
-                      "0 0 8px rgba(34, 197, 94, 0.6)",
-                      "0 0 4px rgba(34, 197, 94, 0.4)",
-                      "0 0 12px rgba(34, 197, 94, 0.8)",
-                      "0 0 0px rgba(34, 197, 94, 0)"
-                    ]
+                    scale: [1, 1.2, 1],
+                    opacity: [0.5, 1, 0.5]
                   }}
                   transition={{ 
                     repeat: Infinity, 
-                    duration: 3,
-                    ease: "easeInOut",
-                    times: [0, 0.3, 0.5, 0.7, 1]
+                    duration: 2,
+                    ease: "easeInOut"
                   }}
-                  className="w-2 h-2 bg-green-500 rounded-full"
+                  className="w-2 h-2 bg-gray-300 rounded-full"
                 />
               )}
             </motion.div>

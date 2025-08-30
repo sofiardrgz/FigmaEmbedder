@@ -43,17 +43,29 @@ export default function CalendarCard({ className = "" }: CalendarCardProps) {
         {/* New Appointment Notification */}
         {showNewAppointment && (
           <motion.div 
-            initial={{ opacity: 0, scale: 0.9, y: -10 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9, y: -10 }}
-            transition={{ duration: 0.5 }}
-            className="bg-green-600/20 border border-green-500 p-3 rounded mb-4"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ 
+              duration: 1.0,
+              ease: "easeOut"
+            }}
+            className="bg-gray-700/50 border border-gray-600 p-3 rounded mb-4"
           >
             <div className="flex items-center gap-2 mb-2">
-              <Calendar className="w-4 h-4 text-green-400" />
-              <span className="text-green-400 font-semibold text-sm">Appointment Booked</span>
+              <motion.div
+                animate={{ scale: [1, 1.1, 1] }}
+                transition={{ 
+                  duration: 2, 
+                  ease: "easeInOut",
+                  repeat: Infinity
+                }}
+              >
+                <Calendar className="w-4 h-4 text-gray-300" />
+              </motion.div>
+              <span className="text-gray-300 font-medium text-sm">Appointment Scheduled</span>
             </div>
-            <div className="text-base font-medium text-gray-200">Meeting with Sarah</div>
+            <div className="text-base font-medium text-white">Meeting with Sarah</div>
             <div className="text-sm text-gray-400">Tomorrow at 2:00 PM</div>
           </motion.div>
         )}
