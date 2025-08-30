@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { ThumbsUp, TrendingUp } from "lucide-react";
 import { useEffect, useState } from "react";
 
 interface MarketingCardProps {
@@ -6,15 +7,21 @@ interface MarketingCardProps {
 }
 
 export default function MarketingCard({ className = "" }: MarketingCardProps) {
-  const [highlightIndex, setHighlightIndex] = useState(0);
+  const [animationState, setAnimationState] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setHighlightIndex(prev => (prev + 1) % 5); // 2 top metrics + 3 social platforms
-    }, 2500);
+      setAnimationState(prev => (prev + 1) % 3);
+    }, 5000);
 
     return () => clearInterval(interval);
   }, []);
+
+  const platforms = [
+    { name: "Facebook", likes: "45.2K", growth: "+12%" },
+    { name: "Instagram", likes: "32.8K", growth: "+18%" },
+    { name: "LinkedIn", likes: "12.3K", growth: "+15%" },
+  ];
 
   return (
     <div 
@@ -27,78 +34,79 @@ export default function MarketingCard({ className = "" }: MarketingCardProps) {
       }}
     >
       <div className="p-4 h-full flex flex-col">
-        
-        <div className="flex-1 space-y-3">
-          {/* Top Metrics */}
-          <div className="grid grid-cols-2 gap-2">
+        <div className="flex-1 space-y-4">
+          {/* Total Engagement */}
+          <motion.div 
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ delay: 0.2 }}
+            className="bg-gray-800/50 p-4 rounded text-center"
+          >
+            <div className="flex items-center justify-center gap-2 mb-2">
+              <TrendingUp className="w-5 h-5 text-green-400" />
+              <span className="text-sm text-gray-400">Total Engagement</span>
+            </div>
             <motion.div 
-              initial={{ scale: 0.9, opacity: 0 }}
               animate={{ 
-                scale: highlightIndex === 0 ? [1, 1.05, 1] : 1, 
-                opacity: 1,
-                backgroundColor: highlightIndex === 0 ? "rgba(34, 197, 94, 0.1)" : "rgba(31, 41, 55, 0.5)"
+                scale: [1, 1.1, 1]
               }}
               transition={{ 
-                delay: 0.2,
-                scale: { duration: 1 },
-                backgroundColor: { duration: 0.3 }
+                repeat: Infinity, 
+                duration: 5, 
+                ease: "easeInOut" 
               }}
-              className="bg-gray-800/50 p-2 rounded text-center"
+              className="text-xl font-bold text-gray-300"
             >
-              <div className="text-[10px] text-gray-400">Facebook</div>
-              <div className="text-sm font-bold text-gray-300">45.2K</div>
-              <div className="text-green-400 text-[9px]">+12%</div>
+              90.3K
             </motion.div>
-            <motion.div 
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ 
-                scale: highlightIndex === 1 ? [1, 1.05, 1] : 1, 
-                opacity: 1,
-                backgroundColor: highlightIndex === 1 ? "rgba(34, 197, 94, 0.1)" : "rgba(31, 41, 55, 0.5)"
-              }}
-              transition={{ 
-                delay: 0.4,
-                scale: { duration: 1 },
-                backgroundColor: { duration: 0.3 }
-              }}
-              className="bg-gray-800/50 p-2 rounded text-center"
-            >
-              <div className="text-[10px] text-gray-400">Twitter</div>
-              <div className="text-sm font-bold text-gray-300">8.9K</div>
-              <div className="text-green-400 text-[9px]">+8%</div>
-            </motion.div>
-          </div>
+            <div className="text-green-400 text-sm">+15% this week</div>
+          </motion.div>
 
-          {/* Social Platforms */}
-          <div className="space-y-1">
-            {[
-              { platform: "LinkedIn", metric: "Post Views", value: "12.3K", change: "+15%" },
-              { platform: "Instagram", metric: "Story Views", value: "5.7K", change: "+22%" },
-              { platform: "YouTube", metric: "Video Views", value: "28.1K", change: "+18%" }
-            ].map((social, i) => (
+          {/* Platform Stats */}
+          <div className="space-y-3">
+            {platforms.map((platform, i) => (
               <motion.div 
                 key={i}
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ 
                   opacity: 1, 
                   x: 0,
-                  backgroundColor: highlightIndex === i + 2 ? "rgba(34, 197, 94, 0.1)" : "rgba(31, 41, 55, 0.5)",
-                  scale: highlightIndex === i + 2 ? [1, 1.02, 1] : 1
+                  backgroundColor: animationState === i ? "rgba(34, 197, 94, 0.1)" : "rgba(31, 41, 55, 0.5)",
+                  scale: animationState === i ? 1.02 : 1
                 }}
                 transition={{ 
-                  delay: 0.6 + i * 0.1,
+                  delay: i * 0.1,
                   backgroundColor: { duration: 0.3 },
-                  scale: { duration: 1 }
+                  scale: { duration: 0.3 }
                 }}
-                className="bg-gray-800/50 p-2 rounded flex items-center justify-between"
+                className="bg-gray-800/50 p-3 rounded flex items-center justify-between"
               >
-                <div>
-                  <div className="text-[10px] font-medium text-gray-300">{social.platform}</div>
-                  <div className="text-[8px] text-gray-400">{social.metric}</div>
+                <div className="flex items-center gap-3">
+                  <motion.div
+                    animate={animationState === i ? { 
+                      scale: [1, 1.2, 1],
+                      rotate: [0, 15, 0]
+                    } : {}}
+                    transition={{ duration: 0.5 }}
+                  >
+                    <ThumbsUp className="w-4 h-4 text-green-400" />
+                  </motion.div>
+                  <div>
+                    <div className="text-sm font-medium text-gray-200">{platform.name}</div>
+                    <div className="text-xs text-gray-400">Likes</div>
+                  </div>
                 </div>
                 <div className="text-right">
-                  <div className="text-[10px] font-bold text-gray-300">{social.value}</div>
-                  <div className="text-[8px] text-green-400">{social.change}</div>
+                  <motion.div 
+                    animate={animationState === i ? { 
+                      scale: [1, 1.1, 1]
+                    } : {}}
+                    transition={{ duration: 0.5 }}
+                    className="text-sm font-bold text-gray-300"
+                  >
+                    {platform.likes}
+                  </motion.div>
+                  <div className="text-green-400 text-xs">{platform.growth}</div>
                 </div>
               </motion.div>
             ))}

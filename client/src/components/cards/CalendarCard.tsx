@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Check, Clock } from "lucide-react";
+import { Calendar } from "lucide-react";
 import { useEffect, useState } from "react";
 
 interface CalendarCardProps {
@@ -7,15 +7,27 @@ interface CalendarCardProps {
 }
 
 export default function CalendarCard({ className = "" }: CalendarCardProps) {
-  const [activeEvent, setActiveEvent] = useState(1); // Index of "in-progress" event
+  const [showNewAppointment, setShowNewAppointment] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setActiveEvent(prev => (prev + 1) % 4);
-    }, 3500);
+      // Show new appointment booking
+      setShowNewAppointment(true);
+      
+      // Hide after 4 seconds
+      setTimeout(() => {
+        setShowNewAppointment(false);
+      }, 4000);
+    }, 5000);
 
     return () => clearInterval(interval);
   }, []);
+
+  const appointments = [
+    { title: "Team Standup", time: "9:00 AM" },
+    { title: "Client Call", time: "11:30 AM" },
+    { title: "Design Review", time: "3:00 PM" },
+  ];
 
   return (
     <div 
@@ -28,62 +40,43 @@ export default function CalendarCard({ className = "" }: CalendarCardProps) {
       }}
     >
       <div className="p-4 h-full flex flex-col">
-        
         {/* New Appointment Notification */}
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.2 }}
-          className="bg-green-600/20 border border-green-500 p-2 rounded mb-3"
-        >
-          <div className="flex items-center gap-1">
-            <Check className="w-3 h-3 text-green-400" />
-            <span className="text-green-400 font-medium text-[9px]">Appointment Added</span>
-          </div>
-          <div className="text-[8px] text-gray-300">Meeting with Sarah Chen</div>
-          <div className="text-[8px] text-gray-400">Tomorrow at 2:00 PM</div>
-        </motion.div>
+        {showNewAppointment && (
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9, y: -10 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.9, y: -10 }}
+            transition={{ duration: 0.5 }}
+            className="bg-green-600/20 border border-green-500 p-3 rounded mb-4"
+          >
+            <div className="flex items-center gap-2 mb-2">
+              <Calendar className="w-4 h-4 text-green-400" />
+              <span className="text-green-400 font-semibold text-sm">Appointment Booked</span>
+            </div>
+            <div className="text-base font-medium text-gray-200">Meeting with Sarah</div>
+            <div className="text-sm text-gray-400">Tomorrow at 2:00 PM</div>
+          </motion.div>
+        )}
 
-        <div className="flex-1 space-y-2">
-          {[
-            { title: "Team Standup", time: "9:00 AM", status: "upcoming" },
-            { title: "Client Presentation", time: "11:30 AM", status: "in-progress" },
-            { title: "Design Review", time: "3:00 PM", status: "upcoming" },
-            { title: "Marketing Sync", time: "4:30 PM", status: "upcoming" }
-          ].map((event, i) => (
+        <div className="flex-1 space-y-3">
+          <div className="text-sm font-medium text-gray-300 mb-3">Today's Schedule</div>
+          {appointments.map((appointment, i) => (
             <motion.div 
               key={i}
               initial={{ opacity: 0, x: -10 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.4 + i * 0.1 }}
-              className="bg-gray-800/50 p-2 rounded flex items-center gap-2"
+              transition={{ delay: i * 0.1 }}
+              className="bg-gray-800/50 p-3 rounded flex items-center gap-3"
             >
-              <motion.div
-                animate={{ 
-                  rotate: i === activeEvent ? 360 : 0,
-                  color: i === activeEvent ? "#22c55e" : "#9ca3af"
-                }}
-                transition={{ 
-                  rotate: { duration: 2, ease: "easeInOut" },
-                  color: { duration: 0.3 }
-                }}
-              >
-                <Clock className="w-3 h-3 flex-shrink-0" />
-              </motion.div>
-              <div className="flex-1 min-w-0">
-                <div className="text-[10px] font-medium text-gray-300 truncate">{event.title}</div>
-                <div className="text-[8px] text-gray-400">{event.time}</div>
+              <div className="w-2 h-8 bg-green-500 rounded-full"></div>
+              <div className="flex-1">
+                <div className="text-sm font-medium text-gray-200">
+                  {appointment.title}
+                </div>
+                <div className="text-sm text-gray-400 mt-1">
+                  {appointment.time}
+                </div>
               </div>
-              <motion.div 
-                className={`text-[8px] px-1 py-0.5 rounded`}
-                animate={{
-                  backgroundColor: i === activeEvent ? 'rgba(34, 197, 94, 0.2)' : 'rgba(75, 85, 99, 0.2)',
-                  color: i === activeEvent ? '#22c55e' : '#9ca3af'
-                }}
-                transition={{ duration: 0.3 }}
-              >
-                {i === activeEvent ? 'now' : 'soon'}
-              </motion.div>
             </motion.div>
           ))}
         </div>

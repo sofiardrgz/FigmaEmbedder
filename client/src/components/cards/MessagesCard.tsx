@@ -6,15 +6,36 @@ interface MessagesCardProps {
 }
 
 export default function MessagesCard({ className = "" }: MessagesCardProps) {
-  const [pulseIndex, setPulseIndex] = useState(0);
+  const [messageCount, setMessageCount] = useState(3);
+  const [highlightedMessage, setHighlightedMessage] = useState(-1);
   
   useEffect(() => {
     const interval = setInterval(() => {
-      setPulseIndex(prev => (prev + 1) % 4);
-    }, 2000);
+      // Reset to 3 messages
+      setMessageCount(3);
+      setHighlightedMessage(-1);
+      
+      // After 1 second, add new message and highlight it
+      setTimeout(() => {
+        setMessageCount(4);
+        setHighlightedMessage(3);
+        
+        // After 2 more seconds, show it as "opened" (remove highlight)
+        setTimeout(() => {
+          setHighlightedMessage(-1);
+        }, 2000);
+      }, 1000);
+    }, 5000);
 
     return () => clearInterval(interval);
   }, []);
+
+  const messages = [
+    { name: "Sarah Chen", message: "Dashboard design looks great!", time: "2m" },
+    { name: "Mike Rodriguez", message: "Sales report completed", time: "5m" },
+    { name: "Emily Watson", message: "Project timeline updated", time: "8m" },
+    { name: "David Park", message: "New lead came in from website", time: "now" },
+  ];
 
   return (
     <div 
@@ -27,41 +48,37 @@ export default function MessagesCard({ className = "" }: MessagesCardProps) {
       }}
     >
       <div className="p-4 h-full flex flex-col">
-        
-        <div className="flex-1 space-y-2">
-          {[
-            { name: "Sarah Chen", message: "New dashboard design looks amazing!", time: "2m", unread: true },
-            { name: "Mike Rodriguez", message: "Great work on the sales report", time: "5m", unread: false },
-            { name: "Emily Watson", message: "Can you send the project timeline?", time: "8m", unread: true },
-            { name: "David Park", message: "Meeting rescheduled to 3 PM", time: "12m", unread: false }
-          ].map((msg, i) => (
+        <div className="flex-1 space-y-3">
+          {messages.slice(0, messageCount).map((msg, i) => (
             <motion.div 
               key={i}
-              initial={{ opacity: 0, x: -15 }}
+              initial={{ opacity: i < 3 ? 1 : 0, x: i < 3 ? 0 : 20 }}
               animate={{ 
                 opacity: 1, 
                 x: 0,
-                backgroundColor: i === pulseIndex ? "rgba(34, 197, 94, 0.1)" : "rgba(31, 41, 55, 0.5)"
+                backgroundColor: i === highlightedMessage ? "rgba(34, 197, 94, 0.1)" : "rgba(31, 41, 55, 0.5)",
+                scale: i === highlightedMessage ? 1.02 : 1
               }}
               transition={{ 
-                delay: i * 0.15,
-                backgroundColor: { duration: 0.3 }
+                duration: 0.5,
+                backgroundColor: { duration: 0.3 },
+                scale: { duration: 0.3 }
               }}
-              className="bg-gray-800/50 p-2 rounded flex items-start gap-2"
+              className="bg-gray-800/50 p-3 rounded flex items-start gap-3"
             >
-              <div className="w-6 h-6 bg-green-600 rounded-full flex items-center justify-center text-[8px] font-bold flex-shrink-0">
+              <div className="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0">
                 {msg.name.split(' ').map(n => n[0]).join('')}
               </div>
               <div className="flex-1 min-w-0">
-                <div className={`text-[10px] truncate ${msg.unread ? 'font-semibold text-gray-200' : 'font-medium text-gray-300'}`}>
+                <div className="text-sm font-medium text-gray-200 truncate">
                   {msg.name}
                 </div>
-                <div className={`text-[9px] truncate ${msg.unread ? 'text-gray-300' : 'text-gray-400'}`}>
+                <div className="text-xs text-gray-300 truncate mt-1">
                   {msg.message}
                 </div>
+                <div className="text-xs text-gray-500 mt-1">{msg.time}</div>
               </div>
-              <div className="flex items-center gap-1 flex-shrink-0">
-                {msg.unread && (
+              {i === highlightedMessage && (
                 <motion.div 
                   animate={{ 
                     scale: [1, 1.5, 1],
@@ -72,11 +89,9 @@ export default function MessagesCard({ className = "" }: MessagesCardProps) {
                     duration: 1.5, 
                     ease: "easeInOut"
                   }}
-                  className="w-1.5 h-1.5 bg-green-500 rounded-full"
+                  className="w-2 h-2 bg-green-500 rounded-full"
                 />
               )}
-                <div className="text-[8px] text-gray-500">{msg.time}</div>
-              </div>
             </motion.div>
           ))}
         </div>

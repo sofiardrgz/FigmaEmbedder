@@ -11,7 +11,7 @@ export default function SalesCard({ className = "" }: SalesCardProps) {
   useEffect(() => {
     const interval = setInterval(() => {
       setAnimationCycle(prev => prev + 1);
-    }, 4000); // Loop every 4 seconds
+    }, 5000); // Loop every 5 seconds
 
     return () => clearInterval(interval);
   }, []);
@@ -27,97 +27,79 @@ export default function SalesCard({ className = "" }: SalesCardProps) {
       }}
     >
       <div className="p-4 h-full flex flex-col">
-        
-        <div className="flex-1 space-y-3">
+        <div className="flex-1 space-y-4">
           {/* KPI Cards */}
-          <div className="grid grid-cols-2 gap-2">
+          <div className="grid grid-cols-2 gap-3">
             <motion.div 
               initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ 
-                scale: [1, 1.05, 1], 
-                opacity: 1,
-                backgroundColor: ["rgba(31, 41, 55, 0.5)", "rgba(34, 197, 94, 0.1)", "rgba(31, 41, 55, 0.5)"]
-              }}
-              transition={{ 
-                delay: 0.2, 
-                duration: 0.5,
-                scale: { repeat: Infinity, duration: 4, ease: "easeInOut" },
-                backgroundColor: { repeat: Infinity, duration: 4, ease: "easeInOut" }
-              }}
-              className="bg-gray-800/50 p-2 rounded text-center"
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ delay: 0.2 }}
+              className="bg-gray-800/50 p-3 rounded text-center"
             >
-              <div className="text-[10px] text-gray-400">Revenue</div>
-              <div className="text-sm font-bold text-gray-300">$2.4M</div>
-              <div className="text-green-400 text-[9px]">+28%</div>
+              <div className="text-xs text-gray-400">Revenue</div>
+              <motion.div 
+                animate={{ scale: [1, 1.1, 1] }}
+                transition={{ 
+                  repeat: Infinity, 
+                  duration: 5, 
+                  ease: "easeInOut" 
+                }}
+                className="text-lg font-bold text-gray-300"
+              >
+                $2.4M
+              </motion.div>
+              <div className="text-green-400 text-xs">+28%</div>
             </motion.div>
             <motion.div 
               initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ 
-                scale: [1, 1.05, 1], 
-                opacity: 1,
-                backgroundColor: ["rgba(31, 41, 55, 0.5)", "rgba(34, 197, 94, 0.1)", "rgba(31, 41, 55, 0.5)"]
-              }}
-              transition={{ 
-                delay: 0.4, 
-                duration: 0.5,
-                scale: { repeat: Infinity, duration: 4, delay: 0.5, ease: "easeInOut" },
-                backgroundColor: { repeat: Infinity, duration: 4, delay: 0.5, ease: "easeInOut" }
-              }}
-              className="bg-gray-800/50 p-2 rounded text-center"
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ delay: 0.4 }}
+              className="bg-gray-800/50 p-3 rounded text-center"
             >
-              <div className="text-[10px] text-gray-400">Deals</div>
-              <div className="text-sm font-bold text-gray-300">340</div>
-              <div className="text-green-400 text-[9px]">+31%</div>
+              <div className="text-xs text-gray-400">Deals</div>
+              <motion.div 
+                animate={{ scale: [1, 1.1, 1] }}
+                transition={{ 
+                  repeat: Infinity, 
+                  duration: 5, 
+                  delay: 0.5,
+                  ease: "easeInOut" 
+                }}
+                className="text-lg font-bold text-gray-300"
+              >
+                142
+              </motion.div>
+              <div className="text-green-400 text-xs">+15%</div>
             </motion.div>
           </div>
 
-          {/* Mini Chart */}
+          {/* Animated Chart */}
           <motion.div 
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
-            className="bg-gray-800/50 p-3 rounded"
+            className="bg-gray-800/50 p-4 rounded"
           >
-            <div className="text-[10px] text-gray-400 mb-2">Revenue Trend</div>
-            <div className="h-12 bg-gray-700/30 rounded flex items-end justify-between px-1 pb-1">
+            <div className="text-sm text-gray-300 mb-3">Sales Growth</div>
+            <div className="h-16 bg-gray-700/30 rounded flex items-end justify-between px-2 pb-2">
               {[40, 60, 45, 75, 85, 70, 90].map((height, i) => (
                 <motion.div
                   key={i}
                   initial={{ height: 0 }}
                   animate={{ 
-                    height: [`${height}%`, `${Math.min(100, height + 20)}%`, `${height}%`],
-                    backgroundColor: ["#22c55e", "#16a34a", "#22c55e"]
+                    height: [`${height * 0.6}%`, `${height}%`, `${height * 0.8}%`, `${height}%`]
                   }}
                   transition={{ 
-                    delay: 0.8 + i * 0.1, 
-                    duration: 0.3,
-                    height: { repeat: Infinity, duration: 3, delay: i * 0.2, ease: "easeInOut" },
-                    backgroundColor: { repeat: Infinity, duration: 3, delay: i * 0.2, ease: "easeInOut" }
+                    delay: 1 + i * 0.2,
+                    repeat: Infinity,
+                    duration: 5,
+                    ease: "easeInOut"
                   }}
-                  className="bg-green-500 w-1 rounded-sm"
+                  className="bg-green-500 w-2 rounded-sm"
                 />
               ))}
             </div>
           </motion.div>
-
-          {/* Mini Pipeline */}
-          <div className="space-y-1">
-            {[
-              { source: "Website", value: "$340K" },
-              { source: "LinkedIn", value: "$280K" }
-            ].map((item, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 1 + i * 0.1 }}
-                className="bg-gray-800/50 p-2 rounded flex justify-between items-center"
-              >
-                <span className="text-[10px] text-gray-300">{item.source}</span>
-                <span className="text-[10px] text-green-400 font-bold">{item.value}</span>
-              </motion.div>
-            ))}
-          </div>
         </div>
       </div>
     </div>
