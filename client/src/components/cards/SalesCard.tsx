@@ -47,7 +47,7 @@ export default function SalesCard({ className = "" }: SalesCardProps) {
         <div className="relative h-8 mb-2">
           <svg className="w-full h-full" viewBox="0 0 200 32">
             <motion.path
-              d="M10,25 Q40,20 70,15 T130,8 T190,5"
+              d="M10,25 L40,15 L70,20 L100,10 L130,15 L160,5 L190,8"
               stroke="#0FB981"
               strokeWidth="2"
               fill="none"
@@ -64,7 +64,7 @@ export default function SalesCard({ className = "" }: SalesCardProps) {
               r="3"
               fill="#0FB981"
               initial={{ x: 10, y: 25 }}
-              animate={{ x: 190, y: 5 }}
+              animate={{ x: 190, y: 8 }}
               transition={{ 
                 duration: 3,
                 ease: "easeInOut",
