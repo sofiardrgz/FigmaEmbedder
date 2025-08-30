@@ -34,6 +34,15 @@
 - **Marketing**: `/embed/marketing` | `/embed/marketing/no-frame`
 - **Payments**: `/embed/payments` | `/embed/payments/no-frame`
 
+### Compact Card Components (220px × 300px)
+- **Sales Card**: `/card/sales`
+- **Messages Card**: `/card/messages`
+- **Contacts Card**: `/card/contacts`
+- **Calendar Card**: `/card/calendar`
+- **AI Copilot Card**: `/card/copilot`
+- **Marketing Card**: `/card/marketing`
+- **Payments Card**: `/card/payments`
+
 ## Embedding Instructions
 
 ### For Website Integration

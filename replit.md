@@ -21,6 +21,14 @@ This is a full-stack dashboard application built with React, Express, and Postgr
   - /embed/marketing - Marketing analytics dashboard only
   - /embed/payments - Payments & invoices dashboard only
   - All routes support /no-frame variants for frameless embedding
+- Added compact card components (220px x 300px) for website integration:
+  - /card/sales - Compact sales card with animations
+  - /card/messages - Compact messages card with conversations
+  - /card/contacts - Compact contacts card with new contact notifications
+  - /card/calendar - Compact calendar card with appointments
+  - /card/copilot - Compact AI copilot card with email preview
+  - /card/marketing - Compact marketing analytics card
+  - /card/payments - Compact payments & invoices card
 - Updated Netlify deployment configuration for all 14 embed routes
 - Successfully built and optimized for production deployment (239.43 kB gzipped)
 
