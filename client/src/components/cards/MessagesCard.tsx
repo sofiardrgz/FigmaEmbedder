@@ -6,13 +6,11 @@ interface MessagesCardProps {
 }
 
 export default function MessagesCard({ className = "" }: MessagesCardProps) {
-  const [unreadCount, setUnreadCount] = useState(3);
   const [showNewMessage, setShowNewMessage] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setShowNewMessage(true);
-      setUnreadCount(prev => prev + 1);
       
       setTimeout(() => {
         setShowNewMessage(false);
@@ -28,17 +26,6 @@ export default function MessagesCard({ className = "" }: MessagesCardProps) {
       style={{ width: '260px', height: '140px' }}
     >
       <div className="relative p-4 h-full flex flex-col justify-center">
-        {/* Unread Badge */}
-        <div className="absolute top-3 right-3">
-          <motion.div 
-            key={unreadCount}
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            className="w-6 h-6 bg-[#0FB981] rounded-full flex items-center justify-center text-xs font-bold text-white"
-          >
-            {unreadCount}
-          </motion.div>
-        </div>
 
         {/* Message Previews */}
         <div className="space-y-3">
