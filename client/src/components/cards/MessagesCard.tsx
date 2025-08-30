@@ -56,31 +56,32 @@ export default function MessagesCard({ className = "" }: MessagesCardProps) {
 
   return (
     <div 
-      className={`text-gray-300 rounded-2xl overflow-hidden ${className}`} 
+      className={`text-gray-300 rounded-2xl ${className}`} 
       style={{ 
         backgroundColor: 'transparent', 
         width: '260px', 
         height: '320px',
-        border: 'none'
+        border: 'none',
+        overflow: 'visible'
       }}
     >
-      <div className="px-6 py-6 h-full flex flex-col justify-center">
-        <div className="flex-1 space-y-3">
+      <div className="px-6 py-4 h-full flex flex-col">
+        <div className="flex-1 space-y-3 overflow-visible">
           {/* New message slides in from top */}
           {showNewMessage && (
             <motion.div 
-              initial={{ opacity: 0, y: -30, scale: 0.95 }}
+              initial={{ opacity: 0, y: -20, scale: 0.95 }}
               animate={{ 
                 opacity: 1, 
                 y: 0, 
                 scale: 1
               }}
-              exit={{ opacity: 0, y: -30, scale: 0.95 }}
+              exit={{ opacity: 0, y: -20, scale: 0.95 }}
               transition={{ 
                 duration: 0.6,
                 ease: "easeOut"
               }}
-              className="bg-gray-800/30 backdrop-blur-sm p-4 rounded-xl flex items-start gap-3 border"
+              className="bg-gray-800/30 backdrop-blur-sm p-3 rounded-xl flex items-start gap-3 border"
               style={{ 
                 borderColor: highlightedMessage === 0 ? '#0FB981' : 'transparent', 
                 borderWidth: '1px',
@@ -120,7 +121,7 @@ export default function MessagesCard({ className = "" }: MessagesCardProps) {
               key={i + 1}
               initial={{ opacity: 1 }}
               animate={{ opacity: 1 }}
-              className="bg-gray-800/30 backdrop-blur-sm p-4 rounded-xl flex items-start gap-3"
+              className="bg-gray-800/30 backdrop-blur-sm p-3 rounded-xl flex items-start gap-3"
             >
               <div className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0" style={{ backgroundColor: '#0FB981' }}>
                 {msg.name.split(' ').map(n => n[0]).join('')}
