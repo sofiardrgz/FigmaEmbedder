@@ -8,11 +8,27 @@ interface MarketingCardProps {
 
 export default function MarketingCard({ className = "" }: MarketingCardProps) {
   const [animationState, setAnimationState] = useState(0);
+  const [engagementValue, setEngagementValue] = useState("90.3K");
 
   useEffect(() => {
+    // Start animation immediately
+    setAnimationState(1);
+    
     const interval = setInterval(() => {
       setAnimationState(prev => (prev + 1) % 3);
-    }, 8000); // Slower transitions
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, []);
+  
+  useEffect(() => {
+    const values = ["90.3K", "90.8K", "91.2K", "91.5K"];
+    let index = 0;
+    
+    const interval = setInterval(() => {
+      index = (index + 1) % values.length;
+      setEngagementValue(values[index]);
+    }, 3000);
 
     return () => clearInterval(interval);
   }, []);
@@ -27,14 +43,13 @@ export default function MarketingCard({ className = "" }: MarketingCardProps) {
     <div 
       className={`text-gray-300 rounded-2xl overflow-hidden ${className}`} 
       style={{ 
-        backgroundColor: '#1c1c1e', 
+        backgroundColor: 'transparent', 
         width: '260px', 
         height: '300px',
-        border: 'none',
-        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3)'
+        border: 'none'
       }}
     >
-      <div className="p-6 h-full flex flex-col">
+      <div className="px-6 py-6 h-full flex flex-col justify-center">
         <div className="flex-1 space-y-5">
           {/* Total Engagement */}
           <motion.div 
@@ -60,15 +75,7 @@ export default function MarketingCard({ className = "" }: MarketingCardProps) {
               }}
               className="text-xl font-bold text-white"
             >
-              <motion.span
-                key={animationState}
-                animate={{ 
-                  color: ["#ffffff", "#d1d5db", "#ffffff"]
-                }}
-                transition={{ duration: 2, ease: "easeInOut" }}
-              >
-                {90.3 + animationState * 0.5}K
-              </motion.span>
+{engagementValue}
             </motion.div>
             <div className="text-sm" style={{ color: '#0FB981' }}>+15% this week</div>
           </motion.div>

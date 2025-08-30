@@ -16,18 +16,18 @@ export default function ContactsCard({ className = "" }: ContactsCardProps) {
     setHighlightNew(true);
     
     const interval = setInterval(() => {
-      // Smooth transition cycle
+      // Smooth transition cycle with fade
       setHighlightNew(false);
       
       setTimeout(() => {
         setShowNewContact(false);
-      }, 2000);
+      }, 3000);
       
       setTimeout(() => {
         setShowNewContact(true);
         setHighlightNew(true);
       }, 4000);
-    }, 8000);
+    }, 10000);
 
     return () => clearInterval(interval);
   }, []);
@@ -42,22 +42,20 @@ export default function ContactsCard({ className = "" }: ContactsCardProps) {
     <div 
       className={`text-gray-300 rounded-2xl overflow-hidden ${className}`} 
       style={{ 
-        backgroundColor: '#1c1c1e', 
+        backgroundColor: 'transparent', 
         width: '260px', 
         height: '300px',
-        border: 'none',
-        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3)'
+        border: 'none'
       }}
     >
-      <div className="p-6 h-full flex flex-col">
+      <div className="px-6 py-6 h-full flex flex-col justify-center">
         {/* New Contact Notification */}
         {showNewContact && (
           <motion.div 
             initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
+            animate={{ opacity: showNewContact ? 1 : 0, y: showNewContact ? 0 : -20 }}
             transition={{ 
-              duration: 1.2,
+              duration: 0.8,
               ease: "easeOut"
             }}
             className="bg-gray-800/40 backdrop-blur-sm p-4 rounded-xl mb-5"

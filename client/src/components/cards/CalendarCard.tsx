@@ -18,8 +18,8 @@ export default function CalendarCard({ className = "" }: CalendarCardProps) {
       
       setTimeout(() => {
         setShowNewAppointment(true);
-      }, 3000);
-    }, 8000);
+      }, 4000);
+    }, 10000);
 
     return () => clearInterval(interval);
   }, []);
@@ -34,22 +34,20 @@ export default function CalendarCard({ className = "" }: CalendarCardProps) {
     <div 
       className={`text-gray-300 rounded-2xl overflow-hidden ${className}`} 
       style={{ 
-        backgroundColor: '#1c1c1e', 
+        backgroundColor: 'transparent', 
         width: '260px', 
         height: '300px',
-        border: 'none',
-        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3)'
+        border: 'none'
       }}
     >
-      <div className="p-6 h-full flex flex-col">
+      <div className="px-6 py-6 h-full flex flex-col justify-center">
         {/* New Appointment Notification */}
         {showNewAppointment && (
           <motion.div 
             initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
+            animate={{ opacity: showNewAppointment ? 1 : 0, y: showNewAppointment ? 0 : -20 }}
             transition={{ 
-              duration: 1.0,
+              duration: 0.8,
               ease: "easeOut"
             }}
             className="bg-gray-800/40 backdrop-blur-sm p-4 rounded-xl mb-5"

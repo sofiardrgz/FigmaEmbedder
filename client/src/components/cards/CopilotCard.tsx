@@ -16,10 +16,10 @@ export default function CopilotCard({ className = "" }: CopilotCardProps) {
     const interval = setInterval(() => {
       setChatState(2);
       
-      setTimeout(() => setChatState(0), 3000);
+      setTimeout(() => setChatState(0), 5000);
       
-      setTimeout(() => setChatState(1), 6000);
-    }, 10000);
+      setTimeout(() => setChatState(1), 8000);
+    }, 15000);
 
     return () => clearInterval(interval);
   }, []);
@@ -28,14 +28,13 @@ export default function CopilotCard({ className = "" }: CopilotCardProps) {
     <div 
       className={`text-gray-300 rounded-2xl overflow-hidden ${className}`} 
       style={{ 
-        backgroundColor: '#1c1c1e', 
+        backgroundColor: 'transparent', 
         width: '260px', 
         height: '300px',
-        border: 'none',
-        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3)'
+        border: 'none'
       }}
     >
-      <div className="p-6 h-full flex flex-col">
+      <div className="px-6 py-6 h-full flex flex-col justify-center">
         <div className="flex-1 space-y-4">
           {/* User Prompt */}
           <motion.div 
@@ -85,7 +84,7 @@ export default function CopilotCard({ className = "" }: CopilotCardProps) {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5 }}
-              className="bg-gray-800/40 backdrop-blur-sm rounded-xl p-5 text-center"
+              className="bg-gray-800/40 backdrop-blur-sm rounded-xl p-5 text-center space-y-3"
             >
               <motion.div
                 animate={{ 
@@ -103,6 +102,15 @@ export default function CopilotCard({ className = "" }: CopilotCardProps) {
               <div className="text-sm font-medium" style={{ color: '#0FB981' }}>Calling...</div>
               <div className="text-sm text-gray-300 mt-1">Robert Miller</div>
               <div className="text-xs text-gray-400 mt-1">COO at InnovateNow</div>
+              <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 2 }}
+                className="bg-gray-700/50 p-2 rounded text-xs text-gray-400"
+              >
+                📞 Call connected - Duration: 2:34<br />
+                Lead Status: Hot Prospect
+              </motion.div>
             </motion.div>
           )}
         </div>

@@ -6,19 +6,43 @@ interface SalesCardProps {
 }
 
 export default function SalesCard({ className = "" }: SalesCardProps) {
+  const [revenueValue, setRevenueValue] = useState("$2.1M");
+  const [dealsValue, setDealsValue] = useState("138");
+  
+  useEffect(() => {
+    const revenueValues = ["$2.1M", "$2.2M", "$2.3M", "$2.4M"];
+    const dealsValues = ["138", "139", "141", "142"];
+    
+    let revenueIndex = 0;
+    let dealsIndex = 0;
+    
+    const interval1 = setInterval(() => {
+      revenueIndex = (revenueIndex + 1) % revenueValues.length;
+      setRevenueValue(revenueValues[revenueIndex]);
+    }, 2000);
+    
+    const interval2 = setInterval(() => {
+      dealsIndex = (dealsIndex + 1) % dealsValues.length;  
+      setDealsValue(dealsValues[dealsIndex]);
+    }, 2500);
+
+    return () => {
+      clearInterval(interval1);
+      clearInterval(interval2);
+    };
+  }, []);
 
   return (
     <div 
       className={`text-gray-300 rounded-2xl overflow-hidden ${className}`} 
       style={{ 
-        backgroundColor: '#1c1c1e', 
+        backgroundColor: 'transparent', 
         width: '260px', 
         height: '300px',
-        border: 'none',
-        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3)'
+        border: 'none'
       }}
     >
-      <div className="p-6 h-full flex flex-col">
+      <div className="px-6 py-6 h-full flex flex-col justify-center">
         <div className="flex-1 space-y-5">
           {/* KPI Cards */}
           <div className="grid grid-cols-2 gap-4">
@@ -42,7 +66,7 @@ export default function SalesCard({ className = "" }: SalesCardProps) {
                 }}
                 className="text-lg font-bold text-gray-300"
               >
-                $2.4M
+{revenueValue}
               </motion.div>
               <div style={{ color: '#0FB981' }} className="text-xs">+28%</div>
             </motion.div>
@@ -66,7 +90,7 @@ export default function SalesCard({ className = "" }: SalesCardProps) {
                 }}
                 className="text-lg font-bold text-gray-300"
               >
-                142
+{dealsValue}
               </motion.div>
               <div style={{ color: '#0FB981' }} className="text-xs">+15%</div>
             </motion.div>

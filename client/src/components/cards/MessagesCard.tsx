@@ -42,30 +42,31 @@ export default function MessagesCard({ className = "" }: MessagesCardProps) {
     <div 
       className={`text-gray-300 rounded-2xl overflow-hidden ${className}`} 
       style={{ 
-        backgroundColor: '#1c1c1e', 
+        backgroundColor: 'transparent', 
         width: '260px', 
         height: '300px',
-        border: 'none',
-        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3)'
+        border: 'none'
       }}
     >
-      <div className="p-6 h-full flex flex-col">
+      <div className="px-6 py-6 h-full flex flex-col justify-center">
         <div className="flex-1 space-y-3">
           {messages.slice(0, messageCount).map((msg, i) => (
             <motion.div 
               key={i}
               initial={{ opacity: i < 3 ? 1 : 0, y: i < 3 ? 0 : 10 }}
               animate={{ 
-                opacity: 1, 
-                y: 0,
+                opacity: i >= messageCount ? 0 : 1, 
+                y: i >= messageCount ? -10 : 0,
                 backgroundColor: i === highlightedMessage ? "rgba(55, 65, 81, 0.6)" : "rgba(31, 41, 55, 0.3)",
                 scale: i === highlightedMessage ? 1.02 : 1
               }}
+              exit={{ opacity: 0, y: -10 }}
               transition={{ 
                 duration: 0.8,
                 ease: "easeOut",
                 backgroundColor: { duration: 1.2 },
-                scale: { duration: 1.2 }
+                scale: { duration: 1.2 },
+                opacity: { duration: 0.6 }
               }}
               className="bg-gray-800/30 backdrop-blur-sm p-4 rounded-xl flex items-start gap-3"
             >
