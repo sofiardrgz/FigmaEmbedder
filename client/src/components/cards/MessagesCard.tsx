@@ -1,58 +1,83 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface MessagesCardProps {
   className?: string;
 }
 
 export default function MessagesCard({ className = "" }: MessagesCardProps) {
-  const [newMessage, setNewMessage] = useState(false);
+  const [unreadCount, setUnreadCount] = useState(3);
+  const [showNewMessage, setShowNewMessage] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setNewMessage(true);
-      setTimeout(() => setNewMessage(false), 2000);
-    }, 5000);
+      setShowNewMessage(true);
+      setUnreadCount(prev => prev + 1);
+      
+      setTimeout(() => {
+        setShowNewMessage(false);
+      }, 2000);
+    }, 6000);
 
     return () => clearInterval(interval);
   }, []);
 
-  const messages = [
-    { name: "John Smith", message: "Interested in demo" },
-    { name: "Lisa Chen", message: "Pricing question" },
-    { name: "Mike Jones", message: "Ready to purchase" },
-  ];
-
   return (
     <div 
-      className={`text-gray-300 rounded-2xl ${className}`} 
-      style={{ 
-        backgroundColor: 'transparent', 
-        width: '260px', 
-        height: '140px',
-        border: 'none',
-        overflow: 'visible'
-      }}
+      className={`relative rounded-xl border border-gray-800/50 bg-gradient-to-br from-gray-900/40 to-gray-800/20 backdrop-blur-sm overflow-visible ${className}`} 
+      style={{ width: '260px', height: '140px' }}
     >
-      <div className="px-4 py-4 h-full flex flex-col justify-center">
-        {/* Header */}
-        <div className="text-center mb-3">
-          <div className="text-sm text-gray-400 mb-1">Messages</div>
-          <div className="text-lg font-medium text-white">3 New</div>
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent rounded-xl" />
+      
+      <div className="relative p-4 h-full flex flex-col justify-center">
+        {/* Unread Badge */}
+        <div className="absolute top-3 right-3">
+          <motion.div 
+            key={unreadCount}
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            className="w-6 h-6 bg-emerald-500 rounded-full flex items-center justify-center text-xs font-bold text-white"
+          >
+            {unreadCount}
+          </motion.div>
         </div>
 
-        {/* New Message Alert */}
-        {newMessage && (
-          <motion.div 
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            className="text-center text-sm py-1 rounded"
-            style={{ backgroundColor: '#0FB981', color: 'white' }}
-          >
-            New message received
-          </motion.div>
-        )}
+        {/* Message Previews */}
+        <div className="space-y-3">
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center text-sm font-bold text-white">
+              J
+            </div>
+            <div className="flex-1 min-w-0">
+              <div className="text-sm font-medium text-gray-200">John Smith</div>
+              <div className="text-xs text-gray-400 truncate">Interested in product demo</div>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center text-sm font-bold text-white">
+              L
+            </div>
+            <div className="flex-1 min-w-0">
+              <div className="text-sm font-medium text-gray-200">Lisa Chen</div>
+              <div className="text-xs text-gray-400 truncate">Pricing for enterprise</div>
+            </div>
+          </div>
+        </div>
+
+        {/* New Message Notification */}
+        <AnimatePresence>
+          {showNewMessage && (
+            <motion.div 
+              initial={{ opacity: 0, y: 20, scale: 0.9 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -10, scale: 0.95 }}
+              className="absolute -top-2 left-4 right-4 bg-emerald-500 text-white text-xs font-medium px-3 py-2 rounded-lg shadow-lg"
+            >
+              New message from Mike Jones
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </div>
   );

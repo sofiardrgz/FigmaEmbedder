@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { CheckCircle, Circle } from 'lucide-react';
 
 interface AutomationsCardProps {
   className?: string;
@@ -11,57 +12,64 @@ export default function AutomationsCard({ className = "" }: AutomationsCardProps
   useEffect(() => {
     const interval = setInterval(() => {
       setCompletedSteps(current => current >= 3 ? 0 : current + 1);
-    }, 2000);
+    }, 2500);
 
     return () => clearInterval(interval);
   }, []);
 
+  const workflows = [
+    'Lead qualification',
+    'Email follow-up',
+    'CRM update'
+  ];
+
   return (
     <div 
-      className={`text-gray-300 rounded-2xl overflow-hidden ${className}`} 
-      style={{ 
-        backgroundColor: 'transparent', 
-        width: '260px', 
-        height: '140px',
-        border: 'none'
-      }}
+      className={`relative rounded-xl border border-gray-800/50 bg-gradient-to-br from-gray-900/40 to-gray-800/20 backdrop-blur-sm ${className}`} 
+      style={{ width: '260px', height: '140px' }}
     >
-      <div className="px-4 py-4 h-full flex flex-col justify-center">
-        {/* Header */}
-        <div className="text-center mb-3">
-          <div className="text-sm text-gray-400 mb-1">Automations</div>
+      <div className="absolute inset-0 bg-gradient-to-br from-amber-500/5 to-transparent rounded-xl" />
+      
+      <div className="relative p-4 h-full flex flex-col justify-center">
+        {/* Progress Status */}
+        <div className="text-center mb-4">
           <motion.div 
-            animate={{ scale: [1, 1.02, 1] }}
-            transition={{ 
-              repeat: Infinity, 
-              duration: 3,
-              ease: "easeInOut",
-              repeatType: "reverse"
-            }}
-            className="text-lg font-medium text-white"
+            key={completedSteps}
+            initial={{ scale: 0.95 }}
+            animate={{ scale: 1 }}
+            className="text-2xl font-bold text-white mb-1"
           >
-            {completedSteps}/3 Active
+            {completedSteps}/3
           </motion.div>
+          <div className="text-sm text-gray-400">workflows running</div>
         </div>
 
-        {/* Progress Circles */}
-        <div className="flex justify-center gap-2">
-          {[1, 2, 3].map((step, i) => (
-            <motion.div 
-              key={i}
-              animate={{ 
-                scale: completedSteps >= step ? [1, 1.1, 1] : 1,
-                opacity: completedSteps >= step ? 1 : 0.3
-              }}
-              transition={{ 
-                duration: 1,
-                ease: "easeInOut",
-                repeat: completedSteps >= step ? Infinity : 0,
-                repeatType: "reverse"
-              }}
-              className="w-4 h-4 rounded-full"
-              style={{ backgroundColor: '#0FB981' }}
-            />
+        {/* Workflow Steps */}
+        <div className="space-y-2">
+          {workflows.map((workflow, i) => (
+            <div key={i} className="flex items-center gap-2">
+              <motion.div
+                animate={{ 
+                  scale: completedSteps > i ? [1, 1.1, 1] : 1,
+                  opacity: completedSteps > i ? 1 : 0.4
+                }}
+                transition={{ 
+                  duration: 1,
+                  ease: "easeInOut",
+                  repeat: completedSteps > i ? Infinity : 0,
+                  repeatType: "reverse"
+                }}
+              >
+                {completedSteps > i ? (
+                  <CheckCircle className="w-4 h-4 text-emerald-400" />
+                ) : (
+                  <Circle className="w-4 h-4 text-gray-500" />
+                )}
+              </motion.div>
+              <span className={`text-xs ${completedSteps > i ? 'text-gray-200' : 'text-gray-500'}`}>
+                {workflow}
+              </span>
+            </div>
           ))}
         </div>
       </div>
