@@ -10,22 +10,23 @@ export default function MessagesCard({ className = "" }: MessagesCardProps) {
   const [highlightedMessage, setHighlightedMessage] = useState(-1);
   
   useEffect(() => {
+    // Start animation immediately
+    setMessageCount(4);
+    setHighlightedMessage(3);
+    
     const interval = setInterval(() => {
-      // Reset to 3 messages
-      setMessageCount(3);
+      // Smoothly reset without abrupt changes
       setHighlightedMessage(-1);
       
-      // After 3 seconds, add new message and highlight it
+      setTimeout(() => {
+        setMessageCount(3);
+      }, 2000);
+      
       setTimeout(() => {
         setMessageCount(4);
         setHighlightedMessage(3);
-        
-        // After 4 more seconds, show it as "opened" (remove highlight)
-        setTimeout(() => {
-          setHighlightedMessage(-1);
-        }, 4000);
-      }, 3000);
-    }, 12000); // Much longer cycle
+      }, 4000);
+    }, 8000);
 
     return () => clearInterval(interval);
   }, []);
@@ -83,13 +84,14 @@ export default function MessagesCard({ className = "" }: MessagesCardProps) {
               {i === highlightedMessage && (
                 <motion.div 
                   animate={{ 
-                    scale: [1, 1.2, 1],
-                    opacity: [0.5, 1, 0.5]
+                    scale: [1, 1.1, 1],
+                    opacity: [0.6, 1, 0.6]
                   }}
                   transition={{ 
                     repeat: Infinity, 
                     duration: 2,
-                    ease: "easeInOut"
+                    ease: "easeInOut",
+                    repeatType: "reverse"
                   }}
                   className="w-2 h-2 rounded-full"
                   style={{ backgroundColor: '#0FB981' }}

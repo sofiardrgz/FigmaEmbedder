@@ -11,21 +11,23 @@ export default function ContactsCard({ className = "" }: ContactsCardProps) {
   const [highlightNew, setHighlightNew] = useState(false);
 
   useEffect(() => {
+    // Start animation immediately 
+    setShowNewContact(true);
+    setHighlightNew(true);
+    
     const interval = setInterval(() => {
-      // Show new contact notification
-      setShowNewContact(true);
-      setHighlightNew(true);
+      // Smooth transition cycle
+      setHighlightNew(false);
       
-      // After 5 seconds, add to list and remove highlight
-      setTimeout(() => {
-        setHighlightNew(false);
-      }, 5000);
-      
-      // Reset after 8 seconds
       setTimeout(() => {
         setShowNewContact(false);
-      }, 8000);
-    }, 15000); // Much longer cycle
+      }, 2000);
+      
+      setTimeout(() => {
+        setShowNewContact(true);
+        setHighlightNew(true);
+      }, 4000);
+    }, 8000);
 
     return () => clearInterval(interval);
   }, []);
@@ -62,8 +64,12 @@ export default function ContactsCard({ className = "" }: ContactsCardProps) {
           >
             <div className="flex items-center gap-2 mb-2">
               <motion.div
-                animate={{ rotate: [0, 180, 360] }}
-                transition={{ duration: 2, ease: "easeInOut" }}
+                animate={{ rotate: [0, 360] }}
+                transition={{ 
+                  repeat: Infinity,
+                  duration: 3, 
+                  ease: "linear" 
+                }}
               >
                 <Plus className="w-4 h-4" style={{ color: '#0FB981' }} />
               </motion.div>

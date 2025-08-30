@@ -11,17 +11,19 @@ export default function PaymentsCard({ className = "" }: PaymentsCardProps) {
   const [highlightPaid, setHighlightPaid] = useState(-1);
 
   useEffect(() => {
+    // Start animation immediately
+    setShowPayment(true);
+    setHighlightPaid(0);
+    
     const interval = setInterval(() => {
-      // Show new payment notification
-      setShowPayment(true);
-      setHighlightPaid(0); // Highlight first invoice as newly paid
+      setShowPayment(false);
+      setHighlightPaid(-1);
       
-      // Hide notification after 5 seconds
       setTimeout(() => {
-        setShowPayment(false);
-        setHighlightPaid(-1);
-      }, 5000);
-    }, 13000); // Much longer cycle
+        setShowPayment(true);
+        setHighlightPaid(0);
+      }, 3000);
+    }, 8000);
 
     return () => clearInterval(interval);
   }, []);
@@ -60,7 +62,11 @@ export default function PaymentsCard({ className = "" }: PaymentsCardProps) {
               <div className="flex items-center gap-2 mb-2">
                 <motion.div
                   animate={{ rotate: [0, 360] }}
-                  transition={{ duration: 2, ease: "easeInOut" }}
+                  transition={{ 
+                    repeat: Infinity,
+                    duration: 2, 
+                    ease: "linear" 
+                  }}
                 >
                   <CheckCircle className="w-4 h-4" style={{ color: '#0FB981' }} />
                 </motion.div>
@@ -84,13 +90,14 @@ export default function PaymentsCard({ className = "" }: PaymentsCardProps) {
             </div>
             <motion.div 
               animate={{ 
-                scale: [1, 1.02, 1],
-                opacity: [1, 0.9, 1]
+                scale: [1, 1.01, 1],
+                opacity: [1, 0.95, 1]
               }}
               transition={{ 
                 repeat: Infinity, 
-                duration: 5, 
-                ease: "easeInOut"
+                duration: 3.5, 
+                ease: "easeInOut",
+                repeatType: "reverse"
               }}
               className="text-xl font-bold text-white"
             >

@@ -49,13 +49,14 @@ export default function MarketingCard({ className = "" }: MarketingCardProps) {
             </div>
             <motion.div 
               animate={{ 
-                scale: [1, 1.02, 1],
-                opacity: [1, 0.8, 1]
+                scale: [1, 1.01, 1],
+                opacity: [1, 0.9, 1]
               }}
               transition={{ 
                 repeat: Infinity, 
-                duration: 4, 
-                ease: "easeInOut"
+                duration: 3, 
+                ease: "easeInOut",
+                repeatType: "reverse"
               }}
               className="text-xl font-bold text-white"
             >
@@ -94,10 +95,14 @@ export default function MarketingCard({ className = "" }: MarketingCardProps) {
                 <div className="flex items-center gap-3">
                   <motion.div
                     animate={animationState === i ? { 
-                      scale: [1, 1.2, 1],
-                      rotate: [0, 15, 0]
+                      scale: [1, 1.05, 1],
+                      rotate: [0, 10, 0]
                     } : {}}
-                    transition={{ duration: 0.5 }}
+                    transition={{ 
+                      duration: 1.2,
+                      ease: "easeInOut",
+                      repeatType: "reverse"
+                    }}
                   >
                     <ThumbsUp className="w-4 h-4" style={{ color: '#0FB981' }} />
                   </motion.div>

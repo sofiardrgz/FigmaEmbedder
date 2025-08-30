@@ -10,15 +10,16 @@ export default function CalendarCard({ className = "" }: CalendarCardProps) {
   const [showNewAppointment, setShowNewAppointment] = useState(false);
 
   useEffect(() => {
+    // Start animation immediately
+    setShowNewAppointment(true);
+    
     const interval = setInterval(() => {
-      // Show new appointment booking
-      setShowNewAppointment(true);
+      setShowNewAppointment(false);
       
-      // Hide after 6 seconds
       setTimeout(() => {
-        setShowNewAppointment(false);
-      }, 6000);
-    }, 14000); // Much longer cycle
+        setShowNewAppointment(true);
+      }, 3000);
+    }, 8000);
 
     return () => clearInterval(interval);
   }, []);
@@ -55,11 +56,12 @@ export default function CalendarCard({ className = "" }: CalendarCardProps) {
           >
             <div className="flex items-center gap-2 mb-2">
               <motion.div
-                animate={{ scale: [1, 1.1, 1] }}
+                animate={{ scale: [1, 1.05, 1] }}
                 transition={{ 
                   duration: 2, 
                   ease: "easeInOut",
-                  repeat: Infinity
+                  repeat: Infinity,
+                  repeatType: "reverse"
                 }}
               >
                 <Calendar className="w-4 h-4" style={{ color: '#0FB981' }} />
@@ -82,8 +84,13 @@ export default function CalendarCard({ className = "" }: CalendarCardProps) {
               className="bg-gray-800/30 backdrop-blur-sm p-4 rounded-xl flex items-center gap-3"
             >
               <motion.div 
-                animate={{ opacity: [0.6, 1, 0.6] }}
-                transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
+                animate={{ opacity: [0.5, 1, 0.5] }}
+                transition={{ 
+                  repeat: Infinity, 
+                  duration: 2.5, 
+                  ease: "easeInOut",
+                  repeatType: "reverse" 
+                }}
                 className="w-2 h-8 rounded-full"
                 style={{ backgroundColor: '#0FB981' }}
               ></motion.div>

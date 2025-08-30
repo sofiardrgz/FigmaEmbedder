@@ -10,18 +10,16 @@ export default function CopilotCard({ className = "" }: CopilotCardProps) {
   const [chatState, setChatState] = useState(0); // 0: prompt, 1: response, 2: calling
 
   useEffect(() => {
+    // Start animation immediately
+    setChatState(1);
+    
     const interval = setInterval(() => {
-      setChatState(0);
+      setChatState(2);
       
-      // Show response after 2 seconds
-      setTimeout(() => setChatState(1), 2000);
+      setTimeout(() => setChatState(0), 3000);
       
-      // Show calling after 5 seconds
-      setTimeout(() => setChatState(2), 5000);
-      
-      // Reset after 10 seconds
-      setTimeout(() => setChatState(0), 10000);
-    }, 16000); // Much longer cycle
+      setTimeout(() => setChatState(1), 6000);
+    }, 10000);
 
     return () => clearInterval(interval);
   }, []);
@@ -60,13 +58,14 @@ export default function CopilotCard({ className = "" }: CopilotCardProps) {
               <div className="flex items-start gap-3">
                 <motion.div
                   animate={{ 
-                    scale: [1, 1.05, 1],
-                    opacity: [0.7, 1, 0.7]
+                    scale: [1, 1.03, 1],
+                    opacity: [0.8, 1, 0.8]
                   }}
                   transition={{ 
                     repeat: Infinity, 
-                    duration: 3, 
-                    ease: "easeInOut"
+                    duration: 2.5, 
+                    ease: "easeInOut",
+                    repeatType: "reverse"
                   }}
                 >
                   <Bot className="w-5 h-5 flex-shrink-0" />
@@ -91,11 +90,11 @@ export default function CopilotCard({ className = "" }: CopilotCardProps) {
               <motion.div
                 animate={{ 
                   rotate: [0, 360],
-                  scale: [1, 1.1, 1]
+                  scale: [1, 1.05, 1]
                 }}
                 transition={{ 
-                  rotate: { repeat: Infinity, duration: 3, ease: "linear" },
-                  scale: { repeat: Infinity, duration: 2, ease: "easeInOut" }
+                  rotate: { repeat: Infinity, duration: 2, ease: "linear" },
+                  scale: { repeat: Infinity, duration: 1.5, ease: "easeInOut", repeatType: "reverse" }
                 }}
                 className="inline-block mb-2"
               >

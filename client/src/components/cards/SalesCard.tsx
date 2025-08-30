@@ -31,20 +31,14 @@ export default function SalesCard({ className = "" }: SalesCardProps) {
               <div className="text-xs text-gray-400">Revenue</div>
               <motion.div 
                 animate={{ 
-                  scale: [1, 1.05, 1, 1.08, 1],
-                  textShadow: [
-                    "0 0 0px rgba(34, 197, 94, 0)",
-                    "0 0 8px rgba(34, 197, 94, 0.3)",
-                    "0 0 0px rgba(34, 197, 94, 0)",
-                    "0 0 6px rgba(34, 197, 94, 0.2)",
-                    "0 0 0px rgba(34, 197, 94, 0)"
-                  ]
+                  scale: [1, 1.02, 1],
+                  opacity: [1, 0.9, 1]
                 }}
                 transition={{ 
                   repeat: Infinity, 
-                  duration: 8,
+                  duration: 4,
                   ease: "easeInOut",
-                  times: [0, 0.3, 0.5, 0.8, 1]
+                  repeatType: "reverse"
                 }}
                 className="text-lg font-bold text-gray-300"
               >
@@ -61,21 +55,14 @@ export default function SalesCard({ className = "" }: SalesCardProps) {
               <div className="text-xs text-gray-400">Deals</div>
               <motion.div 
                 animate={{ 
-                  scale: [1, 1.06, 1, 1.04, 1],
-                  textShadow: [
-                    "0 0 0px rgba(34, 197, 94, 0)",
-                    "0 0 6px rgba(34, 197, 94, 0.2)",
-                    "0 0 0px rgba(34, 197, 94, 0)",
-                    "0 0 4px rgba(34, 197, 94, 0.1)",
-                    "0 0 0px rgba(34, 197, 94, 0)"
-                  ]
+                  scale: [1, 1.03, 1],
+                  opacity: [1, 0.8, 1]
                 }}
                 transition={{ 
                   repeat: Infinity, 
-                  duration: 10,
-                  delay: 2,
+                  duration: 5,
                   ease: "easeInOut",
-                  times: [0, 0.2, 0.4, 0.7, 1]
+                  repeatType: "reverse"
                 }}
                 className="text-lg font-bold text-gray-300"
               >
@@ -110,11 +97,9 @@ export default function SalesCard({ className = "" }: SalesCardProps) {
                     opacity: [0.7, 1, 0.8, 1, 0.9, 1]
                   }}
                   transition={{ 
-                    delay: i * 0.1,
                     repeat: Infinity,
-                    duration: 8 + i * 0.5,
+                    duration: 6,
                     ease: "easeInOut",
-                    times: [0, 0.2, 0.4, 0.6, 0.8, 1],
                     repeatType: "reverse"
                   }}
                   className="w-2.5 rounded-full"
