@@ -50,7 +50,7 @@ export default function SalesCard({ className = "" }: SalesCardProps) {
               >
                 $2.4M
               </motion.div>
-              <div className="text-blue-400 text-xs">+28%</div>
+              <div style={{ color: '#0FB981' }} className="text-xs">+28%</div>
             </motion.div>
             <motion.div 
               initial={{ scale: 0.95, opacity: 0 }}
@@ -81,7 +81,7 @@ export default function SalesCard({ className = "" }: SalesCardProps) {
               >
                 142
               </motion.div>
-              <div className="text-blue-400 text-xs">+15%</div>
+              <div style={{ color: '#0FB981' }} className="text-xs">+15%</div>
             </motion.div>
           </div>
 
@@ -117,7 +117,8 @@ export default function SalesCard({ className = "" }: SalesCardProps) {
                     times: [0, 0.2, 0.4, 0.6, 0.8, 1],
                     repeatType: "reverse"
                   }}
-                  className="bg-blue-500 w-2.5 rounded-full"
+                  className="w-2.5 rounded-full"
+                  style={{ backgroundColor: '#0FB981' }}
                 />
               ))}
             </div>

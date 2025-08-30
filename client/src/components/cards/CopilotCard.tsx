@@ -43,7 +43,8 @@ export default function CopilotCard({ className = "" }: CopilotCardProps) {
           <motion.div 
             initial={{ opacity: 1 }}
             animate={{ opacity: chatState >= 0 ? 1 : 0 }}
-            className="bg-blue-600/20 backdrop-blur-sm rounded-xl p-4 ml-6"
+            className="backdrop-blur-sm rounded-xl p-4 ml-6"
+            style={{ backgroundColor: 'rgba(15, 185, 129, 0.1)' }}
           >
             <div className="text-sm text-gray-300">Call lead Robert Miller</div>
           </motion.div>
@@ -98,9 +99,9 @@ export default function CopilotCard({ className = "" }: CopilotCardProps) {
                 }}
                 className="inline-block mb-2"
               >
-                <Phone className="w-6 h-6 text-gray-300" />
+                <Phone className="w-6 h-6" style={{ color: '#0FB981' }} />
               </motion.div>
-              <div className="text-sm font-medium text-gray-300">Calling...</div>
+              <div className="text-sm font-medium" style={{ color: '#0FB981' }}>Calling...</div>
               <div className="text-sm text-gray-300 mt-1">Robert Miller</div>
               <div className="text-xs text-gray-400 mt-1">COO at InnovateNow</div>
             </motion.div>

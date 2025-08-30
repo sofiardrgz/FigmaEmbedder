@@ -68,7 +68,7 @@ export default function MessagesCard({ className = "" }: MessagesCardProps) {
               }}
               className="bg-gray-800/30 backdrop-blur-sm p-4 rounded-xl flex items-start gap-3"
             >
-              <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0">
+              <div className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0" style={{ backgroundColor: '#0FB981' }}>
                 {msg.name.split(' ').map(n => n[0]).join('')}
               </div>
               <div className="flex-1 min-w-0">
@@ -91,7 +91,8 @@ export default function MessagesCard({ className = "" }: MessagesCardProps) {
                     duration: 2,
                     ease: "easeInOut"
                   }}
-                  className="w-2 h-2 bg-blue-400 rounded-full"
+                  className="w-2 h-2 rounded-full"
+                  style={{ backgroundColor: '#0FB981' }}
                 />
               )}
             </motion.div>

@@ -62,7 +62,7 @@ export default function PaymentsCard({ className = "" }: PaymentsCardProps) {
                   animate={{ rotate: [0, 360] }}
                   transition={{ duration: 2, ease: "easeInOut" }}
                 >
-                  <CheckCircle className="w-4 h-4 text-gray-300" />
+                  <CheckCircle className="w-4 h-4" style={{ color: '#0FB981' }} />
                 </motion.div>
                 <span className="text-gray-300 font-medium text-sm">Payment Received</span>
               </div>
@@ -79,7 +79,7 @@ export default function PaymentsCard({ className = "" }: PaymentsCardProps) {
             className="bg-gray-800/30 backdrop-blur-sm p-5 rounded-xl text-center"
           >
             <div className="flex items-center justify-center gap-2 mb-3">
-              <DollarSign className="w-5 h-5 text-blue-400" />
+              <DollarSign className="w-5 h-5" style={{ color: '#0FB981' }} />
               <span className="text-sm text-gray-400">Total Revenue</span>
             </div>
             <motion.div 
@@ -107,7 +107,7 @@ export default function PaymentsCard({ className = "" }: PaymentsCardProps) {
                 $24.5K
               </motion.span>
             </motion.div>
-            <div className="text-blue-400 text-sm">+7% this month</div>
+            <div className="text-sm" style={{ color: '#0FB981' }}>+7% this month</div>
           </motion.div>
 
           {/* Invoice List */}
@@ -134,8 +134,9 @@ export default function PaymentsCard({ className = "" }: PaymentsCardProps) {
                   <div className="text-sm font-bold text-gray-300 mt-1">{invoice.amount}</div>
                 </div>
                 <div className={`text-xs px-3 py-1 rounded-full ${
-                  invoice.status === 'paid' ? 'bg-blue-600/20 text-blue-400' : 'bg-gray-600/20 text-gray-400'
-                }`}>
+                  invoice.status === 'paid' ? 'bg-gray-600/20' : 'bg-gray-600/20 text-gray-400'
+                }`}
+                style={invoice.status === 'paid' ? { color: '#0FB981' } : {}}>
                   {invoice.status}
                 </div>
               </motion.div>

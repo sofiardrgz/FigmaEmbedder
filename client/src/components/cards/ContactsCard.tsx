@@ -65,7 +65,7 @@ export default function ContactsCard({ className = "" }: ContactsCardProps) {
                 animate={{ rotate: [0, 180, 360] }}
                 transition={{ duration: 2, ease: "easeInOut" }}
               >
-                <Plus className="w-4 h-4 text-gray-300" />
+                <Plus className="w-4 h-4" style={{ color: '#0FB981' }} />
               </motion.div>
               <span className="text-gray-300 font-medium text-sm">New Contact Added</span>
             </div>

@@ -62,7 +62,7 @@ export default function CalendarCard({ className = "" }: CalendarCardProps) {
                   repeat: Infinity
                 }}
               >
-                <Calendar className="w-4 h-4 text-gray-300" />
+                <Calendar className="w-4 h-4" style={{ color: '#0FB981' }} />
               </motion.div>
               <span className="text-gray-300 font-medium text-sm">Appointment Scheduled</span>
             </div>
@@ -84,7 +84,8 @@ export default function CalendarCard({ className = "" }: CalendarCardProps) {
               <motion.div 
                 animate={{ opacity: [0.6, 1, 0.6] }}
                 transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
-                className="w-2 h-8 bg-blue-500 rounded-full"
+                className="w-2 h-8 rounded-full"
+                style={{ backgroundColor: '#0FB981' }}
               ></motion.div>
               <div className="flex-1">
                 <div className="text-sm font-medium text-gray-200">

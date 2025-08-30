@@ -44,7 +44,7 @@ export default function MarketingCard({ className = "" }: MarketingCardProps) {
             className="bg-gray-800/30 backdrop-blur-sm p-5 rounded-xl text-center"
           >
             <div className="flex items-center justify-center gap-2 mb-3">
-              <TrendingUp className="w-5 h-5 text-blue-400" />
+              <TrendingUp className="w-5 h-5" style={{ color: '#0FB981' }} />
               <span className="text-sm text-gray-400">Total Engagement</span>
             </div>
             <motion.div 
@@ -69,7 +69,7 @@ export default function MarketingCard({ className = "" }: MarketingCardProps) {
                 {90.3 + animationState * 0.5}K
               </motion.span>
             </motion.div>
-            <div className="text-blue-400 text-sm">+15% this week</div>
+            <div className="text-sm" style={{ color: '#0FB981' }}>+15% this week</div>
           </motion.div>
 
           {/* Platform Stats */}
@@ -99,7 +99,7 @@ export default function MarketingCard({ className = "" }: MarketingCardProps) {
                     } : {}}
                     transition={{ duration: 0.5 }}
                   >
-                    <ThumbsUp className="w-4 h-4 text-blue-400" />
+                    <ThumbsUp className="w-4 h-4" style={{ color: '#0FB981' }} />
                   </motion.div>
                   <div>
                     <div className="text-sm font-medium text-gray-200">{platform.name}</div>
@@ -120,7 +120,7 @@ export default function MarketingCard({ className = "" }: MarketingCardProps) {
                   >
                     {platform.likes}
                   </motion.div>
-                  <div className="text-blue-400 text-xs">{platform.growth}</div>
+                  <div className="text-xs" style={{ color: '#0FB981' }}>{platform.growth}</div>
                 </div>
               </motion.div>
             ))}
