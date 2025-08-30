@@ -50,13 +50,13 @@
 #### Full Dashboard Embeds (900px × 600px)
 ```html
 <!-- Animated Demo with Safari Frame -->
-<iframe src="https://68b2700c16e24b00087a7111--dazzling-parfait-e94c2f.netlify.app/embed/demo" 
+<iframe src="https://68b27347a18a570008f31b1d--dazzling-parfait-e94c2f.netlify.app/embed/demo" 
         width="900" height="600" 
         frameborder="0">
 </iframe>
 
 <!-- Individual Dashboard (Frameless) -->
-<iframe src="https://68b2700c16e24b00087a7111--dazzling-parfait-e94c2f.netlify.app/embed/sales/no-frame" 
+<iframe src="https://68b27347a18a570008f31b1d--dazzling-parfait-e94c2f.netlify.app/embed/sales/no-frame" 
         width="900" height="600" 
         frameborder="0">
 </iframe>

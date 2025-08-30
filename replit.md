@@ -15,7 +15,7 @@ This is a full-stack dashboard application built with React, Express, and Postgr
   - **Payments Card**: "Invoice Paid" notifications, removed yellow colors, cleaner layout
 - **Card Specifications Updated**: All cards now 260px × 300px (increased from 220px width)
 - **Removed Elements**: Eliminated card titles, yellow color scheme, and small unreadable text
-- **Current Deployment**: Live at https://68b2700c16e24b00087a7111--dazzling-parfait-e94c2f.netlify.app/
+- **Current Deployment**: Live at https://68b27347a18a570008f31b1d--dazzling-parfait-e94c2f.netlify.app/
 - **All Embed Routes Active**: 14 different embedding options available with updated animations
 
 # User Preferences
