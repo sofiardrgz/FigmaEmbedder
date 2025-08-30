@@ -10,6 +10,7 @@ This is a full-stack dashboard application built with React, Express, and Postgr
 - Added detailed AI Copilot showing actual email creation with full preview
 - Updated branding from "Mission Control" to "Smart Squatch"
 - Implemented consistent green color scheme throughout all interfaces
+- Fixed neon green background in Copilot section to gray for better appearance
 - Created embeddable versions at /embed/demo and /embed/demo/no-frame routes
 - Added individual embeddable dashboard components for separate embedding:
   - /embed/sales - Sales dashboard only
@@ -20,6 +21,8 @@ This is a full-stack dashboard application built with React, Express, and Postgr
   - /embed/marketing - Marketing analytics dashboard only
   - /embed/payments - Payments & invoices dashboard only
   - All routes support /no-frame variants for frameless embedding
+- Updated Netlify deployment configuration for all 14 embed routes
+- Successfully built and optimized for production deployment (239.43 kB gzipped)
 
 # User Preferences
 
