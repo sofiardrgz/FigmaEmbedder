@@ -16,18 +16,14 @@ export default function ContactsCard({ className = "" }: ContactsCardProps) {
     setHighlightNew(true);
     
     const interval = setInterval(() => {
-      // Smooth transition cycle with fade
-      setHighlightNew(false);
-      
-      setTimeout(() => {
-        setShowNewContact(false);
-      }, 3000);
+      // Slide out after 6 seconds
+      setShowNewContact(false);
       
       setTimeout(() => {
         setShowNewContact(true);
         setHighlightNew(true);
       }, 4000);
-    }, 10000);
+    }, 12000);
 
     return () => clearInterval(interval);
   }, []);
@@ -58,23 +54,14 @@ export default function ContactsCard({ className = "" }: ContactsCardProps) {
               duration: 0.8,
               ease: "easeOut"
             }}
-            className="bg-gray-800/40 backdrop-blur-sm p-4 rounded-xl mb-5"
+            className="p-4 rounded-xl mb-4"
+            style={{ backgroundColor: '#054E3B' }}
           >
             <div className="flex items-center gap-2 mb-2">
-              <motion.div
-                animate={{ rotate: [0, 360] }}
-                transition={{ 
-                  repeat: Infinity,
-                  duration: 3, 
-                  ease: "linear" 
-                }}
-              >
-                <Plus className="w-4 h-4" style={{ color: '#0FB981' }} />
-              </motion.div>
-              <span className="text-gray-300 font-medium text-sm">New Contact Added</span>
+              <Plus className="w-4 h-4 text-white" />
+              <span className="text-white font-medium text-sm">New Lead Added</span>
             </div>
             <div className="text-base font-medium text-white">Robert Miller</div>
-            <div className="text-sm text-gray-400">COO at InnovateNow</div>
           </motion.div>
         )}
 

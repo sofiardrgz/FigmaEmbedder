@@ -10,16 +10,16 @@ export default function CopilotCard({ className = "" }: CopilotCardProps) {
   const [chatState, setChatState] = useState(0); // 0: prompt, 1: response, 2: calling
 
   useEffect(() => {
-    // Start animation immediately
-    setChatState(1);
+    // Start calling animation quickly
+    setChatState(2);
     
     const interval = setInterval(() => {
-      setChatState(2);
+      setChatState(0);
       
-      setTimeout(() => setChatState(0), 5000);
+      setTimeout(() => setChatState(1), 1000);
       
-      setTimeout(() => setChatState(1), 8000);
-    }, 15000);
+      setTimeout(() => setChatState(2), 2000);
+    }, 12000);
 
     return () => clearInterval(interval);
   }, []);
@@ -101,15 +101,13 @@ export default function CopilotCard({ className = "" }: CopilotCardProps) {
               </motion.div>
               <div className="text-sm font-medium" style={{ color: '#0FB981' }}>Calling...</div>
               <div className="text-sm text-gray-300 mt-1">Robert Miller</div>
-              <div className="text-xs text-gray-400 mt-1">COO at InnovateNow</div>
               <motion.div 
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 2 }}
                 className="bg-gray-700/50 p-2 rounded text-xs text-gray-400"
               >
-                📞 Call connected - Duration: 2:34<br />
-                Lead Status: Hot Prospect
+                📞 Connected - Duration: 2:34
               </motion.div>
             </motion.div>
           )}

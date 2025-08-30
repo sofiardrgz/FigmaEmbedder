@@ -8,25 +8,47 @@ interface MessagesCardProps {
 export default function MessagesCard({ className = "" }: MessagesCardProps) {
   const [messageCount, setMessageCount] = useState(3);
   const [highlightedMessage, setHighlightedMessage] = useState(-1);
+  const [showNewMessage, setShowNewMessage] = useState(false);
   
   useEffect(() => {
-    // Start animation immediately
-    setMessageCount(4);
-    setHighlightedMessage(3);
+    // Start with 3 messages, then slide in new message
+    setTimeout(() => {
+      setShowNewMessage(true);
+      setMessageCount(4);
+      setHighlightedMessage(3);
+      
+      // Remove highlight after 4 seconds, keep message
+      setTimeout(() => {
+        setHighlightedMessage(-1);
+        
+        // Slide out after 6 seconds total
+        setTimeout(() => {
+          setShowNewMessage(false);
+          setMessageCount(3);
+        }, 2000);
+      }, 4000);
+    }, 2000);
     
     const interval = setInterval(() => {
-      // Smoothly reset without abrupt changes
+      setShowNewMessage(false);
+      setMessageCount(3);
       setHighlightedMessage(-1);
       
       setTimeout(() => {
-        setMessageCount(3);
-      }, 2000);
-      
-      setTimeout(() => {
+        setShowNewMessage(true);
         setMessageCount(4);
         setHighlightedMessage(3);
-      }, 4000);
-    }, 8000);
+        
+        setTimeout(() => {
+          setHighlightedMessage(-1);
+          
+          setTimeout(() => {
+            setShowNewMessage(false);
+            setMessageCount(3);
+          }, 2000);
+        }, 4000);
+      }, 3000);
+    }, 12000);
 
     return () => clearInterval(interval);
   }, []);

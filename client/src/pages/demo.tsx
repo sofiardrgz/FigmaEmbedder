@@ -409,6 +409,93 @@ const DemoContent = {
     </div>
   ),
 
+  Automations: (
+    <div className="p-6">
+      <h2 className="text-xl font-semibold text-gray-300 mb-6">Automations</h2>
+      
+      {/* Active Workflows */}
+      <div className="grid grid-cols-2 gap-4 mb-4">
+        <div className="bg-gray-800/50 p-3 rounded-lg">
+          <div className="text-sm text-gray-400">Active Workflows</div>
+          <div className="text-lg font-bold text-gray-300">24</div>
+          <div className="text-green-400 text-xs">+3 this week</div>
+        </div>
+        <div className="bg-gray-800/50 p-3 rounded-lg">
+          <div className="text-sm text-gray-400">Tasks Completed</div>
+          <div className="text-lg font-bold text-gray-300">1,247</div>
+          <div className="text-green-400 text-xs">+156 today</div>
+        </div>
+      </div>
+
+      {/* Workflow Trigger Notification */}
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.9, y: -10 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        transition={{ delay: 0.2 }}
+        className="bg-blue-600/20 border border-blue-500 p-3 rounded-lg mb-4"
+      >
+        <div className="flex items-center gap-2">
+          <Zap className="w-4 h-4 text-blue-400" />
+          <span className="text-blue-400 font-medium text-sm">Workflow Triggered</span>
+        </div>
+        <div className="text-xs text-gray-300 mt-1">New Lead Processing - Auto-pilot engaged</div>
+      </motion.div>
+
+      {/* Running Workflows */}
+      <div className="space-y-2">
+        {[
+          { name: "Lead Qualification", status: "completed", trigger: "New contact added", time: "2 min ago" },
+          { name: "Email Follow-up", status: "running", trigger: "Meeting completed", time: "5 min ago" },
+          { name: "CRM Update", status: "pending", trigger: "Deal closed", time: "8 min ago" },
+          { name: "Invoice Generation", status: "completed", trigger: "Project finished", time: "12 min ago" },
+          { name: "Slack Notification", status: "running", trigger: "High-value lead", time: "15 min ago" },
+          { name: "Calendar Booking", status: "completed", trigger: "Demo requested", time: "18 min ago" }
+        ].map((workflow, i) => (
+          <motion.div 
+            key={i}
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: i * 0.08 }}
+            className="bg-gray-800/50 p-3 rounded-lg flex items-center justify-between"
+          >
+            <div className="flex items-center gap-3">
+              <motion.div
+                animate={{ 
+                  rotate: workflow.status === "running" ? [0, 360] : 0,
+                  scale: workflow.status === "completed" ? [1, 1.1, 1] : 1
+                }}
+                transition={{ 
+                  duration: workflow.status === "running" ? 2 : 0.5,
+                  repeat: workflow.status === "running" ? Infinity : 0,
+                  ease: "linear"
+                }}
+              >
+                <Zap className={`w-4 h-4 ${
+                  workflow.status === "completed" ? "text-green-400" :
+                  workflow.status === "running" ? "text-blue-400" : "text-gray-400"
+                }`} />
+              </motion.div>
+              <div>
+                <div className="text-sm font-medium text-gray-300">{workflow.name}</div>
+                <div className="text-xs text-gray-400">{workflow.trigger}</div>
+              </div>
+            </div>
+            <div className="text-right">
+              <div className={`text-xs px-2 py-1 rounded ${
+                workflow.status === "completed" ? "bg-green-600/20 text-green-400" :
+                workflow.status === "running" ? "bg-blue-600/20 text-blue-400" :
+                "bg-gray-600/20 text-gray-400"
+              }`}>
+                {workflow.status}
+              </div>
+              <div className="text-xs text-gray-500 mt-1">{workflow.time}</div>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  ),
+
   Payments: (
     <div className="p-6">
       <h2 className="text-xl font-semibold text-gray-300 mb-6">Payments & Invoices</h2>

@@ -10,16 +10,32 @@ export default function CalendarCard({ className = "" }: CalendarCardProps) {
   const [showNewAppointment, setShowNewAppointment] = useState(false);
 
   useEffect(() => {
-    // Start animation immediately
-    setShowNewAppointment(true);
+    // Start with just today's schedule, then slide in appointment
+    setTimeout(() => {
+      setShowNewAppointment(true);
+      
+      // Slide out after 6 seconds
+      setTimeout(() => {
+        setShowNewAppointment(false);
+        
+        // Slide in again after 4 seconds
+        setTimeout(() => {
+          setShowNewAppointment(true);
+        }, 4000);
+      }, 6000);
+    }, 2000);
     
     const interval = setInterval(() => {
       setShowNewAppointment(false);
       
       setTimeout(() => {
         setShowNewAppointment(true);
+        
+        setTimeout(() => {
+          setShowNewAppointment(false);
+        }, 6000);
       }, 4000);
-    }, 10000);
+    }, 14000);
 
     return () => clearInterval(interval);
   }, []);
