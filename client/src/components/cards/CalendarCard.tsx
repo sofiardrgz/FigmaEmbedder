@@ -1,49 +1,27 @@
-import { motion } from "framer-motion";
-import { Calendar } from "lucide-react";
-import { useEffect, useState } from "react";
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { Calendar } from 'lucide-react';
 
 interface CalendarCardProps {
   className?: string;
 }
 
 export default function CalendarCard({ className = "" }: CalendarCardProps) {
-  const [showNewAppointment, setShowNewAppointment] = useState(false);
+  const [newAppointment, setNewAppointment] = useState(false);
 
   useEffect(() => {
-    // Start with just today's schedule, then slide in appointment
-    setTimeout(() => {
-      setShowNewAppointment(true);
-      
-      // Slide out after 6 seconds
-      setTimeout(() => {
-        setShowNewAppointment(false);
-        
-        // Slide in again after 4 seconds
-        setTimeout(() => {
-          setShowNewAppointment(true);
-        }, 4000);
-      }, 6000);
-    }, 2000);
-    
     const interval = setInterval(() => {
-      setShowNewAppointment(false);
-      
-      setTimeout(() => {
-        setShowNewAppointment(true);
-        
-        setTimeout(() => {
-          setShowNewAppointment(false);
-        }, 6000);
-      }, 4000);
-    }, 14000);
+      setNewAppointment(true);
+      setTimeout(() => setNewAppointment(false), 2000);
+    }, 6000);
 
     return () => clearInterval(interval);
   }, []);
 
   const appointments = [
-    { title: "Team Standup", time: "9:00 AM" },
-    { title: "Client Call", time: "11:30 AM" },
-    { title: "Design Review", time: "3:00 PM" },
+    { time: "10:00", title: "Sales Demo", client: "TechCorp" },
+    { time: "14:30", title: "Follow-up", client: "StartupXYZ" },
+    { time: "16:00", title: "Strategy", client: "InnovateLab" },
   ];
 
   return (
@@ -56,67 +34,37 @@ export default function CalendarCard({ className = "" }: CalendarCardProps) {
         border: 'none'
       }}
     >
-      <div className="px-3 py-2 h-full flex flex-col justify-center">
-        {/* New Appointment Notification */}
-        {showNewAppointment && (
+      <div className="px-4 py-3 h-full flex flex-col">
+        {/* Header */}
+        <div className="text-xs text-gray-400 mb-2 text-center flex items-center justify-center gap-1">
+          <Calendar className="w-3 h-3" />
+          Today's Schedule
+        </div>
+
+        {/* New Appointment Alert */}
+        {newAppointment && (
           <motion.div 
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: showNewAppointment ? 1 : 0, y: showNewAppointment ? 0 : -20 }}
-            transition={{ 
-              duration: 0.8,
-              ease: "easeOut"
-            }}
-            className="bg-gray-800/40 backdrop-blur-sm p-4 rounded-xl mb-5"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            className="mb-2 px-2 py-1 rounded text-center"
+            style={{ backgroundColor: '#0FB981', fontSize: '11px' }}
           >
-            <div className="flex items-center gap-2 mb-2">
-              <motion.div
-                animate={{ scale: [1, 1.05, 1] }}
-                transition={{ 
-                  duration: 2, 
-                  ease: "easeInOut",
-                  repeat: Infinity,
-                  repeatType: "reverse"
-                }}
-              >
-                <Calendar className="w-4 h-4" style={{ color: '#0FB981' }} />
-              </motion.div>
-              <span className="text-gray-300 font-medium text-sm">Appointment Scheduled</span>
-            </div>
-            <div className="text-base font-medium text-white">Meeting with Sarah</div>
-            <div className="text-sm text-gray-400">Tomorrow at 2:00 PM</div>
+            Appointment booked
           </motion.div>
         )}
 
-        <div className="flex-1 space-y-3">
-          <div className="text-sm font-medium text-gray-300 mb-3">Today's Schedule</div>
-          {appointments.map((appointment, i) => (
-            <motion.div 
+        {/* Appointments */}
+        <div className="space-y-1 flex-1">
+          {appointments.map((apt, i) => (
+            <div 
               key={i}
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: i * 0.1, duration: 0.6, ease: "easeOut" }}
-              className="bg-gray-800/30 backdrop-blur-sm p-4 rounded-xl flex items-center gap-3"
+              className="flex items-center gap-2 text-xs"
             >
-              <motion.div 
-                animate={{ opacity: [0.5, 1, 0.5] }}
-                transition={{ 
-                  repeat: Infinity, 
-                  duration: 2.5, 
-                  ease: "easeInOut",
-                  repeatType: "reverse" 
-                }}
-                className="w-2 h-8 rounded-full"
-                style={{ backgroundColor: '#0FB981' }}
-              ></motion.div>
-              <div className="flex-1">
-                <div className="text-sm font-medium text-gray-200">
-                  {appointment.title}
-                </div>
-                <div className="text-sm text-gray-400 mt-1">
-                  {appointment.time}
-                </div>
-              </div>
-            </motion.div>
+              <div className="w-10 text-gray-400">{apt.time}</div>
+              <div className="flex-1 text-gray-300 truncate">{apt.title}</div>
+              <div className="text-gray-400 text-right">{apt.client}</div>
+            </div>
           ))}
         </div>
       </div>

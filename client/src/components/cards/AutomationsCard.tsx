@@ -1,32 +1,18 @@
-import { motion } from "framer-motion";
-import { Zap, CheckCircle } from "lucide-react";
-import { useEffect, useState } from "react";
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { CheckCircle } from 'lucide-react';
 
 interface AutomationsCardProps {
   className?: string;
 }
 
 export default function AutomationsCard({ className = "" }: AutomationsCardProps) {
-  const [showWorkflow, setShowWorkflow] = useState(false);
   const [completedSteps, setCompletedSteps] = useState(0);
 
   useEffect(() => {
-    // Start animation immediately
-    setShowWorkflow(true);
-    setCompletedSteps(1);
-    
     const interval = setInterval(() => {
-      setCompletedSteps(0);
-      setShowWorkflow(false);
-      
-      setTimeout(() => {
-        setShowWorkflow(true);
-        setCompletedSteps(1);
-        
-        setTimeout(() => setCompletedSteps(2), 2000);
-        setTimeout(() => setCompletedSteps(3), 4000);
-      }, 2000);
-    }, 12000);
+      setCompletedSteps(current => current >= 3 ? 0 : current + 1);
+    }, 2000);
 
     return () => clearInterval(interval);
   }, []);
@@ -47,12 +33,13 @@ export default function AutomationsCard({ className = "" }: AutomationsCardProps
         border: 'none'
       }}
     >
-      <div className="px-3 py-2 h-full flex flex-col justify-center">
-        <div className="space-y-1">
-          {workflows.slice(0, 3).map((workflow, i) => (
+      <div className="px-4 py-3 h-full">
+        <div className="text-xs text-gray-400 mb-2 text-center">Workflow Progress</div>
+        <div className="space-y-2">
+          {workflows.map((workflow, i) => (
             <div 
               key={i}
-              className="bg-gray-800/30 p-2 rounded-lg flex items-center gap-2"
+              className="flex items-center gap-2"
             >
               <motion.div
                 animate={workflow.status === "completed" ? { 
@@ -66,7 +53,7 @@ export default function AutomationsCard({ className = "" }: AutomationsCardProps
                 }}
               >
                 <CheckCircle 
-                  className="w-3 h-3" 
+                  className="w-4 h-4" 
                   style={{ 
                     color: workflow.status === "completed" ? '#0FB981' : '#6b7280' 
                   }} 

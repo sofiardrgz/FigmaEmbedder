@@ -1,43 +1,35 @@
-import { motion } from "framer-motion";
-import { ThumbsUp, TrendingUp } from "lucide-react";
-import { useEffect, useState } from "react";
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { TrendingUp, Eye, MousePointer } from 'lucide-react';
 
 interface MarketingCardProps {
   className?: string;
 }
 
 export default function MarketingCard({ className = "" }: MarketingCardProps) {
-  const [animationState, setAnimationState] = useState(0);
-  const [engagementValue, setEngagementValue] = useState("90.3K");
+  const [campaignMetrics, setCampaignMetrics] = useState({
+    impressions: "142K",
+    clicks: "3.2K", 
+    conversions: "89"
+  });
 
   useEffect(() => {
-    // Start animation immediately
-    setAnimationState(1);
-    
-    const interval = setInterval(() => {
-      setAnimationState(prev => (prev + 1) % 3);
-    }, 4000);
-
-    return () => clearInterval(interval);
-  }, []);
-  
-  useEffect(() => {
-    const values = ["90.3K", "90.8K", "91.2K", "91.5K"];
+    const impressionsValues = ["142K", "145K", "148K", "151K"];
+    const clicksValues = ["3.2K", "3.4K", "3.6K", "3.8K"];
+    const conversionsValues = ["89", "92", "95", "98"];
     let index = 0;
     
     const interval = setInterval(() => {
-      index = (index + 1) % values.length;
-      setEngagementValue(values[index]);
+      index = (index + 1) % impressionsValues.length;
+      setCampaignMetrics({
+        impressions: impressionsValues[index],
+        clicks: clicksValues[index],
+        conversions: conversionsValues[index]
+      });
     }, 3000);
 
     return () => clearInterval(interval);
   }, []);
-
-  const platforms = [
-    { name: "Facebook", likes: "45.2K", growth: "+12%" },
-    { name: "Instagram", likes: "32.8K", growth: "+18%" },
-    { name: "LinkedIn", likes: "12.3K", growth: "+15%" },
-  ];
 
   return (
     <div 
@@ -49,94 +41,48 @@ export default function MarketingCard({ className = "" }: MarketingCardProps) {
         border: 'none'
       }}
     >
-      <div className="px-3 py-2 h-full flex flex-col justify-center">
-        <div className="flex-1 space-y-4">
-          {/* New Post Notification */}
+      <div className="px-4 py-3 h-full flex flex-col">
+        {/* Header */}
+        <div className="text-xs text-gray-400 mb-2 text-center flex items-center justify-center gap-1">
+          <TrendingUp className="w-3 h-3" />
+          Campaign Performance
+        </div>
+
+        {/* Main Metric */}
+        <div className="text-center mb-2">
+          <div className="text-xs text-gray-400 mb-1">Total Impressions</div>
           <motion.div 
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ 
-              duration: 0.8,
-              ease: "easeOut"
+            animate={{ 
+              scale: [1, 1.02, 1]
             }}
-            className="bg-gray-800/40 backdrop-blur-sm p-4 rounded-xl"
+            transition={{ 
+              repeat: Infinity, 
+              duration: 3, 
+              ease: "easeInOut",
+              repeatType: "reverse"
+            }}
+            className="text-white"
+            style={{ fontSize: '14px', fontWeight: '500' }}
           >
-            <div className="flex items-center gap-2 mb-2">
-              <motion.div
-                animate={{ 
-                  scale: [1, 1.1, 1],
-                  opacity: [0.7, 1, 0.7]
-                }}
-                transition={{ 
-                  repeat: Infinity,
-                  duration: 2, 
-                  ease: "easeInOut",
-                  repeatType: "reverse"
-                }}
-              >
-                <TrendingUp className="w-4 h-4" style={{ color: '#0FB981' }} />
-              </motion.div>
-              <span className="text-gray-300 font-medium text-sm">New Post Scheduled</span>
-            </div>
-            <div className="text-base font-medium text-white">Instagram Story Campaign</div>
-            <div className="text-sm text-gray-400">Dec 28, 2024 at 3:00 PM</div>
+            {campaignMetrics.impressions}
           </motion.div>
+        </div>
 
-          {/* Engagement Summary */}
-          <motion.div 
-            initial={{ scale: 0.95, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            className="bg-gray-800/30 backdrop-blur-sm p-4 rounded-xl text-center"
-          >
-            <div className="flex items-center justify-center gap-2 mb-2">
-              <TrendingUp className="w-4 h-4" style={{ color: '#0FB981' }} />
-              <span className="text-sm text-gray-400">Total Engagement</span>
+        {/* Metrics Grid */}
+        <div className="grid grid-cols-2 gap-2 flex-1">
+          <div className="text-center">
+            <div className="flex items-center justify-center gap-1 mb-1">
+              <MousePointer className="w-3 h-3 text-gray-400" />
+              <span className="text-xs text-gray-400">Clicks</span>
             </div>
-            <motion.div 
-              animate={{ 
-                scale: [1, 1.01, 1],
-                opacity: [1, 0.9, 1]
-              }}
-              transition={{ 
-                repeat: Infinity, 
-                duration: 3, 
-                ease: "easeInOut",
-                repeatType: "reverse"
-              }}
-              className="text-lg font-bold text-white"
-            >
-              {engagementValue}
-            </motion.div>
-            <div className="text-sm" style={{ color: '#0FB981' }}>+15% this week</div>
-          </motion.div>
-
-          {/* Platform Stats */}
-          <div className="space-y-2">
-            {platforms.map((platform, i) => (
-              <motion.div 
-                key={i}
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ 
-                  opacity: 1, 
-                  x: 0
-                }}
-                transition={{ 
-                  delay: i * 0.1
-                }}
-                className="bg-gray-800/30 backdrop-blur-sm p-3 rounded-xl flex items-center justify-between"
-              >
-                <div className="flex items-center gap-2">
-                  <ThumbsUp className="w-4 h-4" style={{ color: '#0FB981' }} />
-                  <div className="text-sm font-medium text-gray-200">{platform.name}</div>
-                </div>
-                <div className="text-right">
-                  <div className="text-sm font-bold text-gray-300">{platform.likes}</div>
-                  <div className="text-xs" style={{ color: '#0FB981' }}>{platform.growth}</div>
-                </div>
-              </motion.div>
-            ))}
+            <div className="text-xs text-gray-300">{campaignMetrics.clicks}</div>
+          </div>
+          <div className="text-center">
+            <div className="flex items-center justify-center gap-1 mb-1">
+              <Eye className="w-3 h-3 text-gray-400" />
+              <span className="text-xs text-gray-400">Conversions</span>
+            </div>
+            <div className="text-xs text-gray-300">{campaignMetrics.conversions}</div>
           </div>
         </div>
       </div>
