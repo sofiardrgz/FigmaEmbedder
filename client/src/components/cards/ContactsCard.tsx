@@ -26,17 +26,15 @@ export default function ContactsCard({ className = "" }: ContactsCardProps) {
   const contacts = [
     { initials: 'JS', color: 'from-blue-400 to-blue-600' },
     { initials: 'LJ', color: 'from-purple-400 to-purple-600' },
-    { initials: 'DC', color: 'from-emerald-400 to-emerald-600' },
+    { initials: 'DC', color: 'from-[#0FB981] to-emerald-600' },
     { initials: 'SW', color: 'from-orange-400 to-orange-600' },
   ];
 
   return (
     <div 
-      className={`relative rounded-xl border border-gray-800/50 bg-gradient-to-br from-gray-900/40 to-gray-800/20 backdrop-blur-sm ${className}`} 
+      className={`relative ${className}`} 
       style={{ width: '260px', height: '140px' }}
     >
-      <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-transparent rounded-xl" />
-      
       <div className="relative p-4 h-full flex flex-col justify-center">
         {/* New Contact Indicator */}
         {showNewContact && (
@@ -44,7 +42,7 @@ export default function ContactsCard({ className = "" }: ContactsCardProps) {
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0, opacity: 0 }}
-            className="absolute top-3 right-3 flex items-center gap-1 text-emerald-400 text-xs font-medium bg-emerald-500/10 px-2 py-1 rounded-full"
+            className="absolute top-3 right-3 flex items-center gap-1 text-white text-xs font-medium bg-[#0FB981] px-2 py-1 rounded-full"
           >
             <Plus className="w-3 h-3" />
             Added
@@ -53,14 +51,9 @@ export default function ContactsCard({ className = "" }: ContactsCardProps) {
 
         {/* Contact Count */}
         <div className="text-center mb-4">
-          <motion.div 
-            key={contactCount}
-            initial={{ scale: 0.95 }}
-            animate={{ scale: 1 }}
-            className="text-3xl font-bold text-white mb-1"
-          >
+          <div className="text-2xl font-medium text-white mb-1">
             {contactCount.toLocaleString()}
-          </motion.div>
+          </div>
           <div className="text-sm text-gray-400">Total Contacts</div>
         </div>
 

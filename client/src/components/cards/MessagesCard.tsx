@@ -24,11 +24,9 @@ export default function MessagesCard({ className = "" }: MessagesCardProps) {
 
   return (
     <div 
-      className={`relative rounded-xl border border-gray-800/50 bg-gradient-to-br from-gray-900/40 to-gray-800/20 backdrop-blur-sm overflow-visible ${className}`} 
+      className={`relative overflow-visible ${className}`} 
       style={{ width: '260px', height: '140px' }}
     >
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent rounded-xl" />
-      
       <div className="relative p-4 h-full flex flex-col justify-center">
         {/* Unread Badge */}
         <div className="absolute top-3 right-3">
@@ -36,7 +34,7 @@ export default function MessagesCard({ className = "" }: MessagesCardProps) {
             key={unreadCount}
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
-            className="w-6 h-6 bg-emerald-500 rounded-full flex items-center justify-center text-xs font-bold text-white"
+            className="w-6 h-6 bg-[#0FB981] rounded-full flex items-center justify-center text-xs font-bold text-white"
           >
             {unreadCount}
           </motion.div>
@@ -45,7 +43,7 @@ export default function MessagesCard({ className = "" }: MessagesCardProps) {
         {/* Message Previews */}
         <div className="space-y-3">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center text-sm font-bold text-white">
+            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#0FB981] to-emerald-600 flex items-center justify-center text-sm font-bold text-white">
               J
             </div>
             <div className="flex-1 min-w-0">
@@ -55,7 +53,7 @@ export default function MessagesCard({ className = "" }: MessagesCardProps) {
           </div>
 
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center text-sm font-bold text-white">
+            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-gray-400 to-gray-600 flex items-center justify-center text-sm font-bold text-white">
               L
             </div>
             <div className="flex-1 min-w-0">
@@ -72,7 +70,7 @@ export default function MessagesCard({ className = "" }: MessagesCardProps) {
               initial={{ opacity: 0, y: 20, scale: 0.9 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -10, scale: 0.95 }}
-              className="absolute -top-2 left-4 right-4 bg-emerald-500 text-white text-xs font-medium px-3 py-2 rounded-lg shadow-lg"
+              className="absolute -top-2 left-4 right-4 bg-[#0FB981] text-white text-xs font-medium px-3 py-2 rounded-lg shadow-lg"
             >
               New message from Mike Jones
             </motion.div>

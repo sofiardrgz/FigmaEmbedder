@@ -28,15 +28,13 @@ export default function MarketingCard({ className = "" }: MarketingCardProps) {
 
   return (
     <div 
-      className={`relative rounded-xl border border-gray-800/50 bg-gradient-to-br from-gray-900/40 to-gray-800/20 backdrop-blur-sm ${className}`} 
+      className={`relative ${className}`} 
       style={{ width: '260px', height: '140px' }}
     >
-      <div className="absolute inset-0 bg-gradient-to-br from-pink-500/5 to-transparent rounded-xl" />
-      
-      <div className="relative p-4 h-full flex flex-col justify-center">
+      <div className="relative p-4 pb-6 h-full flex flex-col justify-center">
         {/* Trending Indicator */}
         <div className="flex justify-end mb-2">
-          <div className="flex items-center gap-1 text-emerald-400 text-xs font-medium bg-emerald-500/10 px-2 py-1 rounded-full">
+          <div className="flex items-center gap-1 text-white text-xs font-medium bg-[#0FB981] px-2 py-1 rounded-full">
             <TrendingUp className="w-3 h-3" />
             +12%
           </div>
@@ -44,15 +42,9 @@ export default function MarketingCard({ className = "" }: MarketingCardProps) {
 
         {/* Main Metrics */}
         <div className="text-center mb-4">
-          <motion.div 
-            key={metrics.impressions}
-            initial={{ scale: 0.95, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.5 }}
-            className="text-2xl font-bold text-white mb-1"
-          >
+          <div className="text-2xl font-medium text-white mb-1">
             {(metrics.impressions / 1000).toFixed(0)}K
-          </motion.div>
+          </div>
           <div className="text-sm text-gray-400">campaign impressions</div>
         </div>
 
@@ -67,7 +59,7 @@ export default function MarketingCard({ className = "" }: MarketingCardProps) {
               initial={{ width: 0 }}
               animate={{ width: `${metrics.engagement}%` }}
               transition={{ duration: 1, ease: "easeOut" }}
-              className="h-full bg-gradient-to-r from-pink-500 to-purple-500 rounded-full"
+              className="h-full bg-[#0FB981] rounded-full"
             />
           </div>
         </div>

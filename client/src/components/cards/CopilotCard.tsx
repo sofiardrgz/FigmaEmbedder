@@ -25,16 +25,14 @@ export default function CopilotCard({ className = "" }: CopilotCardProps) {
 
   return (
     <div 
-      className={`relative rounded-xl border border-gray-800/50 bg-gradient-to-br from-gray-900/40 to-gray-800/20 backdrop-blur-sm ${className}`} 
+      className={`relative ${className}`} 
       style={{ width: '260px', height: '140px' }}
     >
-      <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-transparent rounded-xl" />
-      
       <div className="relative p-4 h-full flex flex-col justify-center">
         {/* AI Status */}
         <div className="flex items-center justify-center gap-2 mb-4">
-          <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
-          <span className="text-sm font-medium text-gray-300">AI Assistant Active</span>
+          <div className="w-2 h-2 bg-[#0FB981] rounded-full animate-pulse" />
+          <span className="text-sm font-medium text-gray-300">Smart Squatch Active</span>
         </div>
 
         {/* Conversation Flow */}
@@ -49,7 +47,7 @@ export default function CopilotCard({ className = "" }: CopilotCardProps) {
               <div className={`flex items-center gap-2 px-3 py-2 rounded-lg text-xs ${
                 msg.type === 'user' 
                   ? 'bg-gray-700 text-gray-200' 
-                  : 'bg-emerald-500/20 text-emerald-300'
+                  : 'bg-[#0FB981]/20 text-[#0FB981]'
               }`}>
                 <msg.icon className="w-3 h-3" />
                 {msg.text}
