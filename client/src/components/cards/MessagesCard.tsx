@@ -17,7 +17,6 @@ export default function MessagesCard({ className = "" }: MessagesCardProps) {
     >
       <div className="p-4 h-full flex flex-col">
         <div className="text-center mb-4">
-          <h3 className="font-normal text-[14px] text-gray-300 mb-2">Smart Squatch</h3>
           <div className="text-xs text-gray-400">Messages</div>
         </div>
         
