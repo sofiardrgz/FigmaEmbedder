@@ -60,7 +60,7 @@ export default function MessagesCard({ className = "" }: MessagesCardProps) {
       style={{ 
         backgroundColor: 'transparent', 
         width: '260px', 
-        height: '280px',
+        height: '140px',
         border: 'none',
         overflow: 'visible'
       }}

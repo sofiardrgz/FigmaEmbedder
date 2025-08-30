@@ -38,11 +38,11 @@ export default function PaymentsCard({ className = "" }: PaymentsCardProps) {
       style={{ 
         backgroundColor: 'transparent', 
         width: '260px', 
-        height: '280px',
+        height: '140px',
         border: 'none'
       }}
     >
-      <div className="px-6 py-6 h-full flex flex-col justify-center">
+      <div className="px-3 py-2 h-full flex flex-col justify-center">
         <div className="flex-1 space-y-4">
           {/* Revenue Summary */}
           <motion.div 
