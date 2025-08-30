@@ -22,15 +22,12 @@ export default function ContactsCard({ className = "" }: ContactsCardProps) {
       className={`text-gray-300 rounded-lg overflow-hidden ${className}`} 
       style={{ 
         backgroundColor: '#0d0d0d', 
-        width: '220px', 
+        width: '260px', 
         height: '300px',
         border: '1px solid #374151'
       }}
     >
       <div className="p-4 h-full flex flex-col">
-        <div className="text-center mb-4">
-          <div className="text-xs text-gray-400">Contacts</div>
-        </div>
         
         {/* New Contact Notification */}
         <motion.div 
