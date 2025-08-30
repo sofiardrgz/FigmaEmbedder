@@ -34,39 +34,111 @@
 - **Marketing**: `/embed/marketing` | `/embed/marketing/no-frame`
 - **Payments**: `/embed/payments` | `/embed/payments/no-frame`
 
-### Compact Card Components (220px × 300px)
-- **Sales Card**: `/card/sales`
-- **Messages Card**: `/card/messages`
-- **Contacts Card**: `/card/contacts`
-- **Calendar Card**: `/card/calendar`
-- **AI Copilot Card**: `/card/copilot`
-- **Marketing Card**: `/card/marketing`
-- **Payments Card**: `/card/payments`
+### Compact Card Components (260px × 300px) - Updated with Enhanced Animations
+- **Sales Card**: `/card/sales` - Chart bars animate smoothly, KPI numbers pulse
+- **Messages Card**: `/card/messages` - New message slides in and opens realistically  
+- **Contacts Card**: `/card/contacts` - "New Lead - Robert Miller" pulsing notifications
+- **Calendar Card**: `/card/calendar` - "Appointment Booked" alerts, clean interface
+- **AI Copilot Card**: `/card/copilot` - Full chat interface with calling animation
+- **Marketing Card**: `/card/marketing` - Growing numbers, animated thumbs up icons
+- **Payments Card**: `/card/payments` - "Invoice Paid" notifications, no yellow colors
 
 ## Embedding Instructions
 
 ### For Website Integration
+
+#### Full Dashboard Embeds (900px × 600px)
 ```html
 <!-- Animated Demo with Safari Frame -->
-<iframe src="https://yoursite.netlify.app/embed/demo" 
+<iframe src="https://68b2700c16e24b00087a7111--dazzling-parfait-e94c2f.netlify.app/embed/demo" 
         width="900" height="600" 
         frameborder="0">
 </iframe>
 
 <!-- Individual Dashboard (Frameless) -->
-<iframe src="https://yoursite.netlify.app/embed/sales/no-frame" 
+<iframe src="https://68b2700c16e24b00087a7111--dazzling-parfait-e94c2f.netlify.app/embed/sales/no-frame" 
         width="900" height="600" 
         frameborder="0">
 </iframe>
 ```
 
+#### Compact Cards (260px × 300px) - Perfect for Website Previews
+```html
+<!-- Sales Dashboard Card with Enhanced Animations -->
+<iframe src="https://68b2700c16e24b00087a7111--dazzling-parfait-e94c2f.netlify.app/card/sales" 
+        width="260" height="300" 
+        frameborder="0" 
+        style="border-radius: 8px; border: 1px solid #374151;">
+</iframe>
+
+<!-- Messages Card with New Message Sliding Animation -->
+<iframe src="https://68b2700c16e24b00087a7111--dazzling-parfait-e94c2f.netlify.app/card/messages" 
+        width="260" height="300" 
+        frameborder="0" 
+        style="border-radius: 8px; border: 1px solid #374151;">
+</iframe>
+
+<!-- Contacts Card with New Lead Notifications -->
+<iframe src="https://68b2700c16e24b00087a7111--dazzling-parfait-e94c2f.netlify.app/card/contacts" 
+        width="260" height="300" 
+        frameborder="0" 
+        style="border-radius: 8px; border: 1px solid #374151;">
+</iframe>
+
+<!-- Calendar Card with Appointment Booking Alerts -->
+<iframe src="https://68b2700c16e24b00087a7111--dazzling-parfait-e94c2f.netlify.app/card/calendar" 
+        width="260" height="300" 
+        frameborder="0" 
+        style="border-radius: 8px; border: 1px solid #374151;">
+</iframe>
+
+<!-- AI Copilot Card with Chat Interface -->
+<iframe src="https://68b2700c16e24b00087a7111--dazzling-parfait-e94c2f.netlify.app/card/copilot" 
+        width="260" height="300" 
+        frameborder="0" 
+        style="border-radius: 8px; border: 1px solid #374151;">
+</iframe>
+
+<!-- Marketing Card with Growing Engagement Numbers -->
+<iframe src="https://68b2700c16e24b00087a7111--dazzling-parfait-e94c2f.netlify.app/card/marketing" 
+        width="260" height="300" 
+        frameborder="0" 
+        style="border-radius: 8px; border: 1px solid #374151;">
+</iframe>
+
+<!-- Payments Card with Invoice Paid Notifications -->
+<iframe src="https://68b2700c16e24b00087a7111--dazzling-parfait-e94c2f.netlify.app/card/payments" 
+        width="260" height="300" 
+        frameborder="0" 
+        style="border-radius: 8px; border: 1px solid #374151;">
+</iframe>
+```
+
 ### Responsive Embedding
 ```html
+<!-- Responsive Full Dashboard -->
 <div style="position: relative; width: 100%; max-width: 900px; height: 600px;">
-  <iframe src="https://yoursite.netlify.app/embed/demo/no-frame" 
+  <iframe src="https://68b2700c16e24b00087a7111--dazzling-parfait-e94c2f.netlify.app/embed/demo/no-frame" 
           style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
           frameborder="0">
   </iframe>
+</div>
+
+<!-- Card Grid Layout -->
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; max-width: 1200px;">
+  <!-- Sales Card -->
+  <iframe src="https://68b2700c16e24b00087a7111--dazzling-parfait-e94c2f.netlify.app/card/sales" 
+          width="260" height="300" frameborder="0" 
+          style="border-radius: 8px; border: 1px solid #374151;">
+  </iframe>
+  
+  <!-- Messages Card -->
+  <iframe src="https://68b2700c16e24b00087a7111--dazzling-parfait-e94c2f.netlify.app/card/messages" 
+          width="260" height="300" frameborder="0" 
+          style="border-radius: 8px; border: 1px solid #374151;">
+  </iframe>
+  
+  <!-- Add more cards as needed -->
 </div>
 ```
 
