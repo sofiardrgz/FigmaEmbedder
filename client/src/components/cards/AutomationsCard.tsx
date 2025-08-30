@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { CheckCircle } from 'lucide-react';
 
 interface AutomationsCardProps {
   className?: string;
@@ -17,12 +16,6 @@ export default function AutomationsCard({ className = "" }: AutomationsCardProps
     return () => clearInterval(interval);
   }, []);
 
-  const workflows = [
-    { name: "Lead Qualification", status: completedSteps >= 1 ? "completed" : "pending" },
-    { name: "Email Follow-up", status: completedSteps >= 2 ? "completed" : "pending" },
-    { name: "CRM Update", status: completedSteps >= 3 ? "completed" : "pending" },
-  ];
-
   return (
     <div 
       className={`text-gray-300 rounded-2xl overflow-hidden ${className}`} 
@@ -33,34 +26,42 @@ export default function AutomationsCard({ className = "" }: AutomationsCardProps
         border: 'none'
       }}
     >
-      <div className="px-4 py-3 h-full">
-        <div className="text-xs text-gray-400 mb-2 text-center">Workflow Progress</div>
-        <div className="space-y-2">
-          {workflows.map((workflow, i) => (
-            <div 
+      <div className="px-4 py-4 h-full flex flex-col justify-center">
+        {/* Header */}
+        <div className="text-center mb-3">
+          <div className="text-sm text-gray-400 mb-1">Automations</div>
+          <motion.div 
+            animate={{ scale: [1, 1.02, 1] }}
+            transition={{ 
+              repeat: Infinity, 
+              duration: 3,
+              ease: "easeInOut",
+              repeatType: "reverse"
+            }}
+            className="text-lg font-medium text-white"
+          >
+            {completedSteps}/3 Active
+          </motion.div>
+        </div>
+
+        {/* Progress Circles */}
+        <div className="flex justify-center gap-2">
+          {[1, 2, 3].map((step, i) => (
+            <motion.div 
               key={i}
-              className="flex items-center gap-2"
-            >
-              <motion.div
-                animate={workflow.status === "completed" ? { 
-                  scale: [1, 1.1, 1]
-                } : { opacity: [0.5, 1, 0.5] }}
-                transition={{ 
-                  duration: 2,
-                  ease: "easeInOut",
-                  repeat: Infinity,
-                  repeatType: "reverse"
-                }}
-              >
-                <CheckCircle 
-                  className="w-4 h-4" 
-                  style={{ 
-                    color: workflow.status === "completed" ? '#0FB981' : '#6b7280' 
-                  }} 
-                />
-              </motion.div>
-              <div className="text-xs text-gray-300">{workflow.name}</div>
-            </div>
+              animate={{ 
+                scale: completedSteps >= step ? [1, 1.1, 1] : 1,
+                opacity: completedSteps >= step ? 1 : 0.3
+              }}
+              transition={{ 
+                duration: 1,
+                ease: "easeInOut",
+                repeat: completedSteps >= step ? Infinity : 0,
+                repeatType: "reverse"
+              }}
+              className="w-4 h-4 rounded-full"
+              style={{ backgroundColor: '#0FB981' }}
+            />
           ))}
         </div>
       </div>

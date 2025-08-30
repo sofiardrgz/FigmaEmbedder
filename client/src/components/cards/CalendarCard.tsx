@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Calendar } from 'lucide-react';
 
 interface CalendarCardProps {
   className?: string;
@@ -18,12 +17,6 @@ export default function CalendarCard({ className = "" }: CalendarCardProps) {
     return () => clearInterval(interval);
   }, []);
 
-  const appointments = [
-    { time: "10:00", title: "Sales Demo", client: "TechCorp" },
-    { time: "14:30", title: "Follow-up", client: "StartupXYZ" },
-    { time: "16:00", title: "Strategy", client: "InnovateLab" },
-  ];
-
   return (
     <div 
       className={`text-gray-300 rounded-2xl overflow-hidden ${className}`} 
@@ -34,39 +27,25 @@ export default function CalendarCard({ className = "" }: CalendarCardProps) {
         border: 'none'
       }}
     >
-      <div className="px-4 py-3 h-full flex flex-col">
+      <div className="px-4 py-4 h-full flex flex-col justify-center">
         {/* Header */}
-        <div className="text-xs text-gray-400 mb-2 text-center flex items-center justify-center gap-1">
-          <Calendar className="w-3 h-3" />
-          Today's Schedule
+        <div className="text-center mb-3">
+          <div className="text-sm text-gray-400 mb-1">Calendar</div>
+          <div className="text-lg font-medium text-white">5 Today</div>
         </div>
 
-        {/* New Appointment Alert */}
+        {/* Appointment Alert */}
         {newAppointment && (
           <motion.div 
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
-            className="mb-2 px-2 py-1 rounded text-center"
-            style={{ backgroundColor: '#0FB981', fontSize: '11px' }}
+            className="text-center text-sm py-1 rounded"
+            style={{ backgroundColor: '#0FB981', color: 'white' }}
           >
             Appointment booked
           </motion.div>
         )}
-
-        {/* Appointments */}
-        <div className="space-y-1 flex-1">
-          {appointments.map((apt, i) => (
-            <div 
-              key={i}
-              className="flex items-center gap-2 text-xs"
-            >
-              <div className="w-10 text-gray-400">{apt.time}</div>
-              <div className="flex-1 text-gray-300 truncate">{apt.title}</div>
-              <div className="text-gray-400 text-right">{apt.client}</div>
-            </div>
-          ))}
-        </div>
       </div>
     </div>
   );
