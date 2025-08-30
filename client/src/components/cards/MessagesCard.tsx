@@ -15,17 +15,17 @@ export default function MessagesCard({ className = "" }: MessagesCardProps) {
       setMessageCount(3);
       setHighlightedMessage(-1);
       
-      // After 1 second, add new message and highlight it
+      // After 3 seconds, add new message and highlight it
       setTimeout(() => {
         setMessageCount(4);
         setHighlightedMessage(3);
         
-        // After 2 more seconds, show it as "opened" (remove highlight)
+        // After 4 more seconds, show it as "opened" (remove highlight)
         setTimeout(() => {
           setHighlightedMessage(-1);
-        }, 2000);
-      }, 1000);
-    }, 5000);
+        }, 4000);
+      }, 3000);
+    }, 12000); // Much longer cycle
 
     return () => clearInterval(interval);
   }, []);
@@ -81,13 +81,21 @@ export default function MessagesCard({ className = "" }: MessagesCardProps) {
               {i === highlightedMessage && (
                 <motion.div 
                   animate={{ 
-                    scale: [1, 1.5, 1],
-                    opacity: [0.7, 1, 0.7]
+                    scale: [1, 1.3, 1.1, 1.4, 1],
+                    opacity: [0.6, 1, 0.8, 1, 0.6],
+                    boxShadow: [
+                      "0 0 0px rgba(34, 197, 94, 0)",
+                      "0 0 8px rgba(34, 197, 94, 0.6)",
+                      "0 0 4px rgba(34, 197, 94, 0.4)",
+                      "0 0 12px rgba(34, 197, 94, 0.8)",
+                      "0 0 0px rgba(34, 197, 94, 0)"
+                    ]
                   }}
                   transition={{ 
                     repeat: Infinity, 
-                    duration: 1.5, 
-                    ease: "easeInOut"
+                    duration: 3,
+                    ease: "easeInOut",
+                    times: [0, 0.3, 0.5, 0.7, 1]
                   }}
                   className="w-2 h-2 bg-green-500 rounded-full"
                 />

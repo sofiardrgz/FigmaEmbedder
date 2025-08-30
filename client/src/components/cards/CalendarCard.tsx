@@ -14,11 +14,11 @@ export default function CalendarCard({ className = "" }: CalendarCardProps) {
       // Show new appointment booking
       setShowNewAppointment(true);
       
-      // Hide after 4 seconds
+      // Hide after 6 seconds
       setTimeout(() => {
         setShowNewAppointment(false);
-      }, 4000);
-    }, 5000);
+      }, 6000);
+    }, 14000); // Much longer cycle
 
     return () => clearInterval(interval);
   }, []);

@@ -16,16 +16,16 @@ export default function ContactsCard({ className = "" }: ContactsCardProps) {
       setShowNewContact(true);
       setHighlightNew(true);
       
-      // After 3 seconds, add to list and remove highlight
+      // After 5 seconds, add to list and remove highlight
       setTimeout(() => {
         setHighlightNew(false);
-      }, 3000);
+      }, 5000);
       
-      // Reset after 5 seconds
+      // Reset after 8 seconds
       setTimeout(() => {
         setShowNewContact(false);
-      }, 4500);
-    }, 5000);
+      }, 8000);
+    }, 15000); // Much longer cycle
 
     return () => clearInterval(interval);
   }, []);
@@ -57,8 +57,12 @@ export default function ContactsCard({ className = "" }: ContactsCardProps) {
               y: 0
             }}
             transition={{ 
-              duration: 0.5,
-              scale: { repeat: highlightNew ? Infinity : 0, duration: 1.5 }
+              duration: 0.8,
+              scale: { 
+                repeat: highlightNew ? Infinity : 0, 
+                duration: 2.5,
+                ease: "easeInOut" 
+              }
             }}
             className="bg-green-600/20 border border-green-500 p-3 rounded mb-4"
           >

@@ -16,12 +16,12 @@ export default function PaymentsCard({ className = "" }: PaymentsCardProps) {
       setShowPayment(true);
       setHighlightPaid(0); // Highlight first invoice as newly paid
       
-      // Hide notification after 3 seconds
+      // Hide notification after 5 seconds
       setTimeout(() => {
         setShowPayment(false);
         setHighlightPaid(-1);
-      }, 3000);
-    }, 5000);
+      }, 5000);
+    }, 13000); // Much longer cycle
 
     return () => clearInterval(interval);
   }, []);
@@ -74,11 +74,21 @@ export default function PaymentsCard({ className = "" }: PaymentsCardProps) {
               <span className="text-sm text-gray-400">Total Revenue</span>
             </div>
             <motion.div 
-              animate={{ scale: [1, 1.1, 1] }}
+              animate={{ 
+                scale: [1, 1.04, 1, 1.06, 1],
+                textShadow: [
+                  "0 0 0px rgba(34, 197, 94, 0)",
+                  "0 0 4px rgba(34, 197, 94, 0.2)",
+                  "0 0 0px rgba(34, 197, 94, 0)",
+                  "0 0 6px rgba(34, 197, 94, 0.3)",
+                  "0 0 0px rgba(34, 197, 94, 0)"
+                ]
+              }}
               transition={{ 
                 repeat: Infinity, 
-                duration: 5, 
-                ease: "easeInOut" 
+                duration: 9, 
+                ease: "easeInOut",
+                times: [0, 0.25, 0.5, 0.75, 1]
               }}
               className="text-xl font-bold text-gray-300"
             >

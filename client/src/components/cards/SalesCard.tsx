@@ -6,15 +6,6 @@ interface SalesCardProps {
 }
 
 export default function SalesCard({ className = "" }: SalesCardProps) {
-  const [animationCycle, setAnimationCycle] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setAnimationCycle(prev => prev + 1);
-    }, 5000); // Loop every 5 seconds
-
-    return () => clearInterval(interval);
-  }, []);
 
   return (
     <div 
@@ -38,11 +29,21 @@ export default function SalesCard({ className = "" }: SalesCardProps) {
             >
               <div className="text-xs text-gray-400">Revenue</div>
               <motion.div 
-                animate={{ scale: [1, 1.1, 1] }}
+                animate={{ 
+                  scale: [1, 1.05, 1, 1.08, 1],
+                  textShadow: [
+                    "0 0 0px rgba(34, 197, 94, 0)",
+                    "0 0 8px rgba(34, 197, 94, 0.3)",
+                    "0 0 0px rgba(34, 197, 94, 0)",
+                    "0 0 6px rgba(34, 197, 94, 0.2)",
+                    "0 0 0px rgba(34, 197, 94, 0)"
+                  ]
+                }}
                 transition={{ 
                   repeat: Infinity, 
-                  duration: 5, 
-                  ease: "easeInOut" 
+                  duration: 8,
+                  ease: "easeInOut",
+                  times: [0, 0.3, 0.5, 0.8, 1]
                 }}
                 className="text-lg font-bold text-gray-300"
               >
@@ -58,12 +59,22 @@ export default function SalesCard({ className = "" }: SalesCardProps) {
             >
               <div className="text-xs text-gray-400">Deals</div>
               <motion.div 
-                animate={{ scale: [1, 1.1, 1] }}
+                animate={{ 
+                  scale: [1, 1.06, 1, 1.04, 1],
+                  textShadow: [
+                    "0 0 0px rgba(34, 197, 94, 0)",
+                    "0 0 6px rgba(34, 197, 94, 0.2)",
+                    "0 0 0px rgba(34, 197, 94, 0)",
+                    "0 0 4px rgba(34, 197, 94, 0.1)",
+                    "0 0 0px rgba(34, 197, 94, 0)"
+                  ]
+                }}
                 transition={{ 
                   repeat: Infinity, 
-                  duration: 5, 
-                  delay: 0.5,
-                  ease: "easeInOut" 
+                  duration: 10,
+                  delay: 2,
+                  ease: "easeInOut",
+                  times: [0, 0.2, 0.4, 0.7, 1]
                 }}
                 className="text-lg font-bold text-gray-300"
               >
@@ -87,13 +98,22 @@ export default function SalesCard({ className = "" }: SalesCardProps) {
                   key={i}
                   initial={{ height: 0 }}
                   animate={{ 
-                    height: [`${height * 0.6}%`, `${height}%`, `${height * 0.8}%`, `${height}%`]
+                    height: [
+                      `${height * 0.7}%`, 
+                      `${height}%`, 
+                      `${height * 0.85}%`, 
+                      `${height * 1.1}%`,
+                      `${height * 0.9}%`,
+                      `${height}%`
+                    ],
+                    opacity: [0.7, 1, 0.8, 1, 0.9, 1]
                   }}
                   transition={{ 
-                    delay: 1 + i * 0.2,
+                    delay: i * 0.5,
                     repeat: Infinity,
-                    duration: 5,
-                    ease: "easeInOut"
+                    duration: 12 + i * 0.8,
+                    ease: "easeInOut",
+                    times: [0, 0.2, 0.4, 0.6, 0.8, 1]
                   }}
                   className="bg-green-500 w-2 rounded-sm"
                 />

@@ -13,15 +13,15 @@ export default function CopilotCard({ className = "" }: CopilotCardProps) {
     const interval = setInterval(() => {
       setChatState(0);
       
-      // Show response after 1 second
-      setTimeout(() => setChatState(1), 1000);
+      // Show response after 2 seconds
+      setTimeout(() => setChatState(1), 2000);
       
-      // Show calling after 3 seconds
-      setTimeout(() => setChatState(2), 3000);
+      // Show calling after 5 seconds
+      setTimeout(() => setChatState(2), 5000);
       
-      // Reset after 5 seconds
-      setTimeout(() => setChatState(0), 4500);
-    }, 5000);
+      // Reset after 10 seconds
+      setTimeout(() => setChatState(0), 10000);
+    }, 16000); // Much longer cycle
 
     return () => clearInterval(interval);
   }, []);
@@ -58,13 +58,14 @@ export default function CopilotCard({ className = "" }: CopilotCardProps) {
               <div className="flex items-start gap-3">
                 <motion.div
                   animate={{ 
-                    scale: [1, 1.1, 1],
-                    color: ["#9ca3af", "#22c55e", "#9ca3af"]
+                    scale: [1, 1.05, 1, 1.08, 1],
+                    color: ["#9ca3af", "#22c55e", "#16a34a", "#22c55e", "#9ca3af"]
                   }}
                   transition={{ 
                     repeat: Infinity, 
-                    duration: 2, 
-                    ease: "easeInOut"
+                    duration: 4, 
+                    ease: "easeInOut",
+                    times: [0, 0.25, 0.5, 0.75, 1]
                   }}
                 >
                   <Bot className="w-5 h-5 flex-shrink-0" />
@@ -87,8 +88,14 @@ export default function CopilotCard({ className = "" }: CopilotCardProps) {
               className="bg-green-600/20 border border-green-500 rounded p-4 text-center"
             >
               <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ repeat: Infinity, duration: 2, ease: "linear" }}
+                animate={{ 
+                  rotate: [0, 360],
+                  scale: [1, 1.1, 1]
+                }}
+                transition={{ 
+                  rotate: { repeat: Infinity, duration: 3, ease: "linear" },
+                  scale: { repeat: Infinity, duration: 2, ease: "easeInOut" }
+                }}
                 className="inline-block mb-2"
               >
                 <Phone className="w-6 h-6 text-green-400" />

@@ -12,7 +12,7 @@ export default function MarketingCard({ className = "" }: MarketingCardProps) {
   useEffect(() => {
     const interval = setInterval(() => {
       setAnimationState(prev => (prev + 1) % 3);
-    }, 5000);
+    }, 8000); // Slower transitions
 
     return () => clearInterval(interval);
   }, []);
@@ -48,12 +48,20 @@ export default function MarketingCard({ className = "" }: MarketingCardProps) {
             </div>
             <motion.div 
               animate={{ 
-                scale: [1, 1.1, 1]
+                scale: [1, 1.05, 1.02, 1.08, 1],
+                textShadow: [
+                  "0 0 0px rgba(34, 197, 94, 0)",
+                  "0 0 6px rgba(34, 197, 94, 0.3)",
+                  "0 0 2px rgba(34, 197, 94, 0.1)",
+                  "0 0 8px rgba(34, 197, 94, 0.4)",
+                  "0 0 0px rgba(34, 197, 94, 0)"
+                ]
               }}
               transition={{ 
                 repeat: Infinity, 
-                duration: 5, 
-                ease: "easeInOut" 
+                duration: 7, 
+                ease: "easeInOut",
+                times: [0, 0.3, 0.5, 0.8, 1]
               }}
               className="text-xl font-bold text-gray-300"
             >
@@ -75,9 +83,9 @@ export default function MarketingCard({ className = "" }: MarketingCardProps) {
                   scale: animationState === i ? 1.02 : 1
                 }}
                 transition={{ 
-                  delay: i * 0.1,
-                  backgroundColor: { duration: 0.3 },
-                  scale: { duration: 0.3 }
+                  delay: i * 0.2,
+                  backgroundColor: { duration: 1.5, ease: "easeInOut" },
+                  scale: { duration: 1.2, ease: "easeInOut" }
                 }}
                 className="bg-gray-800/50 p-3 rounded flex items-center justify-between"
               >
