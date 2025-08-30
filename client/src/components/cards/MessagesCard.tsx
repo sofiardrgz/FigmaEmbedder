@@ -44,7 +44,7 @@ export default function MessagesCard({ className = "" }: MessagesCardProps) {
       style={{ 
         backgroundColor: 'transparent', 
         width: '260px', 
-        height: '300px',
+        height: '320px',
         border: 'none'
       }}
     >

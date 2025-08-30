@@ -40,7 +40,7 @@ export default function PaymentsCard({ className = "" }: PaymentsCardProps) {
       style={{ 
         backgroundColor: 'transparent', 
         width: '260px', 
-        height: '300px',
+        height: '320px',
         border: 'none'
       }}
     >

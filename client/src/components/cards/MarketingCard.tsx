@@ -45,7 +45,7 @@ export default function MarketingCard({ className = "" }: MarketingCardProps) {
       style={{ 
         backgroundColor: 'transparent', 
         width: '260px', 
-        height: '300px',
+        height: '320px',
         border: 'none'
       }}
     >
@@ -81,7 +81,7 @@ export default function MarketingCard({ className = "" }: MarketingCardProps) {
           </motion.div>
 
           {/* Platform Stats */}
-          <div className="space-y-3">
+          <div className="space-y-2">
             {platforms.map((platform, i) => (
               <motion.div 
                 key={i}
@@ -89,25 +89,26 @@ export default function MarketingCard({ className = "" }: MarketingCardProps) {
                 animate={{ 
                   opacity: 1, 
                   x: 0,
-                  backgroundColor: animationState === i ? "rgba(34, 197, 94, 0.1)" : "rgba(31, 41, 55, 0.5)",
-                  scale: animationState === i ? 1.02 : 1
+                  backgroundColor: animationState === i ? "rgba(15, 185, 129, 0.1)" : "rgba(31, 41, 55, 0.3)",
+                  scale: animationState === i ? 1.01 : 1
                 }}
                 transition={{ 
-                  delay: i * 0.2,
-                  backgroundColor: { duration: 1.5, ease: "easeInOut" },
-                  scale: { duration: 1.2, ease: "easeInOut" }
+                  delay: i * 0.1,
+                  backgroundColor: { duration: 2, ease: "easeInOut" },
+                  scale: { duration: 2, ease: "easeInOut" }
                 }}
-                className="bg-gray-800/30 backdrop-blur-sm p-4 rounded-xl flex items-center justify-between"
+                className="bg-gray-800/30 backdrop-blur-sm p-3 rounded-xl flex items-center justify-between"
               >
                 <div className="flex items-center gap-3">
                   <motion.div
-                    animate={animationState === i ? { 
-                      scale: [1, 1.05, 1],
-                      rotate: [0, 10, 0]
-                    } : {}}
+                    animate={{ 
+                      scale: animationState === i ? [1, 1.1, 1] : [1, 1.02, 1],
+                      rotate: animationState === i ? [0, 5, 0] : [0, 0, 0]
+                    }}
                     transition={{ 
-                      duration: 1.2,
+                      duration: 2,
                       ease: "easeInOut",
+                      repeat: Infinity,
                       repeatType: "reverse"
                     }}
                   >
@@ -120,13 +121,14 @@ export default function MarketingCard({ className = "" }: MarketingCardProps) {
                 </div>
                 <div className="text-right">
                   <motion.div 
-                    animate={animationState === i ? { 
-                      scale: [1, 1.05, 1],
-                      color: ["#d1d5db", "#ffffff", "#d1d5db"]
-                    } : {}}
+                    animate={{ 
+                      scale: animationState === i ? [1, 1.03, 1] : [1, 1.01, 1]
+                    }}
                     transition={{ 
-                      duration: 1.5,
-                      ease: "easeInOut"
+                      duration: 2,
+                      ease: "easeInOut",
+                      repeat: Infinity,
+                      repeatType: "reverse"
                     }}
                     className="text-sm font-bold text-gray-300"
                   >

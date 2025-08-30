@@ -38,7 +38,7 @@ export default function SalesCard({ className = "" }: SalesCardProps) {
       style={{ 
         backgroundColor: 'transparent', 
         width: '260px', 
-        height: '300px',
+        height: '320px',
         border: 'none'
       }}
     >

@@ -36,7 +36,7 @@ export default function CalendarCard({ className = "" }: CalendarCardProps) {
       style={{ 
         backgroundColor: 'transparent', 
         width: '260px', 
-        height: '300px',
+        height: '320px',
         border: 'none'
       }}
     >
