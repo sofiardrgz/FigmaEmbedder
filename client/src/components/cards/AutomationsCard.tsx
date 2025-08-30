@@ -25,7 +25,7 @@ export default function AutomationsCard({ className = "" }: AutomationsCardProps
 
   return (
     <div 
-      className={`relative ${className}`} 
+      className={`relative mx-auto ${className}`} 
       style={{ width: '260px', height: '140px' }}
     >
       <div className="relative p-4 h-full flex flex-col justify-center">
