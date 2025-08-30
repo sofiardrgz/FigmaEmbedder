@@ -86,19 +86,9 @@ export default function CopilotCard({ className = "" }: CopilotCardProps) {
               transition={{ duration: 0.5 }}
               className="bg-gray-800/40 backdrop-blur-sm rounded-xl p-5 text-center space-y-3"
             >
-              <motion.div
-                animate={{ 
-                  rotate: [0, 360],
-                  scale: [1, 1.05, 1]
-                }}
-                transition={{ 
-                  rotate: { repeat: Infinity, duration: 2, ease: "linear" },
-                  scale: { repeat: Infinity, duration: 1.5, ease: "easeInOut", repeatType: "reverse" }
-                }}
-                className="inline-block mb-2"
-              >
+              <div className="inline-block mb-2">
                 <Phone className="w-6 h-6" style={{ color: '#0FB981' }} />
-              </motion.div>
+              </div>
               <div className="text-sm font-medium" style={{ color: '#0FB981' }}>Calling...</div>
               <div className="text-sm text-gray-300 mt-1">Robert Miller</div>
               <motion.div 
