@@ -60,13 +60,13 @@ export default function MessagesCard({ className = "" }: MessagesCardProps) {
       style={{ 
         backgroundColor: 'transparent', 
         width: '260px', 
-        height: '320px',
+        height: '280px',
         border: 'none',
         overflow: 'visible'
       }}
     >
-      <div className="px-6 py-4 h-full flex flex-col">
-        <div className="flex-1 space-y-3 overflow-visible">
+      <div className="px-4 py-3 h-full flex flex-col">
+        <div className="flex-1 space-y-2 overflow-visible">
           {/* New message slides in from top */}
           {showNewMessage && (
             <motion.div 
@@ -81,20 +81,19 @@ export default function MessagesCard({ className = "" }: MessagesCardProps) {
                 duration: 0.6,
                 ease: "easeOut"
               }}
-              className="bg-gray-800/30 backdrop-blur-sm p-3 rounded-xl flex items-start gap-3 border"
+              className="bg-gray-800/30 p-2 rounded-lg flex items-start gap-2 border"
               style={{ 
                 borderColor: highlightedMessage === 0 ? '#0FB981' : 'transparent', 
                 borderWidth: '1px',
                 backgroundColor: highlightedMessage === 0 ? 'rgba(15, 185, 129, 0.1)' : undefined
               }}
             >
-              <div className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0" style={{ backgroundColor: '#0FB981' }}>
+              <div className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0" style={{ backgroundColor: '#0FB981' }}>
                 {messages[0].name.split(' ').map(n => n[0]).join('')}
               </div>
               <div className="flex-1 min-w-0">
-                <div className="text-sm font-medium text-gray-200">{messages[0].name}</div>
-                <div className="text-sm text-gray-400">{messages[0].message}</div>
-                <div className="text-xs text-gray-500 mt-1">{messages[0].time}</div>
+                <div className="text-xs font-medium text-gray-200">{messages[0].name}</div>
+                <div className="text-xs text-gray-400">{messages[0].message}</div>
               </div>
               {highlightedMessage === 0 && (
                 <motion.div 
@@ -117,21 +116,15 @@ export default function MessagesCard({ className = "" }: MessagesCardProps) {
           
           {/* Static messages below */}
           {messages.slice(1, 4).map((msg, i) => (
-            <motion.div 
-              key={i + 1}
-              initial={{ opacity: 1 }}
-              animate={{ opacity: 1 }}
-              className="bg-gray-800/30 backdrop-blur-sm p-3 rounded-xl flex items-start gap-3"
-            >
-              <div className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0" style={{ backgroundColor: '#0FB981' }}>
+            <div className="bg-gray-800/30 p-2 rounded-lg flex items-start gap-2">
+              <div className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0" style={{ backgroundColor: '#0FB981' }}>
                 {msg.name.split(' ').map(n => n[0]).join('')}
               </div>
               <div className="flex-1 min-w-0">
-                <div className="text-sm font-medium text-gray-200">{msg.name}</div>
-                <div className="text-sm text-gray-400">{msg.message}</div>
-                <div className="text-xs text-gray-500 mt-1">{msg.time}</div>
+                <div className="text-xs font-medium text-gray-200">{msg.name}</div>
+                <div className="text-xs text-gray-400">{msg.message}</div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

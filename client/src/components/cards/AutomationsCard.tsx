@@ -43,7 +43,7 @@ export default function AutomationsCard({ className = "" }: AutomationsCardProps
       style={{ 
         backgroundColor: 'transparent', 
         width: '260px', 
-        height: '320px',
+        height: '280px',
         border: 'none'
       }}
     >

@@ -45,7 +45,7 @@ export default function MarketingCard({ className = "" }: MarketingCardProps) {
       style={{ 
         backgroundColor: 'transparent', 
         width: '260px', 
-        height: '320px',
+        height: '280px',
         border: 'none'
       }}
     >
