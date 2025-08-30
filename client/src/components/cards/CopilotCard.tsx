@@ -28,21 +28,22 @@ export default function CopilotCard({ className = "" }: CopilotCardProps) {
 
   return (
     <div 
-      className={`text-gray-300 rounded-lg overflow-hidden ${className}`} 
+      className={`text-gray-300 rounded-2xl overflow-hidden ${className}`} 
       style={{ 
-        backgroundColor: '#0d0d0d', 
+        backgroundColor: '#1c1c1e', 
         width: '260px', 
         height: '300px',
-        border: '1px solid #374151'
+        border: 'none',
+        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3)'
       }}
     >
-      <div className="p-4 h-full flex flex-col">
+      <div className="p-6 h-full flex flex-col">
         <div className="flex-1 space-y-4">
           {/* User Prompt */}
           <motion.div 
             initial={{ opacity: 1 }}
             animate={{ opacity: chatState >= 0 ? 1 : 0 }}
-            className="bg-gray-800/50 rounded p-3 ml-8"
+            className="bg-blue-600/20 backdrop-blur-sm rounded-xl p-4 ml-6"
           >
             <div className="text-sm text-gray-300">Call lead Robert Miller</div>
           </motion.div>
@@ -53,7 +54,7 @@ export default function CopilotCard({ className = "" }: CopilotCardProps) {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="bg-gray-800/50 border border-gray-600 rounded p-3 mr-8"
+              className="bg-gray-800/40 backdrop-blur-sm rounded-xl p-4 mr-6"
             >
               <div className="flex items-start gap-3">
                 <motion.div
@@ -84,7 +85,7 @@ export default function CopilotCard({ className = "" }: CopilotCardProps) {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5 }}
-              className="bg-gray-700/50 border border-gray-600 rounded p-4 text-center"
+              className="bg-gray-800/40 backdrop-blur-sm rounded-xl p-5 text-center"
             >
               <motion.div
                 animate={{ 

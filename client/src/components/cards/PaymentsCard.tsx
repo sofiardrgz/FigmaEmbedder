@@ -34,16 +34,17 @@ export default function PaymentsCard({ className = "" }: PaymentsCardProps) {
 
   return (
     <div 
-      className={`text-gray-300 rounded-lg overflow-hidden ${className}`} 
+      className={`text-gray-300 rounded-2xl overflow-hidden ${className}`} 
       style={{ 
-        backgroundColor: '#0d0d0d', 
+        backgroundColor: '#1c1c1e', 
         width: '260px', 
         height: '300px',
-        border: '1px solid #374151'
+        border: 'none',
+        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3)'
       }}
     >
-      <div className="p-4 h-full flex flex-col">
-        <div className="flex-1 space-y-4">
+      <div className="p-6 h-full flex flex-col">
+        <div className="flex-1 space-y-5">
           {/* New Payment Notification */}
           {showPayment && (
             <motion.div 
@@ -54,7 +55,7 @@ export default function PaymentsCard({ className = "" }: PaymentsCardProps) {
                 duration: 1.0,
                 ease: "easeOut"
               }}
-              className="bg-gray-700/50 border border-gray-600 p-3 rounded mb-4"
+              className="bg-gray-800/40 backdrop-blur-sm p-4 rounded-xl mb-5"
             >
               <div className="flex items-center gap-2 mb-2">
                 <motion.div
@@ -72,13 +73,13 @@ export default function PaymentsCard({ className = "" }: PaymentsCardProps) {
 
           {/* Revenue Summary */}
           <motion.div 
-            initial={{ scale: 0.9, opacity: 0 }}
+            initial={{ scale: 0.95, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            className="bg-gray-800/50 p-4 rounded text-center"
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="bg-gray-800/30 backdrop-blur-sm p-5 rounded-xl text-center"
           >
-            <div className="flex items-center justify-center gap-2 mb-2">
-              <DollarSign className="w-5 h-5 text-green-400" />
+            <div className="flex items-center justify-center gap-2 mb-3">
+              <DollarSign className="w-5 h-5 text-blue-400" />
               <span className="text-sm text-gray-400">Total Revenue</span>
             </div>
             <motion.div 
@@ -106,7 +107,7 @@ export default function PaymentsCard({ className = "" }: PaymentsCardProps) {
                 $24.5K
               </motion.span>
             </motion.div>
-            <div className="text-green-400 text-sm">+7% this month</div>
+            <div className="text-blue-400 text-sm">+7% this month</div>
           </motion.div>
 
           {/* Invoice List */}
@@ -126,14 +127,14 @@ export default function PaymentsCard({ className = "" }: PaymentsCardProps) {
                   backgroundColor: { duration: 0.3 },
                   scale: { duration: 0.3 }
                 }}
-                className="bg-gray-800/50 p-3 rounded flex items-center justify-between"
+                className="bg-gray-800/30 backdrop-blur-sm p-4 rounded-xl flex items-center justify-between"
               >
                 <div>
                   <div className="text-sm font-medium text-gray-200">{invoice.invoice}</div>
                   <div className="text-sm font-bold text-gray-300 mt-1">{invoice.amount}</div>
                 </div>
-                <div className={`text-xs px-2 py-1 rounded ${
-                  invoice.status === 'paid' ? 'bg-green-600/20 text-green-400' : 'bg-gray-600/20 text-gray-400'
+                <div className={`text-xs px-3 py-1 rounded-full ${
+                  invoice.status === 'paid' ? 'bg-blue-600/20 text-blue-400' : 'bg-gray-600/20 text-gray-400'
                 }`}>
                   {invoice.status}
                 </div>

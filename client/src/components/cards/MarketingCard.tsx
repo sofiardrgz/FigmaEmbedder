@@ -25,25 +25,26 @@ export default function MarketingCard({ className = "" }: MarketingCardProps) {
 
   return (
     <div 
-      className={`text-gray-300 rounded-lg overflow-hidden ${className}`} 
+      className={`text-gray-300 rounded-2xl overflow-hidden ${className}`} 
       style={{ 
-        backgroundColor: '#0d0d0d', 
+        backgroundColor: '#1c1c1e', 
         width: '260px', 
         height: '300px',
-        border: '1px solid #374151'
+        border: 'none',
+        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3)'
       }}
     >
-      <div className="p-4 h-full flex flex-col">
-        <div className="flex-1 space-y-4">
+      <div className="p-6 h-full flex flex-col">
+        <div className="flex-1 space-y-5">
           {/* Total Engagement */}
           <motion.div 
-            initial={{ scale: 0.9, opacity: 0 }}
+            initial={{ scale: 0.95, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            className="bg-gray-800/50 p-4 rounded text-center"
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="bg-gray-800/30 backdrop-blur-sm p-5 rounded-xl text-center"
           >
-            <div className="flex items-center justify-center gap-2 mb-2">
-              <TrendingUp className="w-5 h-5 text-green-400" />
+            <div className="flex items-center justify-center gap-2 mb-3">
+              <TrendingUp className="w-5 h-5 text-blue-400" />
               <span className="text-sm text-gray-400">Total Engagement</span>
             </div>
             <motion.div 
@@ -68,7 +69,7 @@ export default function MarketingCard({ className = "" }: MarketingCardProps) {
                 {90.3 + animationState * 0.5}K
               </motion.span>
             </motion.div>
-            <div className="text-green-400 text-sm">+15% this week</div>
+            <div className="text-blue-400 text-sm">+15% this week</div>
           </motion.div>
 
           {/* Platform Stats */}
@@ -88,7 +89,7 @@ export default function MarketingCard({ className = "" }: MarketingCardProps) {
                   backgroundColor: { duration: 1.5, ease: "easeInOut" },
                   scale: { duration: 1.2, ease: "easeInOut" }
                 }}
-                className="bg-gray-800/50 p-3 rounded flex items-center justify-between"
+                className="bg-gray-800/30 backdrop-blur-sm p-4 rounded-xl flex items-center justify-between"
               >
                 <div className="flex items-center gap-3">
                   <motion.div
@@ -98,7 +99,7 @@ export default function MarketingCard({ className = "" }: MarketingCardProps) {
                     } : {}}
                     transition={{ duration: 0.5 }}
                   >
-                    <ThumbsUp className="w-4 h-4 text-green-400" />
+                    <ThumbsUp className="w-4 h-4 text-blue-400" />
                   </motion.div>
                   <div>
                     <div className="text-sm font-medium text-gray-200">{platform.name}</div>
@@ -119,7 +120,7 @@ export default function MarketingCard({ className = "" }: MarketingCardProps) {
                   >
                     {platform.likes}
                   </motion.div>
-                  <div className="text-green-400 text-xs">{platform.growth}</div>
+                  <div className="text-blue-400 text-xs">{platform.growth}</div>
                 </div>
               </motion.div>
             ))}

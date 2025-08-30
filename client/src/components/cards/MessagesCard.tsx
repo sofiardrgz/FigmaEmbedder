@@ -39,34 +39,36 @@ export default function MessagesCard({ className = "" }: MessagesCardProps) {
 
   return (
     <div 
-      className={`text-gray-300 rounded-lg overflow-hidden ${className}`} 
+      className={`text-gray-300 rounded-2xl overflow-hidden ${className}`} 
       style={{ 
-        backgroundColor: '#0d0d0d', 
+        backgroundColor: '#1c1c1e', 
         width: '260px', 
         height: '300px',
-        border: '1px solid #374151'
+        border: 'none',
+        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3)'
       }}
     >
-      <div className="p-4 h-full flex flex-col">
+      <div className="p-6 h-full flex flex-col">
         <div className="flex-1 space-y-3">
           {messages.slice(0, messageCount).map((msg, i) => (
             <motion.div 
               key={i}
-              initial={{ opacity: i < 3 ? 1 : 0, x: i < 3 ? 0 : 20 }}
+              initial={{ opacity: i < 3 ? 1 : 0, y: i < 3 ? 0 : 10 }}
               animate={{ 
                 opacity: 1, 
-                x: 0,
-                backgroundColor: i === highlightedMessage ? "rgba(55, 65, 81, 0.8)" : "rgba(31, 41, 55, 0.5)",
-                scale: i === highlightedMessage ? 1.01 : 1
+                y: 0,
+                backgroundColor: i === highlightedMessage ? "rgba(55, 65, 81, 0.6)" : "rgba(31, 41, 55, 0.3)",
+                scale: i === highlightedMessage ? 1.02 : 1
               }}
               transition={{ 
-                duration: 0.5,
-                backgroundColor: { duration: 0.3 },
-                scale: { duration: 0.3 }
+                duration: 0.8,
+                ease: "easeOut",
+                backgroundColor: { duration: 1.2 },
+                scale: { duration: 1.2 }
               }}
-              className="bg-gray-800/50 p-3 rounded flex items-start gap-3"
+              className="bg-gray-800/30 backdrop-blur-sm p-4 rounded-xl flex items-start gap-3"
             >
-              <div className="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0">
+              <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0">
                 {msg.name.split(' ').map(n => n[0]).join('')}
               </div>
               <div className="flex-1 min-w-0">
@@ -89,7 +91,7 @@ export default function MessagesCard({ className = "" }: MessagesCardProps) {
                     duration: 2,
                     ease: "easeInOut"
                   }}
-                  className="w-2 h-2 bg-gray-300 rounded-full"
+                  className="w-2 h-2 bg-blue-400 rounded-full"
                 />
               )}
             </motion.div>

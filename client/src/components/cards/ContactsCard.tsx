@@ -38,15 +38,16 @@ export default function ContactsCard({ className = "" }: ContactsCardProps) {
 
   return (
     <div 
-      className={`text-gray-300 rounded-lg overflow-hidden ${className}`} 
+      className={`text-gray-300 rounded-2xl overflow-hidden ${className}`} 
       style={{ 
-        backgroundColor: '#0d0d0d', 
+        backgroundColor: '#1c1c1e', 
         width: '260px', 
         height: '300px',
-        border: '1px solid #374151'
+        border: 'none',
+        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3)'
       }}
     >
-      <div className="p-4 h-full flex flex-col">
+      <div className="p-6 h-full flex flex-col">
         {/* New Contact Notification */}
         {showNewContact && (
           <motion.div 
@@ -57,7 +58,7 @@ export default function ContactsCard({ className = "" }: ContactsCardProps) {
               duration: 1.2,
               ease: "easeOut"
             }}
-            className="bg-gray-700/50 border border-gray-600 p-3 rounded mb-4"
+            className="bg-gray-800/40 backdrop-blur-sm p-4 rounded-xl mb-5"
           >
             <div className="flex items-center gap-2 mb-2">
               <motion.div
@@ -79,8 +80,8 @@ export default function ContactsCard({ className = "" }: ContactsCardProps) {
               key={i}
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1 }}
-              className="bg-gray-800/50 p-3 rounded"
+              transition={{ delay: i * 0.1, duration: 0.6, ease: "easeOut" }}
+              className="bg-gray-800/30 backdrop-blur-sm p-4 rounded-xl"
             >
               <div className="flex items-center gap-3">
                 <div className="w-8 h-8 bg-gray-600 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0">

@@ -31,15 +31,16 @@ export default function CalendarCard({ className = "" }: CalendarCardProps) {
 
   return (
     <div 
-      className={`text-gray-300 rounded-lg overflow-hidden ${className}`} 
+      className={`text-gray-300 rounded-2xl overflow-hidden ${className}`} 
       style={{ 
-        backgroundColor: '#0d0d0d', 
+        backgroundColor: '#1c1c1e', 
         width: '260px', 
         height: '300px',
-        border: '1px solid #374151'
+        border: 'none',
+        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3)'
       }}
     >
-      <div className="p-4 h-full flex flex-col">
+      <div className="p-6 h-full flex flex-col">
         {/* New Appointment Notification */}
         {showNewAppointment && (
           <motion.div 
@@ -50,7 +51,7 @@ export default function CalendarCard({ className = "" }: CalendarCardProps) {
               duration: 1.0,
               ease: "easeOut"
             }}
-            className="bg-gray-700/50 border border-gray-600 p-3 rounded mb-4"
+            className="bg-gray-800/40 backdrop-blur-sm p-4 rounded-xl mb-5"
           >
             <div className="flex items-center gap-2 mb-2">
               <motion.div
@@ -77,10 +78,14 @@ export default function CalendarCard({ className = "" }: CalendarCardProps) {
               key={i}
               initial={{ opacity: 0, x: -10 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: i * 0.1 }}
-              className="bg-gray-800/50 p-3 rounded flex items-center gap-3"
+              transition={{ delay: i * 0.1, duration: 0.6, ease: "easeOut" }}
+              className="bg-gray-800/30 backdrop-blur-sm p-4 rounded-xl flex items-center gap-3"
             >
-              <div className="w-2 h-8 bg-green-500 rounded-full"></div>
+              <motion.div 
+                animate={{ opacity: [0.6, 1, 0.6] }}
+                transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
+                className="w-2 h-8 bg-blue-500 rounded-full"
+              ></motion.div>
               <div className="flex-1">
                 <div className="text-sm font-medium text-gray-200">
                   {appointment.title}
