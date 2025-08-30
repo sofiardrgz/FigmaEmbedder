@@ -50,6 +50,31 @@ First, you need to get your code on GitHub:
 - ✅ SPA routing support (all routes redirect to index.html)
 - ✅ Asset caching optimization
 - ✅ HTTPS enabled by default
+- ✅ All individual dashboard routes fully supported
+
+## Available Routes After Deployment
+
+### Animated Demo Dashboard
+- `/embed/demo` - Full animated demo with Safari frame
+- `/embed/demo/no-frame` - Frameless animated demo
+
+### Individual Dashboard Components
+- `/embed/sales` - Sales dashboard with charts and pipeline
+- `/embed/sales/no-frame` - Frameless sales dashboard
+- `/embed/messages-only` - Messages dashboard with conversations
+- `/embed/messages-only/no-frame` - Frameless messages dashboard
+- `/embed/contacts` - Contacts with new contact notifications
+- `/embed/contacts/no-frame` - Frameless contacts dashboard
+- `/embed/calendar` - Calendar with appointment notifications
+- `/embed/calendar/no-frame` - Frameless calendar dashboard
+- `/embed/copilot` - AI Copilot with email creation preview
+- `/embed/copilot/no-frame` - Frameless copilot dashboard
+- `/embed/marketing` - Marketing analytics with social metrics
+- `/embed/marketing/no-frame` - Frameless marketing dashboard
+- `/embed/payments` - Payments & invoices dashboard
+- `/embed/payments/no-frame` - Frameless payments dashboard
+
+All routes are optimized for website embedding with 900px width and 100vh height.
 
 ## Note
 
