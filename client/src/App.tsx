@@ -21,6 +21,7 @@ import SalesCard from "@/components/cards/SalesCard";
 import MessagesCard from "@/components/cards/MessagesCard";
 import ContactsCard from "@/components/cards/ContactsCard";
 import CalendarCard from "@/components/cards/CalendarCard";
+import AutomationsCard from "@/components/cards/AutomationsCard";
 import CopilotCard from "@/components/cards/CopilotCard";
 import MarketingCard from "@/components/cards/MarketingCard";
 import PaymentsCard from "@/components/cards/PaymentsCard";
@@ -54,11 +55,12 @@ function Router() {
       <Route path="/embed/payments" component={() => <EmbeddablePaymentsOnly showSafariFrame={true} />} />
       <Route path="/embed/payments/no-frame" component={() => <EmbeddablePaymentsOnly showSafariFrame={false} />} />
       
-      {/* Card Components (220px x 300px) */}
+      {/* Card Components (260px x 320px) */}
       <Route path="/card/sales" component={() => <SalesCard />} />
       <Route path="/card/messages" component={() => <MessagesCard />} />
       <Route path="/card/contacts" component={() => <ContactsCard />} />
       <Route path="/card/calendar" component={() => <CalendarCard />} />
+      <Route path="/card/automations" component={() => <AutomationsCard />} />
       <Route path="/card/copilot" component={() => <CopilotCard />} />
       <Route path="/card/marketing" component={() => <MarketingCard />} />
       <Route path="/card/payments" component={() => <PaymentsCard />} />
