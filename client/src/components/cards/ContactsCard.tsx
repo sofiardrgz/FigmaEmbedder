@@ -1,11 +1,22 @@
 import { motion } from "framer-motion";
 import { Plus } from "lucide-react";
+import { useEffect, useState } from "react";
 
 interface ContactsCardProps {
   className?: string;
 }
 
 export default function ContactsCard({ className = "" }: ContactsCardProps) {
+  const [highlightNew, setHighlightNew] = useState(true);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setHighlightNew(prev => !prev);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div 
       className={`text-gray-300 rounded-lg overflow-hidden ${className}`} 
@@ -24,8 +35,17 @@ export default function ContactsCard({ className = "" }: ContactsCardProps) {
         {/* New Contact Notification */}
         <motion.div 
           initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.2 }}
+          animate={{ 
+            opacity: [1, 0.7, 1], 
+            scale: highlightNew ? [1, 1.05, 1] : 1,
+            borderColor: highlightNew ? ["#22c55e", "#16a34a", "#22c55e"] : "#22c55e"
+          }}
+          transition={{ 
+            delay: 0.2,
+            opacity: { repeat: Infinity, duration: 2, ease: "easeInOut" },
+            scale: { duration: 0.5 },
+            borderColor: { duration: 0.5 }
+          }}
           className="bg-green-600/20 border border-green-500 p-2 rounded mb-3"
         >
           <div className="flex items-center gap-1">
@@ -50,6 +70,9 @@ export default function ContactsCard({ className = "" }: ContactsCardProps) {
               className={`bg-gray-800/50 p-2 rounded ${
                 contact.isNew ? 'ring-1 ring-green-500/30 bg-green-600/10' : ''
               }`}
+              style={{
+                backgroundColor: contact.isNew && highlightNew ? 'rgba(34, 197, 94, 0.15)' : undefined
+              }}
             >
               <div className="flex items-center gap-2">
                 <div className="w-5 h-5 bg-green-600 rounded-full flex items-center justify-center text-[8px] font-bold">

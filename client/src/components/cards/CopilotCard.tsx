@@ -1,11 +1,22 @@
 import { motion } from "framer-motion";
 import { Bot } from "lucide-react";
+import { useEffect, useState } from "react";
 
 interface CopilotCardProps {
   className?: string;
 }
 
 export default function CopilotCard({ className = "" }: CopilotCardProps) {
+  const [typingEffect, setTypingEffect] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTypingEffect(prev => (prev + 1) % 3);
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div 
       className={`text-gray-300 rounded-lg overflow-hidden ${className}`} 
@@ -35,7 +46,19 @@ export default function CopilotCard({ className = "" }: CopilotCardProps) {
             className="bg-gray-800/50 border border-gray-600 rounded p-2"
           >
             <div className="flex items-start gap-2">
-              <Bot className="w-3 h-3 text-gray-400 mt-0.5 flex-shrink-0" />
+              <motion.div
+                animate={{ 
+                  scale: [1, 1.1, 1],
+                  color: ["#9ca3af", "#22c55e", "#9ca3af"]
+                }}
+                transition={{ 
+                  repeat: Infinity, 
+                  duration: 3, 
+                  ease: "easeInOut"
+                }}
+              >
+                <Bot className="w-3 h-3 mt-0.5 flex-shrink-0" />
+              </motion.div>
               <div className="flex-1">
                 <div className="text-[9px] font-medium text-gray-300 mb-1">AI Copilot</div>
                 <div className="text-[8px] text-white mb-2">Sure! I'll create an email for you!</div>
@@ -43,8 +66,15 @@ export default function CopilotCard({ className = "" }: CopilotCardProps) {
                 {/* Mini Email Preview */}
                 <motion.div 
                   initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.6 }}
+                  animate={{ 
+                    opacity: 1, 
+                    scale: 1,
+                    borderColor: ["#4b5563", "#22c55e", "#4b5563"]
+                  }}
+                  transition={{ 
+                    delay: 0.6,
+                    borderColor: { repeat: Infinity, duration: 4, ease: "easeInOut" }
+                  }}
                   className="bg-gray-900/50 border border-gray-600 rounded p-2"
                 >
                   <div className="text-[8px] text-gray-400 mb-1">Email Draft:</div>

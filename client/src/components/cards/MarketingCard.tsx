@@ -1,10 +1,21 @@
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 interface MarketingCardProps {
   className?: string;
 }
 
 export default function MarketingCard({ className = "" }: MarketingCardProps) {
+  const [highlightIndex, setHighlightIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setHighlightIndex(prev => (prev + 1) % 5); // 2 top metrics + 3 social platforms
+    }, 2500);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div 
       className={`text-gray-300 rounded-lg overflow-hidden ${className}`} 
@@ -25,8 +36,16 @@ export default function MarketingCard({ className = "" }: MarketingCardProps) {
           <div className="grid grid-cols-2 gap-2">
             <motion.div 
               initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ delay: 0.2 }}
+              animate={{ 
+                scale: highlightIndex === 0 ? [1, 1.05, 1] : 1, 
+                opacity: 1,
+                backgroundColor: highlightIndex === 0 ? "rgba(34, 197, 94, 0.1)" : "rgba(31, 41, 55, 0.5)"
+              }}
+              transition={{ 
+                delay: 0.2,
+                scale: { duration: 1 },
+                backgroundColor: { duration: 0.3 }
+              }}
               className="bg-gray-800/50 p-2 rounded text-center"
             >
               <div className="text-[10px] text-gray-400">Facebook</div>
@@ -35,8 +54,16 @@ export default function MarketingCard({ className = "" }: MarketingCardProps) {
             </motion.div>
             <motion.div 
               initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ delay: 0.4 }}
+              animate={{ 
+                scale: highlightIndex === 1 ? [1, 1.05, 1] : 1, 
+                opacity: 1,
+                backgroundColor: highlightIndex === 1 ? "rgba(34, 197, 94, 0.1)" : "rgba(31, 41, 55, 0.5)"
+              }}
+              transition={{ 
+                delay: 0.4,
+                scale: { duration: 1 },
+                backgroundColor: { duration: 0.3 }
+              }}
               className="bg-gray-800/50 p-2 rounded text-center"
             >
               <div className="text-[10px] text-gray-400">Twitter</div>
@@ -55,8 +82,17 @@ export default function MarketingCard({ className = "" }: MarketingCardProps) {
               <motion.div 
                 key={i}
                 initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.6 + i * 0.1 }}
+                animate={{ 
+                  opacity: 1, 
+                  x: 0,
+                  backgroundColor: highlightIndex === i + 2 ? "rgba(34, 197, 94, 0.1)" : "rgba(31, 41, 55, 0.5)",
+                  scale: highlightIndex === i + 2 ? [1, 1.02, 1] : 1
+                }}
+                transition={{ 
+                  delay: 0.6 + i * 0.1,
+                  backgroundColor: { duration: 0.3 },
+                  scale: { duration: 1 }
+                }}
                 className="bg-gray-800/50 p-2 rounded flex items-center justify-between"
               >
                 <div>

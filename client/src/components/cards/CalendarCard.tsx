@@ -1,11 +1,22 @@
 import { motion } from "framer-motion";
 import { Check, Clock } from "lucide-react";
+import { useEffect, useState } from "react";
 
 interface CalendarCardProps {
   className?: string;
 }
 
 export default function CalendarCard({ className = "" }: CalendarCardProps) {
+  const [activeEvent, setActiveEvent] = useState(1); // Index of "in-progress" event
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveEvent(prev => (prev + 1) % 4);
+    }, 3500);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div 
       className={`text-gray-300 rounded-lg overflow-hidden ${className}`} 
@@ -50,16 +61,32 @@ export default function CalendarCard({ className = "" }: CalendarCardProps) {
               transition={{ delay: 0.4 + i * 0.1 }}
               className="bg-gray-800/50 p-2 rounded flex items-center gap-2"
             >
-              <Clock className="w-3 h-3 text-gray-400 flex-shrink-0" />
+              <motion.div
+                animate={{ 
+                  rotate: i === activeEvent ? 360 : 0,
+                  color: i === activeEvent ? "#22c55e" : "#9ca3af"
+                }}
+                transition={{ 
+                  rotate: { duration: 2, ease: "easeInOut" },
+                  color: { duration: 0.3 }
+                }}
+              >
+                <Clock className="w-3 h-3 flex-shrink-0" />
+              </motion.div>
               <div className="flex-1 min-w-0">
                 <div className="text-[10px] font-medium text-gray-300 truncate">{event.title}</div>
                 <div className="text-[8px] text-gray-400">{event.time}</div>
               </div>
-              <div className={`text-[8px] px-1 py-0.5 rounded ${
-                event.status === 'in-progress' ? 'bg-green-600/20 text-green-400' : 'bg-gray-600/20 text-gray-400'
-              }`}>
-                {event.status === 'in-progress' ? 'now' : 'soon'}
-              </div>
+              <motion.div 
+                className={`text-[8px] px-1 py-0.5 rounded`}
+                animate={{
+                  backgroundColor: i === activeEvent ? 'rgba(34, 197, 94, 0.2)' : 'rgba(75, 85, 99, 0.2)',
+                  color: i === activeEvent ? '#22c55e' : '#9ca3af'
+                }}
+                transition={{ duration: 0.3 }}
+              >
+                {i === activeEvent ? 'now' : 'soon'}
+              </motion.div>
             </motion.div>
           ))}
         </div>

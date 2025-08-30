@@ -1,10 +1,21 @@
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 interface PaymentsCardProps {
   className?: string;
 }
 
 export default function PaymentsCard({ className = "" }: PaymentsCardProps) {
+  const [animationState, setAnimationState] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setAnimationState(prev => (prev + 1) % 3);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div 
       className={`text-gray-300 rounded-lg overflow-hidden ${className}`} 
@@ -25,8 +36,16 @@ export default function PaymentsCard({ className = "" }: PaymentsCardProps) {
           <div className="grid grid-cols-2 gap-2">
             <motion.div 
               initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ delay: 0.2 }}
+              animate={{ 
+                scale: animationState === 0 ? [1, 1.05, 1] : 1, 
+                opacity: 1,
+                backgroundColor: animationState === 0 ? "rgba(34, 197, 94, 0.1)" : "rgba(31, 41, 55, 0.5)"
+              }}
+              transition={{ 
+                delay: 0.2,
+                scale: { duration: 1.5 },
+                backgroundColor: { duration: 0.3 }
+              }}
               className="bg-gray-800/50 p-2 rounded text-center"
             >
               <div className="text-[10px] text-gray-400">Revenue</div>
@@ -35,8 +54,16 @@ export default function PaymentsCard({ className = "" }: PaymentsCardProps) {
             </motion.div>
             <motion.div 
               initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ delay: 0.4 }}
+              animate={{ 
+                scale: animationState === 1 ? [1, 1.05, 1] : 1, 
+                opacity: 1,
+                backgroundColor: animationState === 1 ? "rgba(251, 191, 36, 0.1)" : "rgba(31, 41, 55, 0.5)"
+              }}
+              transition={{ 
+                delay: 0.4,
+                scale: { duration: 1.5 },
+                backgroundColor: { duration: 0.3 }
+              }}
               className="bg-gray-800/50 p-2 rounded text-center"
             >
               <div className="text-[10px] text-gray-400">Pending</div>
@@ -55,8 +82,19 @@ export default function PaymentsCard({ className = "" }: PaymentsCardProps) {
               <motion.div 
                 key={i}
                 initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6 + i * 0.1 }}
+                animate={{ 
+                  opacity: 1, 
+                  y: 0,
+                  backgroundColor: animationState === 2 && i === 1 ? 
+                    "rgba(251, 191, 36, 0.1)" : 
+                    animationState === 2 && payment.status === 'paid' ? 
+                    "rgba(34, 197, 94, 0.1)" : 
+                    "rgba(31, 41, 55, 0.5)"
+                }}
+                transition={{ 
+                  delay: 0.6 + i * 0.1,
+                  backgroundColor: { duration: 0.5 }
+                }}
                 className="bg-gray-800/50 p-2 rounded flex items-center justify-between"
               >
                 <div>

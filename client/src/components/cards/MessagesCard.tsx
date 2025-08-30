@@ -1,10 +1,21 @@
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 interface MessagesCardProps {
   className?: string;
 }
 
 export default function MessagesCard({ className = "" }: MessagesCardProps) {
+  const [pulseIndex, setPulseIndex] = useState(0);
+  
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setPulseIndex(prev => (prev + 1) % 4);
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div 
       className={`text-gray-300 rounded-lg overflow-hidden ${className}`} 
@@ -30,8 +41,15 @@ export default function MessagesCard({ className = "" }: MessagesCardProps) {
             <motion.div 
               key={i}
               initial={{ opacity: 0, x: -15 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: i * 0.15 }}
+              animate={{ 
+                opacity: 1, 
+                x: 0,
+                backgroundColor: i === pulseIndex ? "rgba(34, 197, 94, 0.1)" : "rgba(31, 41, 55, 0.5)"
+              }}
+              transition={{ 
+                delay: i * 0.15,
+                backgroundColor: { duration: 0.3 }
+              }}
               className="bg-gray-800/50 p-2 rounded flex items-start gap-2"
             >
               <div className="w-6 h-6 bg-green-600 rounded-full flex items-center justify-center text-[8px] font-bold flex-shrink-0">
@@ -46,7 +64,20 @@ export default function MessagesCard({ className = "" }: MessagesCardProps) {
                 </div>
               </div>
               <div className="flex items-center gap-1 flex-shrink-0">
-                {msg.unread && <div className="w-1.5 h-1.5 bg-green-500 rounded-full"></div>}
+                {msg.unread && (
+                <motion.div 
+                  animate={{ 
+                    scale: [1, 1.5, 1],
+                    opacity: [0.7, 1, 0.7]
+                  }}
+                  transition={{ 
+                    repeat: Infinity, 
+                    duration: 1.5, 
+                    ease: "easeInOut"
+                  }}
+                  className="w-1.5 h-1.5 bg-green-500 rounded-full"
+                />
+              )}
                 <div className="text-[8px] text-gray-500">{msg.time}</div>
               </div>
             </motion.div>
