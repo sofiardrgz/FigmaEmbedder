@@ -533,7 +533,7 @@ export default function Demo() {
         <div className="border-b border-gray-700 px-4 py-3" style={{ backgroundColor: '#0d0d0d' }}>
           <div className="flex items-center space-x-4">
             <Home className="w-4 h-4 text-gray-400" />
-            <span className="text-[14px] font-normal text-[#7d7d7d]">Home</span>
+            <span className="text-[#7d7d7d] font-medium text-[15px]">Home</span>
           </div>
         </div>
 
